@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2CA58D"
+    tools:context=".GameActivity">
+
+    <TextView
+        android:id="@+id/priorityTaskTitle"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/label_height"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/priority_task_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/questBoardTitle"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/label_height"
+        android:layout_marginTop="164dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/quest_board_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priorityTaskTitle" />
+
+    <TextView
+        android:id="@+id/profileInfo"
+        android:layout_width="267dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:lineSpacingExtra="6sp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:text="@string/placeholder_profile"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorText"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/profilePicture"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/pfp_content_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/placeholder_pfp" />
+
+    <LinearLayout
+        android:id="@+id/profileFooter"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/profileMoneyIcon"
+            android:layout_width="59dp"
+            android:layout_height="56dp"
+            android:contentDescription="@string/money_content_info"
+            app:srcCompat="@drawable/money_icon" />
+
+        <TextView
+            android:id="@+id/profileMoneyText"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quest"
+            android:text="@string/placeholder_money"
+            android:textColor="@color/colorText"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/profilePowerIcon"
+            android:layout_width="59dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/mana_content_info"
+            app:srcCompat="@drawable/power_icon" />
+
+        <TextView
+            android:id="@+id/profileManaText"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/quest"
+            android:text="@string/placeholder_mana"
+            android:textColor="@color/colorText"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/navLayout"
+        android:layout_width="0dp"
+        android:layout_height="235dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questBoardTitle">
+
+        <TableRow
+            android:id="@+id/navRow1"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <View
+                android:id="@+id/space_18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/guildNavBtn"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28dp"
+                android:layout_weight="2"
+                android:background="@drawable/round_corners"
+                android:backgroundTint="@color/colorAccent"
+                android:fontFamily="@font/quest"
+                android:text="@string/guild_nav_txt"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/space_19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/taskNavBtn"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28dp"
+                android:layout_weight="2"
+                android:background="@drawable/round_corners"
+                android:backgroundTint="@color/colorAccent"
+                android:fontFamily="@font/quest"
+                android:text="@string/task_nav_txt"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/space_20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/navRow2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <View
+                android:id="@+id/space_21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/shopNavBtn"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28dp"
+                android:layout_weight="2"
+                android:background="@drawable/round_corners"
+                android:backgroundTint="@color/colorAccent"
+                android:fontFamily="@font/quest"
+                android:text="@string/shop_nav_txt"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/space_22"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/statsNavBtn"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28dp"
+                android:layout_weight="2"
+                android:background="@drawable/round_corners"
+                android:backgroundTint="@color/colorAccent"
+                android:fontFamily="@font/quest"
+                android:text="@string/stats_nav_txt"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <View
+                android:id="@+id/space_23"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

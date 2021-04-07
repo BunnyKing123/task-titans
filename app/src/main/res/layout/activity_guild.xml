@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".GuildActivity">
+
+    <Button
+        android:id="@+id/guildBackBtn"
+        android:layout_width="80dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/return_txt"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/chatSendBtn"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/send_txt"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toEndOf="@+id/guildSearchBar"
+        app:layout_constraintTop_toBottomOf="@+id/chatScroller" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/guildChatSendBar"
+        android:layout_width="238dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chatScroller">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/guildChatSendTxt"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:fontFamily="@font/quest"
+            android:hint="@string/chat_input_txt" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/guildInfo"
+        android:layout_width="267dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:lineSpacingExtra="6sp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:text="@string/placeholder_guild_info"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorText"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/guildCrest"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/guildCrest"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="92dp"
+        android:contentDescription="@string/pfp_content_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/placeholder_pfp" />
+
+    <TextView
+        android:id="@+id/guildTitle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/title_height"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/placeholder_guild_name"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorText"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/guildChallengeLabel"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/label_height"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/guild_challenge_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildTitle" />
+
+    <TextView
+        android:id="@+id/guildChatLabel"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/label_height"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/guild_chat_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildChallengeContainer" />
+
+    <LinearLayout
+        android:id="@+id/guildChallengeContainer"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="86dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildChallengeLabel"></LinearLayout>
+
+    <ScrollView
+        android:id="@+id/chatScroller"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildChatLabel">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorField"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/chatBox"
+                android:layout_width="@dimen/label_width"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/quest"
+                android:text="@string/placeholder_chat"
+                android:textColor="@color/colorTextDark"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

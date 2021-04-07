@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".DetailsActivity">
+
+    <Button
+        android:id="@+id/detailFinBtn"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:layout_weight="1"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/finish_txt"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/detailsTitle"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/title_height"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/character_details_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/detailsSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/quest"
+        android:text="@string/customize_character_txt"
+        android:textColor="@color/colorTextDark"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsTitle" />
+
+    <TextView
+        android:id="@+id/classLabel"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/label_height"
+        android:layout_marginTop="154dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/class_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/classContainer"
+        android:layout_width="378dp"
+        android:layout_height="95dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/classLabel">
+
+        <View
+            android:id="@+id/space_10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/fighterBtn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccentBtn"
+            android:contentDescription="@string/fighter_content_info"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/sword_icon" />
+
+        <View
+            android:id="@+id/space_11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/archerBtn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccentBtn"
+            android:contentDescription="@string/archer_content_info"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bow_icon" />
+
+        <View
+            android:id="@+id/space_12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/mageBtn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccentBtn"
+            android:contentDescription="@string/mage_content_info"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/staff_icon" />
+
+        <View
+            android:id="@+id/space_13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/raceLabel"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/label_height"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/race_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/classContainer" />
+
+    <LinearLayout
+        android:id="@+id/raceContainer"
+        android:layout_width="378dp"
+        android:layout_height="95dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/raceLabel">
+
+        <View
+            android:id="@+id/space_14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/humanBtn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccentBtn"
+            android:contentDescription="@string/fighter_content_info"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/human_icon" />
+
+        <View
+            android:id="@+id/space_15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/orcBtn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccentBtn"
+            android:contentDescription="@string/archer_content_info"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/orc_icon" />
+
+        <View
+            android:id="@+id/space_16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/elfBtn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccentBtn"
+            android:contentDescription="@string/mage_content_info"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/elf_icon" />
+
+        <View
+            android:id="@+id/space_17"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

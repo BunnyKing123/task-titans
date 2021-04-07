@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".AppearanceActivity">
+
+    <Button
+        android:id="@+id/appearanceFinBtn"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:layout_weight="1"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/continue_txt"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/appearanceTitle"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/title_height"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/appearance_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/appearanceSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/quest"
+        android:text="@string/customize_character_txt"
+        android:textColor="@color/colorTextDark"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/skinColorLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appearanceTitle" />
+
+    <TextView
+        android:id="@+id/skinColorLabel"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/label_height"
+        android:layout_marginTop="154dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/skin_color_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/skinColorContainer"
+        android:layout_width="378dp"
+        android:layout_height="95dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/skinColorLabel">
+
+        <Button
+            android:id="@+id/skin1Btn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#FBD5B4" />
+
+        <View
+            android:id="@+id/space_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/skin2Btn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#516E52" />
+
+        <View
+            android:id="@+id/space_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/skin3Btn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#422619" />
+
+        <View
+            android:id="@+id/space_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/skin4Btn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#474747" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/hairColorLabel"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/label_height"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/hair_color_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/skinColorContainer" />
+
+    <LinearLayout
+        android:id="@+id/hairColorContainer"
+        android:layout_width="378dp"
+        android:layout_height="95dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hairColorLabel">
+
+        <Button
+            android:id="@+id/hair1Btn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#453527" />
+
+        <View
+            android:id="@+id/space_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/hair2Btn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#FADA85" />
+
+        <View
+            android:id="@+id/space_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/hair3Btn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#531B1B" />
+
+        <View
+            android:id="@+id/space_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/hair4Btn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#131313" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/genderLabel"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/label_height"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/gender_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hairColorContainer" />
+
+    <LinearLayout
+        android:id="@+id/genderContainer"
+        android:layout_width="378dp"
+        android:layout_height="95dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genderLabel">
+
+        <View
+            android:id="@+id/space_7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/maleBtn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccentBtn"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/male_icon" />
+
+        <View
+            android:id="@+id/space_8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/femaleBtn"
+            android:layout_width="@dimen/btn_square"
+            android:layout_height="@dimen/btn_square"
+            android:layout_weight="0"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccentBtn"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/female_icon" />
+
+        <View
+            android:id="@+id/space_9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

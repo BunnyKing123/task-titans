@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".GroupTaskActivity">
+
+    <Button
+        android:id="@+id/groupBackBtn"
+        android:layout_width="@dimen/btn_small_width"
+        android:layout_height="@dimen/btn_small_height"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/return_txt"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.436"
+        app:layout_constraintStart_toEndOf="@+id/shopBuyBtn"
+        app:layout_constraintTop_toBottomOf="@+id/createGuildBtn"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/groupTasksLabel"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/title_height"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/group_tasks_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/joinGroupContainer"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="58dp"
+        android:layout_marginTop="16dp"
+        android:gravity="top"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupTasksLabel">
+
+        <Button
+            android:id="@+id/groupJoinBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_small_height"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/quest"
+            android:text="@string/join_txt"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.436"
+            app:layout_constraintStart_toEndOf="@+id/rptTaskDoneBtn" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/joinGroupInput"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="2"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorField"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guildJoinTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/joinGroupInputTxt"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/quest"
+                android:hint="@string/join_txt" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/createGroupBtn"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/group_tasks_txt"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/joinGroupContainer" />
+
+    <ScrollView
+        android:id="@+id/groupTasksScroll"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="350dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createGroupBtn">
+
+        <LinearLayout
+            android:id="@+id/groupTasksContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

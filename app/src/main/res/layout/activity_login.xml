@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2CA58D"
+    tools:context=".LoginActivity">
+
+
+    <TextView
+        android:id="@+id/loginSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/quest"
+        android:text="@string/subtitle"
+        android:textColor="@color/colorTextDark"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginTitle" />
+
+    <TextView
+        android:id="@+id/loginTitle"
+        android:layout_width="@dimen/label_width"
+        android:layout_height="@dimen/title_height"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/login_txt"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ssoLoginBtn"
+        android:layout_width="@dimen/btn_large_width"
+        android:layout_height="@dimen/btn_large_height"
+        android:layout_marginBottom="76dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#F46197"
+        android:fontFamily="@font/quest"
+        android:text="@string/login_txt"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ssoEmailInput"
+        android:layout_width="@dimen/text_field_width"
+        android:layout_height="@dimen/text_field_height"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorField"
+        app:layout_constraintBottom_toTopOf="@+id/ssoLoginBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ssoLoginEmailTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quest"
+            android:hint="@string/email_txt"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ssoPasswordInput"
+        android:layout_width="@dimen/text_field_width"
+        android:layout_height="@dimen/text_field_height"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorField"
+        app:layout_constraintBottom_toTopOf="@+id/ssoEmailInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ssoLoginPasswordTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quest"
+            android:hint="@string/password_txt"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ssoLoginUserInput"
+        android:layout_width="@dimen/text_field_width"
+        android:layout_height="@dimen/text_field_height"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorField"
+        app:layout_constraintBottom_toTopOf="@+id/ssoPasswordInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ssoLoginUserTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quest"
+            android:hint="@string/username_txt" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

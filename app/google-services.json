@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "840991638354",
+    "firebase_url": "https://task-titans-login-default-rtdb.firebaseio.com",
+    "project_id": "task-titans-login",
+    "storage_bucket": "task-titans-login.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840991638354:android:5ce8d6125365d4017c308b",
+        "android_client_info": {
+          "package_name": "xyz.dolphcode.tasktitans"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840991638354-9u7rda6en64jfji6fb0bqdg845rnjjbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhFIWJU_8Rm4FRTBSsbxVrwqnxwzbJaKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840991638354-9u7rda6en64jfji6fb0bqdg845rnjjbc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">Task Titans</string>
+    <string name="display_name_txt">Display Name</string>
+    <string name="priority_task_txt">Priority Tasks</string>
+    <string name="quest_board_txt">Quest Board</string>
+    <string name="skills_title">Character Skills</string>
+    <string name="stats_title">Character Stats</string>
+    <string name="use_skill_txt">Use Skill</string>
+    <string name="shop_txt">Shop</string>
+    <string name="return_txt">Back</string>
+    <string name="buy_txt">Buy</string>
+    <string name="guild_join_txt">Guild Joiner</string>
+    <string name="search_txt">Search</string>
+    <string name="search_hint_txt">Enter a guild name to search</string>
+    <string name="create_guild_txt">Create a Guild</string>
+    <string name="guild_challenge_txt">Guild Challenge</string>
+    <string name="guild_chat_txt">Guild Chat</string>
+    <string name="member_list_txt">Members</string>
+    <string name="leave_txt">Leave</string>
+    <string name="send_txt">Send</string>
+    <string name="chat_input_txt">Say something nice</string>
+    <string name="appearance_txt">Appearance</string>
+    <string name="skin_color_txt">Skin Color</string>
+    <string name="gender_txt">Gender</string>
+    <string name="hair_color_txt">Hair Color</string>
+    <string name="continue_txt">Continue</string>
+    <string name="finish_txt">Finish</string>
+    <string name="character_details_txt">Details</string>
+    <string name="customize_character_txt">Customize your character</string>
+    <string name="race_txt">Race</string>
+    <string name="class_txt">Class</string>
+    <string name="tasks_txt">Tasks</string>
+    <string name="quests_txt">Quests</string>
+    <string name="repeat_tasks_txt">Repeat Tasks</string>
+    <string name="group_tasks_txt">Group Tasks</string>
+    <string name="create_tasks_txt">Create Task</string>
+    <string name="task_name">Name</string>
+    <string name="task_desc">Description</string>
+    <string name="task_count">Count</string>
+    <string name="task_count_hint">Leave blank if only 1</string>
+    <string name="task_date">Date</string>
+    <string name="task_freq">Freq</string>
+    <string name="join_txt">Join</string>
+    <string name="create_group_txt">Create Group Task</string>
+    <string name="level">Level</string>
+    <string name="level_hint">Minimum Level</string>
+    <string name="guild_logo">Crest</string>
+    <string name="create_guild">Create Guild</string>
+
+    <string name="subtitle">Your journey begins here</string>
+
+    <string name="guild_nav_txt">Guild</string>
+    <string name="task_nav_txt">Tasks</string>
+    <string name="shop_nav_txt">Shop</string>
+    <string name="stats_nav_txt">Stats</string>
+
+    <string name="login_txt">Log In</string>
+    <string name="signup_txt">Sign Up</string>
+    <string name="username_txt">Username</string>
+    <string name="password_txt">Password</string>
+    <string name="email_txt">Email</string>
+
+    <string name="pfp_content_info">Your Profile Picture</string>
+    <string name="money_content_info">Money Icon</string>
+    <string name="mana_content_info">Mana Icon</string>
+    <string name="shopkeeper_content_info">A picture of the shop keeper doggo and his wares</string>
+    <string name="female_content_info">Female gender selection</string>
+    <string name="male_content_info">Male gender selection</string>
+    <string name="fighter_content_info">Fighter class selection</string>
+    <string name="archer_content_info">Archer class selection</string>
+    <string name="mage_content_info">Mage class selection</string>
+    <string name="human_content_info">Human race selection</string>
+    <string name="orc_content_info">Orc race selection</string>
+    <string name="elf_content_info">Elf race selection</string>
+
+    <string name="placeholder_profile">Name:\nHP:\nLevel:</string>
+    <string name="placeholder_stats">Strength:\nDexterity:\nIntellect:\nConstitution:</string>
+    <string name="placeholder_money">0.00</string>
+    <string name="placeholder_mana">100 MP</string>
+    <string name="placeholder_skill">Skill</string>
+    <string name="placeholder_skill_desc">Skill Description</string>
+    <string name="placeholder_item_desc">Item Description</string>
+    <string name="placeholder_guild_info">Guild Points:\nRank:\nMember Count:</string>
+    <string name="placeholder_guild_name">Guild</string>
+    <string name="placeholder_chat">Chat</string>
+</resources>
