@@ -15,7 +15,8 @@ import java.util.Map;
 
 import xyz.dolphcode.tasktitans.util.Util;
 
-public abstract class Client {
+// The client class deals with interactions with the database
+public final class Client {
 
     private static DatabaseReference INSTANCE;
     private static ArrayList<String> USERIDS = null;

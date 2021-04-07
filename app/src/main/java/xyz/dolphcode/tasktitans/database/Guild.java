@@ -38,17 +38,18 @@ public class Guild {
         Client.updateGuild(this);
     }
 
+    // Private constructor so that guild can't be instantiated
     private Guild() {}
 
     public static class GuildBuilder {
 
-        private String name;
+        private String name; // Guild name used for searching
         private List<String> chat = new ArrayList<String>();
         private List<String> memberIDs = new ArrayList<String>();
         private String ownerID;
         private int minimumLevel = 0;
 
-        // Private constructor
+        // Private constructor so that guild can't be instantiated
         private GuildBuilder() {}
 
         public static GuildBuilder createGuild(String name, String ownerID) {
