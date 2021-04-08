@@ -46,6 +46,7 @@
     <string name="level_hint">Minimum Level</string>
     <string name="guild_logo">Crest</string>
     <string name="create_guild">Create Guild</string>
+    <string name="task_time">Time</string>
 
     <string name="subtitle">Your journey begins here</string>
 

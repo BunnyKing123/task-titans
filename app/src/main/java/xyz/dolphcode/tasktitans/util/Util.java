@@ -1,6 +1,7 @@
 package xyz.dolphcode.tasktitans.util;
 
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -95,4 +96,32 @@ public final class Util {
         return list;
     }
 
+    // Formats time given hour and minute
+    public static String formatTime(int hour, int min) {
+        // Determine whether AM or PM and convert military to standard time
+        String meridiem = "AM";
+        int formatHour = hour;
+        if (formatHour >= 12 && formatHour < 24) {
+            meridiem = "PM";
+            formatHour -= 12;
+        }
+        if (formatHour == 0 || formatHour == 24) {
+            formatHour = 12;
+        }
+        formatHour = Math.abs(formatHour);
+
+        // Format time to two digits
+        String formatMin = String.format("%02d", min);
+
+        return formatHour + ":" + formatMin + meridiem;
+    }
+
+    // Gets current time in hours and minutes
+    // Hour is at index 0
+    // Minutes are at index 1
+    public static int[] currentTime() {
+        final Calendar c = Calendar.getInstance();
+        int[] time = {c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE)};
+        return time;
+    }
 }
