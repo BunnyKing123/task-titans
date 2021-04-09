@@ -116,12 +116,28 @@ public final class Util {
         return formatHour + ":" + formatMin + meridiem;
     }
 
+    // Formats date given day, month and year
+    public static String formatDate(int day, int month, int year){
+        String formatDate = String.format("%02d", day);
+        return month + "/" + day + "/" + year;
+    }
+
     // Gets current time in hours and minutes
-    // Hour is at index 0
+    // Hour is at index 0 (in military time)
     // Minutes are at index 1
     public static int[] currentTime() {
         final Calendar c = Calendar.getInstance();
         int[] time = {c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE)};
         return time;
+    }
+
+    // Gets today's date
+    // Day is at index 0
+    // Month is at index 1
+    // Year is at index 2
+    public static int[] currentDate() {
+        final Calendar c = Calendar.getInstance();
+        int[] date = {c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH), c.get(Calendar.YEAR)};
+        return date;
     }
 }
