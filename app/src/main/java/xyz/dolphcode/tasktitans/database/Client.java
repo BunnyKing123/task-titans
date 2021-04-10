@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import xyz.dolphcode.tasktitans.database.tasks.Task;
 import xyz.dolphcode.tasktitans.util.Util;
 
 // The client class deals with interactions with the database
@@ -21,8 +22,10 @@ public final class Client {
     private static DatabaseReference INSTANCE;
     private static ArrayList<String> USERIDS = null;
     private static ArrayList<User> USERS = null;
-    private static ArrayList<Guild> GUILDS = null;
     private static ArrayList<String> GUILDIDS = null;
+    private static ArrayList<Guild> GUILDS = null;
+    private static ArrayList<String> TASKIDS = null;
+    private static ArrayList<Task> TASKS = null;
 
     static {
         INSTANCE = FirebaseDatabase.getInstance().getReference();
@@ -38,8 +41,10 @@ public final class Client {
             public void onDataChange(DataSnapshot dataSnapshot) { // According to Firebase docs, called once ValueEventListener is added to DB instance
                 ArrayList<String> userIDs = new ArrayList<String>();
                 ArrayList<User> users = new ArrayList<User>();
-                ArrayList<Guild> guilds = new ArrayList<Guild>();
                 ArrayList<String> guildIDs = new ArrayList<String>();
+                ArrayList<Guild> guilds = new ArrayList<Guild>();
+                ArrayList<String> taskIDs = new ArrayList<String>();
+                ArrayList<Task> tasks = new ArrayList<Task>();
 
                 // Iterate through all entries in "users"
                 for (DataSnapshot child : dataSnapshot.child("users").getChildren()) {
@@ -75,11 +80,25 @@ public final class Client {
                     guilds.add(guild);
                 }
 
+                // Iterate through all entries in "tasks"
+                for (DataSnapshot child : dataSnapshot.child("tasks").getChildren()) {
+                    taskIDs.add(child.getKey()); // Add the ID found to the list of User IDs
+
+                    // Use the Task to create a task using the information from the Data Snapsho
+                    Task task = Task.TaskBuilder.createTask(child.child("taskOwnerID").toString(), child.child("taskName").toString(), child.child("deadline").toString())
+                            .setCount(((Long) child.child("taskCount").getValue()).intValue())
+                            .setDesc(child.child("taskDesc").toString())
+                            .build(child.getKey());
+                    tasks.add(task);
+                }
+
                 // Set static variables
                 USERIDS = userIDs;
                 USERS = users;
                 GUILDIDS = guildIDs;
                 GUILDS = guilds;
+                TASKIDS = taskIDs;
+                TASKS = tasks;
             }
 
             @Override
@@ -136,6 +155,11 @@ public final class Client {
         INSTANCE.child("guilds").child(guild.getGuildID()).setValue(guild);
     }
 
+    // Updates a User in the database
+    public static void updateTask(Task task) {
+        INSTANCE.child("tasks").child(task.getTaskID()).setValue(task);
+    }
+
     // Creates a Unique User ID
     public static String getUniqueUserID() {
         String uuid = Util.generateRandomString(16);
@@ -149,6 +173,15 @@ public final class Client {
     public static String getUniqueGuildID() {
         String uuid = Util.generateRandomString(16);
         while (GUILDIDS.contains(uuid)) {
+            uuid = Util.generateRandomString(16);
+        }
+        return uuid;
+    }
+
+    // Creates a Unique Task ID
+    public static String getUniqueTaskID() {
+        String uuid = Util.generateRandomString(16);
+        while (TASKIDS.contains(uuid)) {
             uuid = Util.generateRandomString(16);
         }
         return uuid;

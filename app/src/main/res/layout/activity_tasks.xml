@@ -5,59 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".TasksActivity">
-
-    <Button
-        android:id="@+id/questsBackBtn"
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:layout_weight="1"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/return_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/addRepeatTaskBtn"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/repeat_tasks_txt"
-        android:textColor="@color/colorText"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tasksContainer" />
-
-    <ScrollView
-        android:id="@+id/repeatTasksContainer"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="120dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addRepeatTaskBtn">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
     <TextView
         android:id="@+id/questsLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/title_height"
-        android:layout_marginTop="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -66,57 +24,217 @@
         android:text="@string/quests_txt"
         android:textAlignment="center"
         android:textColor="@color/colorText"
-        android:textSize="48sp"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/addTaskBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
 
     <Button
         android:id="@+id/addTaskBtn"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/quest"
         android:text="@string/tasks_txt"
         android:textColor="@color/colorText"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tasksContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questsLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/questsLabel"
+        app:layout_constraintVertical_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/tasksContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/addRepeatTaskBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addTaskBtn"
+        app:layout_constraintVertical_weight="2">
+
+        <ImageButton
+            android:id="@+id/taskLeftBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bow_icon" />
+
+        <ScrollView
+            android:id="@+id/taskTextScroll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/taskText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corners"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/quest"
+                    android:paddingVertical="10dp"
+                    android:text="@string/task_date"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/taskRightBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bow_icon" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addRepeatTaskBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/repeat_tasks_txt"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/repeatTasksContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tasksContainer"
+        app:layout_constraintVertical_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/repeatTasksContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/groupTasksBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addRepeatTaskBtn"
+        app:layout_constraintVertical_weight="2">
+
+        <ImageButton
+            android:id="@+id/rptTaskLeftBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/dropdown_icon" />
+
+        <ScrollView
+            android:id="@+id/repeatTaskTextScroll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/repeatTaskText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corners"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/quest"
+                    android:paddingVertical="10dp"
+                    android:text="@string/task_date"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/rptTaskRightBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/dropdown_icon" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/groupTasksBtn"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/quest"
         android:text="@string/group_tasks_txt"
         android:textColor="@color/colorText"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/taskSpace"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatTasksContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/repeatTasksContainer"
+        app:layout_constraintVertical_weight="1" />
 
-    <ScrollView
-        android:id="@+id/tasksContainer"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="120dp"
-        android:layout_marginTop="16dp"
+    <View
+        android:id="@+id/taskSpace"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/backBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addTaskBtn">
+        app:layout_constraintTop_toBottomOf="@+id/groupTasksBtn"
+        app:layout_constraintVertical_weight="2" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/return_txt"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskSpace"
+        app:layout_constraintVertical_weight="1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

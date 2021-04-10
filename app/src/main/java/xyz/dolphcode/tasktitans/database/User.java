@@ -324,11 +324,11 @@ public class User {
             user.mana = (this.mana > user.maxMana || this.mana < 0) ? user.maxMana : this.mana;
 
             if (user.classID == 0) {
-                user.skill = Abilities.CUT_DOWN;
+                user.skill = Abilities.ABILITIES.get("Cut Down");
             } else if (user.classID == 1) {
-                user.skill = Abilities.DEADEYE;
+                user.skill = Abilities.ABILITIES.get("Deadeye");
             } else {
-                user.skill = Abilities.FIRE_BALL;
+                user.skill = Abilities.ABILITIES.get("Fire Ball");
             }
 
             user.guildID = this.guildID;

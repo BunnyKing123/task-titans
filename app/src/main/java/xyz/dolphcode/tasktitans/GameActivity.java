@@ -41,7 +41,7 @@ public class GameActivity extends AppCompatActivity {
         stats.setText("Name: " + user.getDisplayName() + "\nHP: " + user.getHP() + "/" + user.getMaxHP() + "\nLevel: " + User.convertToLevel(user.getXP()));
         money.setText("" + user.getMoney());
         mana.setText("" + user.getMana());
-        Util.addSwitchScreenAction(taskNavBtn, TasksActivity.class, GameActivity.this);
+        Util.addSwitchWithUser(taskNavBtn, TasksActivity.class, GameActivity.this, id);
         Util.addSwitchScreenAction(shopNavBtn, ShopActivity.class, GameActivity.this);
         Util.addSwitchWithUser(statsNavBtn, StatsActivity.class, GameActivity.this, id);
 

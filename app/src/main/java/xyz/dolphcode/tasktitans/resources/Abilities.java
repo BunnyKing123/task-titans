@@ -4,9 +4,7 @@ import java.util.HashMap;
 
 public final class Abilities {
 
-    public static String CUT_DOWN = "Cut Down";
-    public static String DEADEYE = "Deadeye";
-    public static String FIRE_BALL = "Fire Ball";
+    private Abilities() {}
 
     public static HashMap<String, String> ABILITIES = new HashMap<String, String>();
 

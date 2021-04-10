@@ -122,6 +122,21 @@ public final class Util {
         return month + "/" + day + "/" + year;
     }
 
+    // Formats date and time for storage in database
+    public static String formatDateTimeDB(int day, int month, int year, int hour, int minute) {
+        return month + "/" + day + "/" + year + " " + hour + ":" + minute;
+    }
+
+    // Formats date and time for storage in database with Calendar object as input
+    public static String formatDateTimeDB(Calendar cal) {
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int year = cal.get(Calendar.YEAR);
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
+        return month + "/" + day + "/" + year + " " + hour + ":" + minute;
+    }
+
     // Gets current time in hours and minutes
     // Hour is at index 0 (in military time)
     // Minutes are at index 1
@@ -139,5 +154,20 @@ public final class Util {
         final Calendar c = Calendar.getInstance();
         int[] date = {c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.MONTH), c.get(Calendar.YEAR)};
         return date;
+    }
+
+    // Converts formatted date time String to a Calendar object
+    public static Calendar toDate(String formatted) {
+        final Calendar setDay = Calendar.getInstance();
+        String[] dateTime = formatted.split(" ");
+        String[] date = formatted.split("/");
+        String[] time = formatted.split(":");
+        setDay.set(Integer.parseInt(date[2]),
+                Integer.parseInt(date[0]),
+                Integer.parseInt(date[1]),
+                Integer.parseInt(time[0]),
+                Integer.parseInt(time[1]));
+
+        return setDay;
     }
 }

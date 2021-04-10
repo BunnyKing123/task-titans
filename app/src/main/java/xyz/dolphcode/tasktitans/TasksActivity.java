@@ -18,7 +18,7 @@ public class TasksActivity extends AppCompatActivity {
         Button rptTasksBtn = findViewById(R.id.addRepeatTaskBtn);
         Button groupTasksBtn = findViewById(R.id.groupTasksBtn);
 
-        Util.addSwitchScreenAction(tasksBtn, TaskCreationActivity.class, TasksActivity.this);
+        Util.addSwitchWithUser(tasksBtn, TaskCreationActivity.class, TasksActivity.this, getIntent().getStringExtra("ID"));
         Util.addSwitchScreenAction(rptTasksBtn, RepeatTaskActivity.class, TasksActivity.this);
         Util.addSwitchScreenAction(groupTasksBtn, GroupTaskActivity.class, TasksActivity.this);
     }
