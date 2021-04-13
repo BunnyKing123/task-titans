@@ -35,6 +35,9 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
                 "\nIntelligence: " + (user.getBaseIntel() + user.getIntelMod()) +
                 "\nConstitution: " + (user.getBaseConst() + user.getConstMod()));
 
+        money.setText("" + user.getMoney());
+        System.out.println(user.getMoney());
+
         Spinner skills = findViewById(R.id.skillsDropdown);
         // Code based on code in the Android Studio documentation
         String[] skillsArray = {user.getSkill()};

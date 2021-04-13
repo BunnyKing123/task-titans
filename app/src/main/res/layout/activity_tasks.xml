@@ -97,6 +97,24 @@
                     android:text="@string/task_date"
                     android:textColor="@android:color/white"
                     android:textSize="36sp" />
+
+                <Button
+                    android:id="@+id/completeTaskBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corners"
+                    android:backgroundTint="@color/colorAccent"
+                    android:fontFamily="@font/quest"
+                    android:text="@string/finish_txt"
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_weight="1" />
             </LinearLayout>
         </ScrollView>
 
@@ -212,7 +230,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/backBtn"
+        app:layout_constraintBottom_toTopOf="@+id/questsBackBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +238,7 @@
         app:layout_constraintVertical_weight="2" />
 
     <Button
-        android:id="@+id/backBtn"
+        android:id="@+id/questsBackBtn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"

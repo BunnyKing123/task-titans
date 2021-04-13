@@ -53,7 +53,13 @@ public class TaskCreationActivity extends DateTimeActivity {
             public void onClick(View v) {
                 String name = ((EditText) findViewById(R.id.taskNameInputTxt)).getText().toString();
                 String desc = ((EditText) findViewById(R.id.taskDescInputTxt)).getText().toString();
-                int count =  Integer.parseInt(((EditText) findViewById(R.id.taskCountInputTxt)).getText().toString());
+                int count = 1;
+                try {
+                    count = Integer.parseInt(((EditText) findViewById(R.id.taskCountInputTxt)).getText().toString());
+                } catch (NumberFormatException e) {
+
+                }
+
 
                 Log.v("ID", ownerID);
 

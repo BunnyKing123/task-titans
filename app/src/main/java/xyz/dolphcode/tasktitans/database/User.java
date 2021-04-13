@@ -89,6 +89,35 @@ public class User {
         Client.updateUser(this);
     }
 
+    public void addXP(int xp) {
+        this.xp += xp;
+        Client.updateUser(this);
+    }
+
+    public void addMoney(int money) {
+        this.money += money;
+        Client.updateUser(this);
+    }
+
+    public void addMana(int mana) {
+        this.mana += mana;
+        if (this.mana > this.maxMana) {
+            this.mana = this.maxMana;
+        }
+        Client.updateUser(this);
+    }
+
+    // Combines addMana, addXP, and addMoney into one function for optimization
+    public void addRewards(int xp, int money, int mana) {
+        this.xp += xp;
+        this.money += money;
+        this.mana += mana;
+        if (this.mana > this.maxMana) {
+            this.mana = this.maxMana;
+        }
+        Client.updateUser(this);
+    }
+
     // STATIC METHODS
 
     // Generates stats based on class and race
@@ -332,6 +361,7 @@ public class User {
             }
 
             user.guildID = this.guildID;
+            user.money = this.money;
 
             return user;
         }

@@ -85,9 +85,9 @@ public final class Client {
                     taskIDs.add(child.getKey()); // Add the ID found to the list of User IDs
 
                     // Use the Task to create a task using the information from the Data Snapsho
-                    Task task = Task.TaskBuilder.createTask(child.child("taskOwnerID").toString(), child.child("taskName").toString(), child.child("deadline").toString())
+                    Task task = Task.TaskBuilder.createTask(child.child("taskOwnerID").getValue().toString(), child.child("taskName").getValue().toString(), child.child("deadline").getValue().toString())
                             .setCount(((Long) child.child("taskCount").getValue()).intValue())
-                            .setDesc(child.child("taskDesc").toString())
+                            .setDesc(child.child("taskDesc").getValue().toString())
                             .build(child.getKey());
                     tasks.add(task);
                 }
@@ -155,9 +155,27 @@ public final class Client {
         INSTANCE.child("guilds").child(guild.getGuildID()).setValue(guild);
     }
 
+    // Returns a list of all the tasks that a user has
+    public static ArrayList<Task> getTasksByUser(String id) {
+        ArrayList<Task> filtered = new ArrayList<Task>();
+        for (Task task: TASKS) {
+            Log.v("TEST", task.getTaskOwnerID());
+            Log.v("TEST", id);
+            Log.v("TEST", "" + task.getTaskOwnerID().contentEquals(id));
+            if (task.getTaskOwnerID().contentEquals(id)) {
+                filtered.add(task);
+            }
+        }
+        return filtered;
+    }
+
     // Updates a User in the database
     public static void updateTask(Task task) {
         INSTANCE.child("tasks").child(task.getTaskID()).setValue(task);
+    }
+
+    public static void removeTask(Task task) {
+        INSTANCE.child("tasks").child(task.getTaskID()).removeValue();
     }
 
     // Creates a Unique User ID

@@ -25,6 +25,18 @@ public class Task {
     public String getDeadline() { return deadline; }
     public int getTaskCount() { return taskCount; }
 
+    // Completes a task, returns true if the task has sufficiently run out of count
+    public boolean finish() {
+        this.taskCount--;
+        if (taskCount <= 0) {
+            Client.removeTask(this);
+            return true;
+        } else {
+            Client.updateTask(this);
+            return false;
+        }
+    }
+
     public static class TaskBuilder {
 
         String taskOwnerID;
