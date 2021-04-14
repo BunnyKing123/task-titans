@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import xyz.dolphcode.tasktitans.database.tasks.Task;
+import xyz.dolphcode.tasktitans.resources.TaskType;
 import xyz.dolphcode.tasktitans.util.Util;
 
 // The client class deals with interactions with the database
@@ -85,10 +86,19 @@ public final class Client {
                     taskIDs.add(child.getKey()); // Add the ID found to the list of User IDs
 
                     // Use the Task to create a task using the information from the Data Snapsho
-                    Task task = Task.TaskBuilder.createTask(child.child("taskOwnerID").getValue().toString(), child.child("taskName").getValue().toString(), child.child("deadline").getValue().toString())
-                            .setCount(((Long) child.child("taskCount").getValue()).intValue())
-                            .setDesc(child.child("taskDesc").getValue().toString())
-                            .build(child.getKey());
+                    Task task;
+                    if (((Long) child.child("taskType").getValue()).intValue() == TaskType.TASK) {
+                        task = Task.TaskBuilder.createTask(child.child("taskOwnerID").getValue().toString(), child.child("taskName").getValue().toString(), child.child("deadline").getValue().toString())
+                                .setCount(((Long) child.child("taskCount").getValue()).intValue())
+                                .setDesc(child.child("taskDesc").getValue().toString())
+                                .build(child.getKey());
+                    } else {
+                        task = Task.TaskBuilder.createRepeatTask(child.child("taskOwnerID").getValue().toString(), child.child("taskName").getValue().toString(),
+                                    child.child("freqData").getValue().toString(), ((Long) child.child("freqType").getValue()).intValue())
+                                .setCount(((Long) child.child("taskCount").getValue()).intValue())
+                                .setDesc(child.child("taskDesc").getValue().toString())
+                                .build(child.getKey());
+                    }
                     tasks.add(task);
                 }
 

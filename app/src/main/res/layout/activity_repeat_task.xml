@@ -184,28 +184,18 @@
             android:textColor="@android:color/white"
             android:textSize="36sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/rptTaskFreqInputBar"
+        <Button
+            android:id="@+id/rptTaskFreqBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:background="@drawable/round_corners"
-            android:backgroundTint="@color/colorField"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guildJoinTitle">
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/quest"
+            android:text="@string/frequency"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/rptTaskFreqInputTxt"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/quest"
-                android:hint="@string/task_date"
-                android:inputType="date" />
-
-        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <Button

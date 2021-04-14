@@ -67,7 +67,7 @@ public class TasksActivity extends AppCompatActivity {
         });
 
         Util.addSwitchWithUser(tasksBtn, TaskCreationActivity.class, TasksActivity.this, getIntent().getStringExtra("ID"));
-        Util.addSwitchScreenAction(rptTasksBtn, RepeatTaskActivity.class, TasksActivity.this);
+        Util.addSwitchWithUser(rptTasksBtn, RepeatTaskActivity.class, TasksActivity.this, getIntent().getStringExtra("ID"));
         Util.addSwitchScreenAction(groupTasksBtn, GroupTaskActivity.class, TasksActivity.this);
         Util.addSwitchWithUser(backBtn, GameActivity.class, TasksActivity.this, getIntent().getStringExtra("ID"));
     }

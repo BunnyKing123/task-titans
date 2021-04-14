@@ -22,8 +22,8 @@ import xyz.dolphcode.tasktitans.util.Util;
 public class TaskCreationActivity extends DateTimeActivity {
 
     String ownerID;
-    int[] currentTime;
-    int[] currentDate;
+    int[] setTime;
+    int[] setDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +41,11 @@ public class TaskCreationActivity extends DateTimeActivity {
         date = findViewById(R.id.taskDateText);
         datePicker = new DatePickerFragment();
 
-        currentTime = Util.currentTime();
-        time.setText(Util.formatTime(currentTime[0], currentTime[1]));
+        setTime = Util.currentTime();
+        time.setText(Util.formatTime(setTime[0], setTime[1]));
 
-        currentDate = Util.currentDate();
-        date.setText(Util.formatDate(currentDate[0], currentDate[1], currentDate[2]));
+        setDate = Util.currentDate();
+        date.setText(Util.formatDate(setDate[0], setDate[1], setDate[2]));
 
         Util.addSwitchScreenAction(taskBackBtn, TasksActivity.class, TaskCreationActivity.this);
 
@@ -60,15 +60,12 @@ public class TaskCreationActivity extends DateTimeActivity {
 
                 }
 
-
-                Log.v("ID", ownerID);
-
                 if (!name.isEmpty()) {
-                    Task task = Task.TaskBuilder.createTask(ownerID, name, Util.formatDateTimeDB(currentDate[0],
-                            currentDate[1],
-                            currentDate[2],
-                            currentTime[0],
-                            currentTime[1]))
+                    Task task = Task.TaskBuilder.createTask(ownerID, name, Util.formatDateTimeDB(setDate[0],
+                            setDate[1],
+                            setDate[2],
+                            setTime[0],
+                            setTime[1]))
                             .setDesc(desc)
                             .setCount(count)
                             .build();
@@ -85,10 +82,17 @@ public class TaskCreationActivity extends DateTimeActivity {
     }
 
     @Override
-    public void sendDate(int day, int month, int year) { date.setText(Util.formatDate(day, month, year)); }
+    public void sendDate(int day, int month, int year) {
+        date.setText(Util.formatDate(day, month, year));
+        setDate[0] = day;
+        setDate[1] = month;
+        setDate[2] = year;
+    }
 
     @Override
     public void sendTime(int hour, int min) {
         time.setText(Util.formatTime(hour, min));
+        setTime[0] = hour;
+        setTime[1] = min;
     }
 }

@@ -16,6 +16,8 @@ public class Task {
     private String taskDesc;
     private String deadline;
     private int taskCount;
+    private int freqType;
+    private String freqData;
 
     public String getTaskOwnerID() { return taskOwnerID; }
     public String getTaskID() { return taskID; }
@@ -24,6 +26,8 @@ public class Task {
     public String getTaskDesc() { return taskDesc; }
     public String getDeadline() { return deadline; }
     public int getTaskCount() { return taskCount; }
+    public int getFreqType() { return freqType; }
+    public String getFreqData() { return freqData; }
 
     // Completes a task, returns true if the task has sufficiently run out of count
     public boolean finish() {
@@ -45,6 +49,9 @@ public class Task {
         String taskDesc;
         String deadline;
         int taskCount;
+        int taskType;
+        String freqData;
+        int freqType;
 
         private TaskBuilder() {}
 
@@ -53,6 +60,7 @@ public class Task {
             builder.taskOwnerID = taskOwnerID;
             builder.taskName = taskName;
             builder.deadline = Util.formatDateTimeDB(deadline);
+            builder.taskType = TaskType.TASK;
             return builder;
         }
 
@@ -61,6 +69,20 @@ public class Task {
             builder.taskOwnerID = taskOwnerID;
             builder.taskName = taskName;
             builder.deadline = deadline;
+            builder.freqData = "";
+            builder.freqType = -1;
+            builder.taskType = TaskType.TASK;
+            return builder;
+        }
+
+        public static TaskBuilder createRepeatTask(String taskOwnerID, String taskName, String freqData, int frequencyType) {
+            TaskBuilder builder = new TaskBuilder();
+            builder.taskOwnerID = taskOwnerID;
+            builder.taskName = taskName;
+            builder.deadline = "";
+            builder.freqData = freqData;
+            builder.freqType = frequencyType;
+            builder.taskType = TaskType.REPEAT_TASK ;
             return builder;
         }
 
@@ -82,6 +104,9 @@ public class Task {
             task.taskDesc = this.taskDesc;
             task.deadline = this.deadline;
             task.taskCount = this.taskCount;
+            task.taskType = this.taskType;
+            task.freqData = this.freqData;
+            task.freqType = this.freqType;
 
             task.taskID = args.length > 0 ? args[0] : Client.getUniqueTaskID();
 
