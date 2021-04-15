@@ -4,6 +4,7 @@ import android.icu.util.Calendar;
 import android.util.Log;
 
 import xyz.dolphcode.tasktitans.database.Client;
+import xyz.dolphcode.tasktitans.resources.FrequencyType;
 import xyz.dolphcode.tasktitans.resources.TaskType;
 import xyz.dolphcode.tasktitans.util.Util;
 
@@ -18,6 +19,7 @@ public class Task {
     private int taskCount;
     private int freqType;
     private String freqData;
+    private String lastFinished = "";
 
     public String getTaskOwnerID() { return taskOwnerID; }
     public String getTaskID() { return taskID; }
@@ -28,12 +30,32 @@ public class Task {
     public int getTaskCount() { return taskCount; }
     public int getFreqType() { return freqType; }
     public String getFreqData() { return freqData; }
+    public String getLastFinished() { return lastFinished; }
 
     // Completes a task, returns true if the task has sufficiently run out of count
     public boolean finish() {
         this.taskCount--;
         if (taskCount <= 0) {
-            Client.removeTask(this);
+            if (taskType == TaskType.REPEAT_TASK) {
+                Calendar calendar = Calendar.getInstance();
+                switch (freqType) {
+                    case FrequencyType.MONTHS:
+                        lastFinished = "" + (calendar.get(Calendar.MONTH) - 1);
+                        break;
+                    case FrequencyType.WEEKS:
+                        lastFinished = "" + (calendar.get(Calendar.WEEK_OF_YEAR));
+                        break;
+                    case FrequencyType.DAYS:
+                        lastFinished = "" + (calendar.get(Calendar.DAY_OF_WEEK) - 1);
+                        break;
+                    case FrequencyType.DATE:
+                        lastFinished = "" + calendar.get(Calendar.DAY_OF_YEAR);
+                        break;
+                }
+                Client.updateTask(this);
+            } else {
+                Client.removeTask(this);
+            }
             return true;
         } else {
             Client.updateTask(this);
@@ -48,6 +70,7 @@ public class Task {
         String taskID;
         String taskDesc;
         String deadline;
+        String lastFinished = "";
         int taskCount;
         int taskType;
         String freqData;
@@ -96,6 +119,11 @@ public class Task {
             return this;
         }
 
+        public TaskBuilder setLastFinished(String lastFinished) {
+            this.lastFinished = lastFinished;
+            return this;
+        }
+
         public Task build(String... args) {
             Task task = new Task();
 
@@ -107,6 +135,7 @@ public class Task {
             task.taskType = this.taskType;
             task.freqData = this.freqData;
             task.freqType = this.freqType;
+            task.lastFinished = this.lastFinished;
 
             task.taskID = args.length > 0 ? args[0] : Client.getUniqueTaskID();
 

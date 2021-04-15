@@ -77,26 +77,28 @@
         <ScrollView
             android:id="@+id/taskTextScroll"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:fillViewport="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="9">
 
                 <TextView
                     android:id="@+id/taskText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="7"
                     android:background="@drawable/round_corners"
                     android:backgroundTint="@color/colorPrimary"
                     android:fontFamily="@font/quest"
                     android:paddingVertical="10dp"
                     android:text="@string/task_date"
                     android:textColor="@android:color/white"
-                    android:textSize="36sp" />
+                    android:textSize="18sp" />
 
                 <Button
                     android:id="@+id/completeTaskBtn"
@@ -104,7 +106,7 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
+                    android:layout_weight="4"
                     android:background="@drawable/round_corners"
                     android:backgroundTint="@color/colorAccent"
                     android:fontFamily="@font/quest"
@@ -179,20 +181,65 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="9">
 
                 <TextView
                     android:id="@+id/repeatTaskText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="7"
                     android:background="@drawable/round_corners"
                     android:backgroundTint="@color/colorPrimary"
                     android:fontFamily="@font/quest"
                     android:paddingVertical="10dp"
                     android:text="@string/task_date"
                     android:textColor="@android:color/white"
-                    android:textSize="36sp" />
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/rptTaskBtnContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/completeRptTaskBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_corners"
+                        android:backgroundTint="@color/colorAccent"
+                        android:fontFamily="@font/quest"
+                        android:text="@string/finish_txt"
+                        android:textColor="@color/colorText"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/removeRptTaskBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_corners"
+                        android:backgroundTint="@color/colorAccent"
+                        android:fontFamily="@font/quest"
+                        android:text="@string/remove_txt"
+                        android:textColor="@color/colorText"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_weight="1" />
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
 

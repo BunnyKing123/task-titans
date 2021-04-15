@@ -56,6 +56,7 @@
     <string name="months_hint">Task will occur on the chosen months. Don\'t check any if task should occur monthly</string>
     <string name="days_hint">Task will occur on the chosen days. Don\'t check any if the task should occur daily</string>
     <string name="date_hint">Task will only occur on this specific day annually</string>
+    <string name="remove_txt">Remove</string>
 
     <string name="subtitle">Your journey begins here</string>
 

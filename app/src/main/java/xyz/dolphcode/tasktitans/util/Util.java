@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.dolphcode.tasktitans.MainActivity;
+import xyz.dolphcode.tasktitans.database.tasks.Task;
+import xyz.dolphcode.tasktitans.resources.FrequencyType;
+import xyz.dolphcode.tasktitans.resources.TaskType;
 
 // The Util class contains all universal utility functions that are invoked throughout the program
 // It is marked as final so that it can't be extended because it does not need to be extended
@@ -169,5 +172,60 @@ public final class Util {
                 Integer.parseInt(time[1]));
 
         return setDay;
+    }
+
+    public static boolean activeRepeatTask(Task task) {
+        if (task.getTaskType() == TaskType.REPEAT_TASK) {
+
+
+            Calendar calendar = Calendar.getInstance();
+
+            switch (task.getFreqType()) {
+                case FrequencyType.MONTHS:
+                    int monthIndex = calendar.get(Calendar.MONTH) - 1;
+
+                    boolean monthTest = false;
+                    try {
+                        int lastFinishedMonthIndex = Integer.parseInt(task.getLastFinished());
+                        monthTest = monthIndex != lastFinishedMonthIndex;
+                    } catch (NumberFormatException e) {
+                        monthTest = true;
+                    }
+
+
+                    if (task.getFreqData().charAt(monthIndex) == '1' && monthTest) // If the task hasn't been finished this month and should be finished this month
+                        return true;
+                    break;
+                case FrequencyType.WEEKS:
+                    if (task.getLastFinished().isEmpty()) // If the task has never been finished return true
+                        return true;
+                    int timeBetween = Integer.parseInt(task.getFreqData());
+                    Calendar nextWeek = Calendar.getInstance();
+                    nextWeek.set(Calendar.WEEK_OF_YEAR, Integer.parseInt(task.getLastFinished()));
+                    nextWeek.add(Calendar.WEEK_OF_YEAR, timeBetween);
+                    if (calendar.get(Calendar.WEEK_OF_YEAR) == nextWeek.get(Calendar.WEEK_OF_YEAR))
+                        return true;
+                    break;
+                case FrequencyType.DAYS:
+                    int lastFinishedDayIndex = Integer.parseInt(task.getLastFinished());
+                    int dayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+
+                    if (task.getFreqData().charAt(dayIndex) == '1' && dayIndex != lastFinishedDayIndex) // If the task hasn't been finished this month and should be finished this month
+                        return true;
+                    break;
+                case FrequencyType.DATE:
+                    String[] date = task.getFreqData().split("|");
+
+                    Calendar dayDue = Calendar.getInstance();
+                    dayDue.set(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));
+
+                    int lastYear = Integer.parseInt(task.getLastFinished());
+
+                    if (calendar.get(Calendar.YEAR) != lastYear && calendar.get(Calendar.DAY_OF_YEAR) == dayDue.get(Calendar.DAY_OF_YEAR))
+                        return true;
+                    break;
+            }
+        }
+        return false;
     }
 }

@@ -97,6 +97,7 @@ public final class Client {
                                     child.child("freqData").getValue().toString(), ((Long) child.child("freqType").getValue()).intValue())
                                 .setCount(((Long) child.child("taskCount").getValue()).intValue())
                                 .setDesc(child.child("taskDesc").getValue().toString())
+                                .setLastFinished(child.child("lastFinished").getValue().toString())
                                 .build(child.getKey());
                     }
                     tasks.add(task);

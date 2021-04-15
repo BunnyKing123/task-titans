@@ -80,27 +80,31 @@ public class RepeatTaskActivity extends AppCompatActivity {
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(android.view.View v) {
-                Intent intent = new Intent(RepeatTaskActivity.this, TasksActivity.class);
+                String name = nameInput.getText().toString();
+                if (!name.isEmpty() && prev.getStringExtra("FREQDATA") != null) {
+                    Intent intent = new Intent(RepeatTaskActivity.this, TasksActivity.class);
 
-                int count;
-                try {
-                    count = Integer.parseInt(countInput.getText().toString());
-                } catch (NumberFormatException e) {
-                    count = 1;
+                    int count;
+                    try {
+                        count = Integer.parseInt(countInput.getText().toString());
+                    } catch (NumberFormatException e) {
+                        count = 1;
+                    }
+
+
+                    String desc = descInput.getText().toString();
+
+                    Task task = Task.TaskBuilder.createRepeatTask(id, name, freqData, freqType)
+                            .setCount(count)
+                            .setDesc(desc)
+                            .build();
+
+                    Client.updateTask(task);
+
+                    intent.putExtra("ID", id);
+                    RepeatTaskActivity.this.startActivity(intent);
                 }
 
-                String name = nameInput.getText().toString();
-                String desc = descInput.getText().toString();
-
-                Task task = Task.TaskBuilder.createRepeatTask(id, name, freqData, freqType)
-                        .setCount(count)
-                        .setDesc(desc)
-                        .build();
-
-                Client.updateTask(task);
-
-                intent.putExtra("ID", id);
-                RepeatTaskActivity.this.startActivity(intent);
             }
         });
     }
