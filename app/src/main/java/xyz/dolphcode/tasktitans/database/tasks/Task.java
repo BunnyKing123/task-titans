@@ -98,6 +98,26 @@ public class Task {
             return builder;
         }
 
+        public static TaskBuilder createGroupTask(String taskOwnerID, String taskName, Calendar deadline) {
+            TaskBuilder builder = new TaskBuilder();
+            builder.taskOwnerID = taskOwnerID;
+            builder.taskName = taskName;
+            builder.deadline = Util.formatDateTimeDB(deadline);
+            builder.taskType = TaskType.TASK;
+            return builder;
+        }
+
+        public static TaskBuilder createGroupTask(String taskOwnerID, String taskName, String deadline) {
+            TaskBuilder builder = new TaskBuilder();
+            builder.taskOwnerID = taskOwnerID;
+            builder.taskName = taskName;
+            builder.deadline = deadline;
+            builder.freqData = "";
+            builder.freqType = -1;
+            builder.taskType = TaskType.GROUP_TASK;
+            return builder;
+        }
+
         public static TaskBuilder createRepeatTask(String taskOwnerID, String taskName, String freqData, int frequencyType) {
             TaskBuilder builder = new TaskBuilder();
             builder.taskOwnerID = taskOwnerID;

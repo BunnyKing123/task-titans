@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import xyz.dolphcode.tasktitans.database.Client;
 import xyz.dolphcode.tasktitans.database.tasks.Task;
+import xyz.dolphcode.tasktitans.database.tasks.TaskGroup;
 import xyz.dolphcode.tasktitans.fragments.DatePickerFragment;
 import xyz.dolphcode.tasktitans.fragments.TimePickerFragment;
 import xyz.dolphcode.tasktitans.util.DateTimeActivity;
@@ -22,8 +23,12 @@ import xyz.dolphcode.tasktitans.util.Util;
 public class TaskCreationActivity extends DateTimeActivity {
 
     String ownerID;
+    String targetID;
+    Intent prev;
     int[] setTime;
     int[] setDate;
+
+    boolean groupTaskCreation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,11 @@ public class TaskCreationActivity extends DateTimeActivity {
         Button taskBackBtn = findViewById(R.id.taskBackBtn);
         Button taskFinishBtn = findViewById(R.id.taskDoneBtn);
 
-        ownerID = getIntent().getStringExtra("ID");
+        prev = getIntent();
+
+        ownerID = prev.getStringExtra("ID");
+        groupTaskCreation = prev.getStringExtra("GROUPID") != null;
+        targetID = prev.getStringExtra("TARGETID");
 
         time = findViewById(R.id.taskTimeText);
         timePicker = new TimePickerFragment();
@@ -47,7 +56,18 @@ public class TaskCreationActivity extends DateTimeActivity {
         setDate = Util.currentDate();
         date.setText(Util.formatDate(setDate[0], setDate[1], setDate[2]));
 
-        Util.addSwitchScreenAction(taskBackBtn, TasksActivity.class, TaskCreationActivity.this);
+        if (groupTaskCreation) {
+            taskBackBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(TaskCreationActivity.this, TaskGroupPanelActivity.class);
+                    intent.putExtra("GROUPID", prev.getStringExtra("GROUPID"));
+                    intent.putExtra("ID", ownerID);
+                    TaskCreationActivity.this.startActivity(intent);
+                }
+            });
+        } else {
+            Util.addSwitchWithUser(taskBackBtn, TasksActivity.class, TaskCreationActivity.this, ownerID);
+        }
 
         taskFinishBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -61,18 +81,39 @@ public class TaskCreationActivity extends DateTimeActivity {
                 }
 
                 if (!name.isEmpty()) {
-                    Task task = Task.TaskBuilder.createTask(ownerID, name, Util.formatDateTimeDB(setDate[0],
-                            setDate[1],
-                            setDate[2],
-                            setTime[0],
-                            setTime[1]))
-                            .setDesc(desc)
-                            .setCount(count)
-                            .build();
+                    Task task;
+                    if (groupTaskCreation) {
+                        task = Task.TaskBuilder.createGroupTask(targetID, name, Util.formatDateTimeDB(setDate[0],
+                                setDate[1],
+                                setDate[2],
+                                setTime[0],
+                                setTime[1]))
+                                .setDesc(desc)
+                                .setCount(count)
+                                .build();
+                    } else {
+                        task = Task.TaskBuilder.createTask(ownerID, name, Util.formatDateTimeDB(setDate[0],
+                                setDate[1],
+                                setDate[2],
+                                setTime[0],
+                                setTime[1]))
+                                .setDesc(desc)
+                                .setCount(count)
+                                .build();
+                    }
 
                     Client.updateTask(task);
 
-                    Intent intent = new Intent(TaskCreationActivity.this, TasksActivity.class);
+                    Intent intent;
+                    if (groupTaskCreation) {
+                        intent = new Intent(TaskCreationActivity.this, TaskGroupPanelActivity.class);
+                        String groupID = prev.getStringExtra("GROUPID");
+                        intent.putExtra("GROUPID", groupID);
+                        TaskGroup group = Client.getTaskGroup(groupID);
+                        group.addTask(prev.getStringExtra("TARGETID"), task.getTaskID());
+                    } else {
+                        intent = new Intent(TaskCreationActivity.this, TasksActivity.class);
+                    }
                     intent.putExtra("ID", ownerID);
                     TaskCreationActivity.this.startActivity(intent);
                 }

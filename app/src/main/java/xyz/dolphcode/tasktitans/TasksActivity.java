@@ -58,7 +58,7 @@ public class TasksActivity extends AppCompatActivity {
             if (task.getTaskType() == TaskType.TASK) {
                 tasks.add(task);
                 continue;
-            } else {
+            } else if (task.getTaskType() == TaskType.REPEAT_TASK){
                 if (Util.activeRepeatTask(task)) {
                     repeatTasks.add(task);
                     continue;
@@ -112,7 +112,7 @@ public class TasksActivity extends AppCompatActivity {
 
         Util.addSwitchWithUser(tasksBtn, TaskCreationActivity.class, TasksActivity.this, getIntent().getStringExtra("ID"));
         Util.addSwitchWithUser(rptTasksBtn, RepeatTaskActivity.class, TasksActivity.this, getIntent().getStringExtra("ID"));
-        Util.addSwitchScreenAction(groupTasksBtn, GroupTaskActivity.class, TasksActivity.this);
+        Util.addSwitchWithUser(groupTasksBtn, GroupTaskActivity.class, TasksActivity.this, getIntent().getStringExtra("ID"));
         Util.addSwitchWithUser(backBtn, GameActivity.class, TasksActivity.this, getIntent().getStringExtra("ID"));
     }
 

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import xyz.dolphcode.tasktitans.database.tasks.Task;
+import xyz.dolphcode.tasktitans.database.tasks.TaskGroup;
 import xyz.dolphcode.tasktitans.resources.TaskType;
 import xyz.dolphcode.tasktitans.util.Util;
 
@@ -27,6 +28,11 @@ public final class Client {
     private static ArrayList<Guild> GUILDS = null;
     private static ArrayList<String> TASKIDS = null;
     private static ArrayList<Task> TASKS = null;
+    private static ArrayList<String> TASKGROUPIDS = null;
+    private static ArrayList<String> TASKGROUPCODES = null;
+    private static ArrayList<TaskGroup> TASKGROUPS = null;
+
+    private static ArrayList<DatabaseObserver> OBSERVERS = new ArrayList<DatabaseObserver>();
 
     static {
         INSTANCE = FirebaseDatabase.getInstance().getReference();
@@ -46,6 +52,9 @@ public final class Client {
                 ArrayList<Guild> guilds = new ArrayList<Guild>();
                 ArrayList<String> taskIDs = new ArrayList<String>();
                 ArrayList<Task> tasks = new ArrayList<Task>();
+                ArrayList<String> taskGroupIDs = new ArrayList<String>();
+                ArrayList<String> taskGroupJoinCodes = new ArrayList<String>();
+                ArrayList<TaskGroup> taskGroups = new ArrayList<TaskGroup>();
 
                 // Iterate through all entries in "users"
                 for (DataSnapshot child : dataSnapshot.child("users").getChildren()) {
@@ -103,6 +112,20 @@ public final class Client {
                     tasks.add(task);
                 }
 
+                // Iterate through all entries in "tasks"
+                for (DataSnapshot child : dataSnapshot.child("taskgroups").getChildren()) {
+                    taskGroupIDs.add(child.getKey()); // Add the ID found to the list of User IDs
+                    taskGroupJoinCodes.add(child.child("joinCode").getValue().toString());
+
+                    // Use the Task to create a task using the information from the Data Snapshot
+                    TaskGroup taskGroup = TaskGroup.TaskGroupBuilder.createTaskGroup(child.child("groupLeaderID").getValue().toString(), child.child("groupName").getValue().toString())
+                            .setAll(child.child("joinCode").getValue().toString(),
+                                    child.child("taskList").getValue().toString(),
+                                    child.child("groupMembers").getValue().toString())
+                            .build(child.getKey());
+                    taskGroups.add(taskGroup);
+                }
+
                 // Set static variables
                 USERIDS = userIDs;
                 USERS = users;
@@ -110,6 +133,13 @@ public final class Client {
                 GUILDS = guilds;
                 TASKIDS = taskIDs;
                 TASKS = tasks;
+                TASKGROUPIDS = taskGroupIDs;
+                TASKGROUPCODES = taskGroupJoinCodes;
+                TASKGROUPS = taskGroups;
+
+                for (DatabaseObserver o:OBSERVERS) {
+                    o.databaseChanged();
+                }
             }
 
             @Override
@@ -118,6 +148,9 @@ public final class Client {
 
         INSTANCE.addValueEventListener(listener); // Add the event listener to the instance of the database
     }
+
+    public static void addObserver(DatabaseObserver observer) { OBSERVERS.add(observer); }
+    public static void removeObserver(DatabaseObserver observer) { OBSERVERS.remove(observer); }
 
     // Returns a User with a particular username if the password is correct
     // Return null if a match is not found or password is incorrect
@@ -170,14 +203,22 @@ public final class Client {
     public static ArrayList<Task> getTasksByUser(String id) {
         ArrayList<Task> filtered = new ArrayList<Task>();
         for (Task task: TASKS) {
-            Log.v("TEST", task.getTaskOwnerID());
-            Log.v("TEST", id);
-            Log.v("TEST", "" + task.getTaskOwnerID().contentEquals(id));
             if (task.getTaskOwnerID().contentEquals(id)) {
                 filtered.add(task);
             }
         }
         return filtered;
+    }
+
+    // Returns a User with a certain ID
+    // Returns null if none are found
+    public static Task getTask(String id) {
+        for (Task task : TASKS) { // Iterate through all Users
+            if (task.getTaskID().contentEquals(id)) { // If a match is found
+                return task;
+            }
+        }
+        return null; // Return null
     }
 
     // Updates a User in the database
@@ -187,6 +228,44 @@ public final class Client {
 
     public static void removeTask(Task task) {
         INSTANCE.child("tasks").child(task.getTaskID()).removeValue();
+    }
+
+    // Returns a list of all the tasks that a user has
+    public static TaskGroup getTaskGroupByJoinCode(String code) {
+        for (TaskGroup group: TASKGROUPS) {
+
+            if (group.getJoinCode().contentEquals(code)) {
+                return group;
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<TaskGroup> getTaskGroupsByMember(String member) {
+        ArrayList<TaskGroup> groups = new ArrayList<TaskGroup>();
+        for (TaskGroup group: TASKGROUPS) {
+            for (String m:group.getGroupMembers().split("-")) {
+                if (m.contentEquals(member)) {
+                    groups.add(group);
+                    break;
+                }
+            }
+        }
+        return groups;
+    }
+
+    public static TaskGroup getTaskGroup(String id) {
+        for (TaskGroup taskGroup : TASKGROUPS) { // Iterate through all Users
+            if (taskGroup.getTaskGroupID().contentEquals(id)) { // If a match is found
+                return taskGroup;
+            }
+        }
+        return null; // Return null
+    }
+
+    // Updates a TaskGroup in the database
+    public static void updateTaskGroup(TaskGroup taskGroup) {
+        INSTANCE.child("taskgroups").child(taskGroup.getTaskGroupID()).setValue(taskGroup);
     }
 
     // Creates a Unique User ID
@@ -214,6 +293,22 @@ public final class Client {
             uuid = Util.generateRandomString(16);
         }
         return uuid;
+    }
+
+    // Generates a Unique Task Group ID and Join Code
+    public static String[] getUniqueTaskGroupData() {
+        String uuid = Util.generateRandomString(16);
+        while (TASKGROUPIDS.contains(uuid)) {
+            uuid = Util.generateRandomString(16);
+        }
+
+        String joinCode = Util.generateRandomNumString(3) + Util.generateRandomString(6);
+        while (TASKGROUPCODES.contains(joinCode)) {
+            joinCode = Util.generateRandomNumString(3) + Util.generateRandomString(6);
+        }
+
+        String[] data = {uuid, joinCode};
+        return data;
     }
 
 }

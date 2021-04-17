@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".FrequencyPickerActivity"></activity>
+        <activity android:name=".TaskGroupPanelActivity"></activity>
+        <activity android:name=".TaskGroupPageActivity" />
+        <activity android:name=".FrequencyPickerActivity" />
         <activity android:name=".GuildCreateActivity" />
         <activity android:name=".GroupTaskActivity" />
         <activity android:name=".RepeatTaskActivity" />

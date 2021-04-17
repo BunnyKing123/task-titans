@@ -7,25 +7,6 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".GroupTaskActivity">
 
-    <Button
-        android:id="@+id/groupBackBtn"
-        android:layout_width="@dimen/btn_small_width"
-        android:layout_height="@dimen/btn_small_height"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/return_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
-        app:layout_constraintStart_toEndOf="@+id/shopBuyBtn"
-        app:layout_constraintTop_toBottomOf="@+id/createGuildBtn"
-        app:layout_constraintVertical_bias="1.0" />
-
     <TextView
         android:id="@+id/groupTasksLabel"
         android:layout_width="@dimen/label_width"
@@ -97,11 +78,117 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/groupsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/addRepeatTaskBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/joinGroupContainer"
+        app:layout_constraintVertical_weight="2">
+
+        <ImageButton
+            android:id="@+id/groupLeftBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bow_icon" />
+
+        <ScrollView
+            android:id="@+id/groupTextScroll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:fillViewport="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="9">
+
+                <TextView
+                    android:id="@+id/groupText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:background="@drawable/round_corners"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/quest"
+                    android:paddingVertical="10dp"
+                    android:text="@string/task_date"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/checkGroupBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/round_corners"
+                    android:backgroundTint="@color/colorAccent"
+                    android:fontFamily="@font/quest"
+                    android:text="@string/finish_txt"
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_weight="1" />
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/groupRightBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bow_icon" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/groupTasksDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupsContainer" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createGroupNameInput"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/groupTasksDivider">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/createGroupNameTxt"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/quest"
+            android:hint="@string/task_name" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/createGroupBtn"
         android:layout_width="@dimen/label_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/quest"
@@ -111,22 +198,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/joinGroupContainer" />
+        app:layout_constraintTop_toBottomOf="@id/createGroupNameInput" />
 
-    <ScrollView
-        android:id="@+id/groupTasksScroll"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="350dp"
-        android:layout_marginTop="16dp"
+    <Button
+        android:id="@+id/groupBackBtn"
+        android:layout_width="@dimen/btn_small_width"
+        android:layout_height="@dimen/btn_small_height"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/return_txt"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createGroupBtn">
-
-        <LinearLayout
-            android:id="@+id/groupTasksContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        app:layout_constraintHorizontal_bias="0.436"
+        app:layout_constraintStart_toEndOf="@+id/shopBuyBtn"
+        app:layout_constraintTop_toBottomOf="@+id/createGuildBtn"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

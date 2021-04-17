@@ -71,7 +71,7 @@ public class FrequencyPickerActivity extends DateTimeActivity {
                 if (dayFlags == 0) {
                     sendData(intent, FrequencyType.DAYS, "0000000");
                 } else {
-                    String monthData = String.format("%07s", Integer.toBinaryString(monthFlags)).replace(' ', '0');
+                    String monthData = String.format("%7s", Integer.toBinaryString(monthFlags)).replace(' ', '0');
                     sendData(intent, FrequencyType.DAYS, monthData);
                 }
                 FrequencyPickerActivity.this.startActivity(intent);
@@ -103,7 +103,7 @@ public class FrequencyPickerActivity extends DateTimeActivity {
     @Override
     public void sendDate(int day, int month, int year) {
         date.setText(Util.formatDate(day, month, year));
-        sentDate = day + "|" + month + "|" + year;
+        sentDate = day + "-" + month + "-" + year;
     }
 
     @Override

@@ -23,6 +23,9 @@ public final class Util {
     // A list of every possible character that can be used in an ID
     public static String CHAR_LIST = "abcdefghijklmnopqrstuvwxyz1234567890";
 
+    // A list of every possible number that can be used in an ID
+    public static String NUM_LIST = "11234567890";
+
     // Private constructor so that the class can't be instantiated because it does not need to be
     private Util() {}
 
@@ -66,6 +69,18 @@ public final class Util {
         String random = "";
         for (int i = 0; i < len; i++) {
             char character = CHAR_LIST.charAt((int) Math.round(Math.random() * (CHAR_LIST.length() - 1))); // Picks out a random character
+            character = (int) Math.round(Math.random()) == 1 ? Character.toUpperCase(character) : character; // Randomly decides if the character should be uppercase or not
+            random += character; // Add the selected character to the rest of the string
+        }
+        return random;
+    }
+
+    // Generates a random string of "len" length using the character list at the top of the Util class
+    // Primarily used for generating Join Codes
+    public static String generateRandomNumString(int len) {
+        String random = "";
+        for (int i = 0; i < len; i++) {
+            char character = NUM_LIST.charAt((int) Math.round(Math.random() * (NUM_LIST.length() - 1))); // Picks out a random character
             character = (int) Math.round(Math.random()) == 1 ? Character.toUpperCase(character) : character; // Randomly decides if the character should be uppercase or not
             random += character; // Add the selected character to the rest of the string
         }
@@ -207,14 +222,14 @@ public final class Util {
                         return true;
                     break;
                 case FrequencyType.DAYS:
-                    int lastFinishedDayIndex = Integer.parseInt(task.getLastFinished());
+                    int lastFinishedDayIndex = safeParseInt(task.getLastFinished(), -1);
                     int dayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
 
                     if (task.getFreqData().charAt(dayIndex) == '1' && dayIndex != lastFinishedDayIndex) // If the task hasn't been finished this month and should be finished this month
                         return true;
                     break;
                 case FrequencyType.DATE:
-                    String[] date = task.getFreqData().split("|");
+                    String[] date = task.getFreqData().split("-");
 
                     Calendar dayDue = Calendar.getInstance();
                     dayDue.set(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));
@@ -227,5 +242,15 @@ public final class Util {
             }
         }
         return false;
+    }
+
+    public static int safeParseInt(String str, int defaultValue) {
+        int value;
+        try {
+            value = Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            value = defaultValue;
+        }
+        return value;
     }
 }

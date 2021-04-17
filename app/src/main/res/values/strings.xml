@@ -57,6 +57,14 @@
     <string name="days_hint">Task will occur on the chosen days. Don\'t check any if the task should occur daily</string>
     <string name="date_hint">Task will only occur on this specific day annually</string>
     <string name="remove_txt">Remove</string>
+    <string name="go_txt">Go</string>
+    <string name="group_details_txt">Group Panel</string>
+    <string name="remove_member">Remove Member</string>
+    <string name="disband">Disband</string>
+    <string name="assign_task">Assign Task</string>
+    <string name="complete_task">Complete Task</string>
+    <string name="leave_group">Leave Group</string>
+    <string name="group_page_placeholder">Group Page</string>
 
     <string name="subtitle">Your journey begins here</string>
 

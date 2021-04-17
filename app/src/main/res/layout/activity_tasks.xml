@@ -24,7 +24,7 @@
         android:text="@string/quests_txt"
         android:textAlignment="center"
         android:textColor="@color/colorText"
-        android:textSize="36sp"
+        android:textSize="@dimen/label_text_size"
         app:layout_constraintBottom_toTopOf="@+id/addTaskBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
