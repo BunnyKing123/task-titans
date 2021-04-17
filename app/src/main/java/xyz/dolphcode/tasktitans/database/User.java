@@ -12,6 +12,10 @@ public class User {
     private String email;
     private String id; // Used to access in database
 
+    private String inventory;
+    private String pet;
+    private String equipment;
+
     private int colorID = 0; // 4 possible skin colors: 0 - 3
     private int hairColorID = 0; // 4 possible hair colors: 0 - 3
     private int raceID = 0; // 3 possible races: 0 - 2
@@ -48,6 +52,10 @@ public class User {
     public String getEmail() { return email; }
     public String getDisplayName() { return displayName; }
     public String getID() { return id; }
+
+    public String getInventory() { return inventory; }
+    public String getEquipment() { return equipment; }
+    public String getPet() { return pet; }
 
     public int getColorID() { return colorID; }
     public int getHairColorID() { return hairColorID; }
@@ -107,9 +115,18 @@ public class User {
         Client.updateUser(this);
     }
 
+    // Damages the player
+    public void damage(int hpDec) {
+
+    }
+
     // Combines addMana, addXP, and addMoney into one function for optimization
     public void addRewards(int xp, int money, int mana) {
+        int originalXp = this.xp;
+        int originalHp = this.maxHp;
         this.xp += xp;
+        if (this.xp >= toNextLevel(convertToLevel(originalXp)))
+            this.hp += this.maxHp - originalHp;
         this.money += money;
         this.mana += mana;
         if (this.mana > this.maxMana) {
@@ -205,6 +222,9 @@ public class User {
         private String password;
         private String displayName = null;
         private String email = null;
+        private String inventory = "";
+        private String equipment = "";
+        private String pet = "";
         private int colorID = 0;
         private int hairColorID = 0;
         private int raceID = 0;
@@ -239,6 +259,17 @@ public class User {
 
         public UserBuilder setDisplayName(String displayName) {
             this.displayName = displayName;
+            return this;
+        }
+
+        public UserBuilder setInventory(String inventory) {
+            this.inventory = inventory;
+            return this;
+        }
+
+        public UserBuilder setEquipment (String equipment, String pet) {
+            this.equipment = equipment;
+            this.pet = pet;
             return this;
         }
 
@@ -330,6 +361,8 @@ public class User {
             user.colorID = this.colorID;
             user.raceID = this.raceID;
             user.classID = this.classID;
+
+            user.inventory = this.inventory;
 
             user.xp = this.xp;
 

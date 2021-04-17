@@ -42,7 +42,7 @@ public class GameActivity extends AppCompatActivity {
         money.setText("" + user.getMoney());
         mana.setText("" + user.getMana());
         Util.addSwitchWithUser(taskNavBtn, TasksActivity.class, GameActivity.this, id);
-        Util.addSwitchScreenAction(shopNavBtn, ShopActivity.class, GameActivity.this);
+        Util.addSwitchWithUser(shopNavBtn, ShopActivity.class, GameActivity.this, id);
         Util.addSwitchWithUser(statsNavBtn, StatsActivity.class, GameActivity.this, id);
 
         guildNavBtn.setOnClickListener(new View.OnClickListener() {
