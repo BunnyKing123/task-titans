@@ -5,13 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".ShopActivity">
 
     <TextView
         android:id="@+id/shopTitle"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/title_height"
-        android:layout_marginTop="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -20,64 +24,43 @@
         android:text="@string/shop_txt"
         android:textAlignment="center"
         android:textColor="@color/colorText"
-        android:textSize="48sp"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/shopKeeperImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/shopBuyBtn"
-        android:layout_width="@dimen/btn_small_width"
-        android:layout_height="@dimen/btn_small_height"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/buy_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/shopBackBtn"
-        android:layout_width="@dimen/btn_small_width"
-        android:layout_height="@dimen/btn_small_height"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/return_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
-        app:layout_constraintStart_toEndOf="@+id/shopBuyBtn" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
 
     <ImageView
         android:id="@+id/shopKeeperImage"
-        android:layout_width="369dp"
-        android:layout_height="271dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/shopkeeper_content_info"
+        app:layout_constraintBottom_toTopOf="@+id/shopDropdownBg"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shopTitle"
+        app:layout_constraintVertical_weight="4"
         app:srcCompat="@drawable/doggoshop" />
 
     <LinearLayout
         android:id="@+id/shopDropdownBg"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/text_field_height"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/custom_spinner"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/itemsDropdownBg"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shopKeeperImage">
+        app:layout_constraintTop_toBottomOf="@+id/shopKeeperImage"
+        app:layout_constraintVertical_weight="1">
 
         <Spinner
             android:id="@+id/shopsDropdown"
@@ -87,14 +70,18 @@
 
     <LinearLayout
         android:id="@+id/itemsDropdownBg"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/text_field_height"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/custom_spinner"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/itemDescription"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shopDropdownBg">
+        app:layout_constraintTop_toBottomOf="@+id/shopDropdownBg"
+        app:layout_constraintVertical_weight="1">
 
         <Spinner
             android:id="@+id/itemsDropdown"
@@ -104,30 +91,78 @@
 
     <TextView
         android:id="@+id/itemDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/quest"
         android:text="@string/placeholder_item_desc"
+        android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/money"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemsDropdownBg" />
+        app:layout_constraintTop_toBottomOf="@+id/itemsDropdownBg"
+        app:layout_constraintVertical_weight="2" />
 
     <TextView
         android:id="@+id/money"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/quest"
         android:text="@string/placeholder_money"
+        android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/shopButtonsContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemDescription"
-        app:layout_constraintVertical_bias="0.345" />
+        app:layout_constraintVertical_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/shopButtonsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/money"
+        app:layout_constraintVertical_weight="1">
+
+        <Button
+            android:id="@+id/shopBackBtn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/quest"
+            android:text="@string/return_txt"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/shopBuyBtn"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/quest"
+            android:text="@string/buy_txt"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

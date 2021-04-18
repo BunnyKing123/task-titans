@@ -12,9 +12,9 @@ public class User {
     private String email;
     private String id; // Used to access in database
 
-    private String inventory;
-    private String pet;
-    private String equipment;
+    private String inventory = "";
+    private String pet = "";
+    private String equipment = "";
 
     private int colorID = 0; // 4 possible skin colors: 0 - 3
     private int hairColorID = 0; // 4 possible hair colors: 0 - 3
@@ -115,24 +115,63 @@ public class User {
         Client.updateUser(this);
     }
 
-    // Damages the player
-    public void damage(int hpDec) {
-
+    public boolean addToInventory(String equipment) {
+        if (this.inventory.toLowerCase().contains(equipment.toLowerCase())) { return false; }
+        this.inventory = this.inventory + "-" + equipment;
+        Client.updateUser(this);
+        return true;
     }
 
-    // Combines addMana, addXP, and addMoney into one function for optimization
+    public void equip(String equipment, boolean isPet) {
+        if (!this.inventory.toLowerCase().contains(equipment.toLowerCase())) { return; }
+        if (isPet) {
+            this.pet = equipment;
+        } else {
+            this.equipment = equipment;
+        }
+        Client.updateUser(this);
+    }
+
+    public void clearEquipment(boolean pet) {
+        if (pet) {
+            this.pet = "";
+        } else {
+            this.equipment = "";
+        }
+        Client.updateUser(this);
+    }
+
+    // Damages the player
+    public void damage(int hpDec) {
+        this.hp -= hpDec;
+        if (hp < 0) {
+            hp = 0;
+        }
+        Client.updateUser(this);
+    }
+
+    // Combines addMana, addXP, and addMoney into one function for neatness
     public void addRewards(int xp, int money, int mana) {
         int originalXp = this.xp;
-        int originalHp = this.maxHp;
         this.xp += xp;
-        if (this.xp >= toNextLevel(convertToLevel(originalXp)))
-            this.hp += this.maxHp - originalHp;
+        if (this.xp >= toNextLevel(convertToLevel(originalXp))) {
+            levelUp();
+        }
         this.money += money;
         this.mana += mana;
         if (this.mana > this.maxMana) {
             this.mana = this.maxMana;
         }
         Client.updateUser(this);
+    }
+
+    public void levelUp() {
+        int originalHp = this.maxHp;
+        double originalMana = this.maxMana;
+        this.maxHp = calculateMaxHP(convertToLevel(this.xp), this.baseConst + this.constMod);
+        this.maxMana = calculateMaxMana(convertToLevel(this.xp), this.baseIntel + this.intelMod);
+        this.hp += this.maxHp - originalHp;
+        this.mana += this.maxMana - originalMana;
     }
 
     // STATIC METHODS

@@ -5,31 +5,166 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2CA58D"
+    android:paddingTop="16dp"
     tools:context=".GameActivity">
 
+    <LinearLayout
+        android:id="@+id/playerInfoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/inventoryTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="2">
+
+        <ImageView
+            android:id="@+id/profilePicture"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/pfp_content_info"
+            app:srcCompat="@drawable/placeholder_pfp" />
+
+        <TextView
+            android:id="@+id/profileInfo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="3"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#84BC9C"
+            android:fontFamily="@font/quest"
+            android:lineSpacingExtra="6sp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:text="@string/placeholder_profile"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorText"
+            android:textSize="24sp" />
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/priorityTaskTitle"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
-        android:layout_marginTop="140dp"
+        android:id="@+id/inventoryTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
         android:paddingHorizontal="36dp"
         android:paddingVertical="8dp"
-        android:text="@string/priority_task_txt"
+        android:text="@string/inventory_txt"
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/inventoryContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/playerInfoContainer"
+        app:layout_constraintVertical_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/inventoryContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/questBoardTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inventoryTitle"
+        app:layout_constraintVertical_weight="2">
+
+        <ImageButton
+            android:id="@+id/inventoryLeftBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bow_icon" />
+
+        <ScrollView
+            android:id="@+id/inventoryTextScroll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:fillViewport="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="9">
+
+                <TextView
+                    android:id="@+id/inventoryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:background="@drawable/round_corners"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/quest"
+                    android:paddingVertical="10dp"
+                    android:text="@string/inventory_placeholder"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/inventoryEquipBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/round_corners"
+                    android:backgroundTint="@color/colorAccent"
+                    android:fontFamily="@font/quest"
+                    android:text="@string/equip_txt"
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_weight="1" />
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/inventoryRightBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bow_icon" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/questBoardTitle"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
-        android:layout_marginTop="164dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -39,98 +174,28 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/navLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priorityTaskTitle" />
-
-    <TextView
-        android:id="@+id/profileInfo"
-        android:layout_width="267dp"
-        android:layout_height="101dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="#84BC9C"
-        android:fontFamily="@font/quest"
-        android:lineSpacingExtra="6sp"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp"
-        android:text="@string/placeholder_profile"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorText"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/profilePicture"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/profilePicture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/pfp_content_info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/placeholder_pfp" />
-
-    <LinearLayout
-        android:id="@+id/profileFooter"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/profileMoneyIcon"
-            android:layout_width="59dp"
-            android:layout_height="56dp"
-            android:contentDescription="@string/money_content_info"
-            app:srcCompat="@drawable/money_icon" />
-
-        <TextView
-            android:id="@+id/profileMoneyText"
-            android:layout_width="108dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/quest"
-            android:text="@string/placeholder_money"
-            android:textColor="@color/colorText"
-            android:textSize="24sp" />
-
-        <ImageView
-            android:id="@+id/profilePowerIcon"
-            android:layout_width="59dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/mana_content_info"
-            app:srcCompat="@drawable/power_icon" />
-
-        <TextView
-            android:id="@+id/profileManaText"
-            android:layout_width="128dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/quest"
-            android:text="@string/placeholder_mana"
-            android:textColor="@color/colorText"
-            android:textSize="24sp" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/inventoryContainer"
+        app:layout_constraintVertical_weight="1" />
 
     <TableLayout
         android:id="@+id/navLayout"
-        android:layout_width="0dp"
-        android:layout_height="235dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/profileFooter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questBoardTitle">
+        app:layout_constraintTop_toBottomOf="@+id/questBoardTitle"
+        app:layout_constraintVertical_weight="3">
 
         <TableRow
             android:id="@+id/navRow1"
@@ -249,5 +314,54 @@
         </TableRow>
 
     </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/profileFooter"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navLayout">
+
+        <ImageView
+            android:id="@+id/profileMoneyIcon"
+            android:layout_width="59dp"
+            android:layout_height="56dp"
+            android:contentDescription="@string/money_content_info"
+            app:srcCompat="@drawable/money_icon" />
+
+        <TextView
+            android:id="@+id/profileMoneyText"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quest"
+            android:text="@string/placeholder_money"
+            android:textColor="@color/colorText"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/profilePowerIcon"
+            android:layout_width="59dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/mana_content_info"
+            app:srcCompat="@drawable/power_icon" />
+
+        <TextView
+            android:id="@+id/profileManaText"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/quest"
+            android:text="@string/placeholder_mana"
+            android:textColor="@color/colorText"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

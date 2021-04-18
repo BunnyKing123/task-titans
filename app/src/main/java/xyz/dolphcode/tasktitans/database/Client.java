@@ -67,6 +67,8 @@ public final class Client {
                             .setGuildID(child.child("guildID").getValue().toString())
                             .setColor(((Long) child.child("colorID").getValue()).intValue(), false)
                             .setColor(((Long) child.child("hairColorID").getValue()).intValue(), true)
+                            .setInventory(child.child("inventory").getValue().toString())
+                            .setEquipment(child.child("equipment").getValue().toString(), child.child("pet").getValue().toString())
                             .setSpecialty(((Long) child.child("raceID").getValue()).intValue(), true)
                             .setSpecialty(((Long) child.child("classID").getValue()).intValue(), false)
                             .setMoney(((Long) child.child("money").getValue()).doubleValue())

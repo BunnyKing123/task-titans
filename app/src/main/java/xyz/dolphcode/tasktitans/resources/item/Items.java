@@ -28,11 +28,17 @@ public final class Items {
             .classRequirement(Item.ALL_CLASS).cost(1000)
             .addBonus(Item.Bonus.MONEY, 50);
 
+    public static Item MIMIC_PET = new Item("Mimic Pet")
+            .itemDescription("The mimic pet is very good at finding treasure. You gain an additional 20% more money every time you gain money")
+            .isPetItem().cost(500)
+            .addBonus(Item.Bonus.MONEY, 20);
+
     static {
         ITEMS.put(FANCY_HAT.getItemName(), FANCY_HAT);
         ITEMS.put(THICK_HELMET.getItemName(), THICK_HELMET);
         ITEMS.put(TELESCOPIC_GLASSES.getItemName(), TELESCOPIC_GLASSES);
         ITEMS.put(GOLDEN_CAT_MASK.getItemName(), GOLDEN_CAT_MASK);
+        ITEMS.put(MIMIC_PET.getItemName(), MIMIC_PET);
     }
 
 }

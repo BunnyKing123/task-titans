@@ -69,6 +69,7 @@ public class Item {
     public Integer getBonus(Bonus bonus) {
         return bonuses.get(bonus);
     }
+    public int getItemCost() { return this.shopCost; }
 
     public enum Bonus {
         ATTACK, DEFENSE, MANA, MONEY

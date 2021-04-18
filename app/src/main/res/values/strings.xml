@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Task Titans</string>
     <string name="display_name_txt">Display Name</string>
-    <string name="priority_task_txt">Priority Tasks</string>
+    <string name="inventory_txt">Inventory</string>
+    <string name="equip_txt">Equip</string>
+    <string name="inventory_placeholder">Whoa, your bag is empty!</string>
     <string name="quest_board_txt">Quest Board</string>
     <string name="skills_title">Character Skills</string>
     <string name="stats_title">Character Stats</string>
