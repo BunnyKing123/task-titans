@@ -196,6 +196,18 @@ public final class Client {
         return null; // Return null
     }
 
+    public static ArrayList<Guild> searchGuilds(String search) {
+        String searchLower = search.toLowerCase();
+        ArrayList<Guild> guildList = new ArrayList<Guild>();
+        for (Guild guild : GUILDS) { // Iterate through all Users
+            Log.v("TEST", guild.getGuildName() + " " + guild.getGuildName().toLowerCase().contains(searchLower));
+            if (guild.getGuildName().toLowerCase().contains(searchLower)) { // If a match is found
+                guildList.add(guild);
+            }
+        }
+        return guildList; // Return null
+    }
+
     // Updates a User in the database
     public static void updateGuild(Guild guild) {
         INSTANCE.child("guilds").child(guild.getGuildID()).setValue(guild);

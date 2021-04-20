@@ -30,8 +30,9 @@ public class Guild {
     // Adds a member to the list
     public void addMember(String id) {
         memberIDs.add(id); // Add to member list
-        dbMemberIDs = dbMemberIDs + "|" + id; // Add member to string instead of converting member list to text
+        dbMemberIDs = dbMemberIDs + "-" + id; // Add member to string instead of converting member list to text
         Client.updateGuild(this); // Update guild in database
+        Client.getUser(id).setGuild(this.guildID);
     }
 
     // Sends a message to the chat
@@ -115,7 +116,7 @@ public class Guild {
                 guild.memberIDs.add(guild.ownerID); // Add the owner's ID if it isn't already in the member list
 
             guild.dbChat = Util.joinList(guild.chat, "\n"); // Set the dbChat property for uploading information to database
-            guild.dbMemberIDs = Util.joinList(guild.memberIDs, "\n"); // Same as line above but for member ids
+            guild.dbMemberIDs = Util.joinList(guild.memberIDs, "-"); // Same as line above but for member ids
 
             return guild;
         }

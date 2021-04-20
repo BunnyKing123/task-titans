@@ -5,32 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".GuildSearchActivity">
-
-    <Button
-        android:id="@+id/guildJoinBackBtn"
-        android:layout_width="@dimen/btn_small_width"
-        android:layout_height="@dimen/btn_small_height"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/return_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
-        app:layout_constraintStart_toEndOf="@+id/shopBuyBtn"
-        app:layout_constraintTop_toBottomOf="@+id/createGuildBtn"
-        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/guildJoinTitle"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/title_height"
-        android:layout_marginTop="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -40,80 +25,188 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/searchContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
 
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
-        android:layout_weight="1"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/search_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guildSearchContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.652"
-        app:layout_constraintStart_toEndOf="@+id/guildSearchBar"
-        app:layout_constraintTop_toBottomOf="@+id/guildJoinTitle" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildJoinTitle"
+        app:layout_constraintVertical_weight="1">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/guildSearchBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="2"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/guildSearchBarTxt"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:fontFamily="@font/quest"
+                android:hint="@string/search_hint_txt" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/quest"
+            android:text="@string/search_txt"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/guildSearchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guildJoinDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchContainer"
+        app:layout_constraintVertical_weight="2">
+
+        <ImageButton
+            android:id="@+id/guildSearchLeftBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bow_icon" />
+
+        <ScrollView
+            android:id="@+id/guildTextScroll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:fillViewport="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="9">
+
+                <TextView
+                    android:id="@+id/guildSearchedText"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:background="@drawable/round_corners"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/quest"
+                    android:paddingVertical="10dp"
+                    android:text="@string/inventory_placeholder"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/guildJoinBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/round_corners"
+                    android:backgroundTint="@color/colorAccent"
+                    android:fontFamily="@font/quest"
+                    android:text="@string/equip_txt"
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_weight="1" />
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/guildSearchRightBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/bow_icon" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/guildJoinDivider"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/createGuildBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildSearchContainer"
+        app:layout_constraintVertical_weight="4" />
 
     <Button
         android:id="@+id/createGuildBtn"
-        android:layout_width="@dimen/btn_large_width"
-        android:layout_height="@dimen/btn_small_height"
-        android:layout_marginBottom="72dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/quest"
         android:text="@string/create_guild_txt"
         android:textColor="@color/colorText"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guildJoinBackBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildJoinDivider"
+        app:layout_constraintVertical_weight="1" />
+
+    <Button
+        android:id="@+id/guildJoinBackBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/return_txt"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ScrollView
-        android:id="@+id/guildSearchResults"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="401dp"
-        app:layout_constraintBottom_toTopOf="@+id/createGuildBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guildJoinTitle"
-        app:layout_constraintVertical_bias="0.817">
-
-        <LinearLayout
-            android:id="@+id/guildSearchResultsContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/guildSearchBar"
-        android:layout_width="238dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorField"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guildJoinTitle">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/guildSearchBarTxt"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:fontFamily="@font/quest"
-            android:hint="@string/search_hint_txt" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/shopBuyBtn"
+        app:layout_constraintTop_toBottomOf="@+id/createGuildBtn"
+        app:layout_constraintVertical_weight="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

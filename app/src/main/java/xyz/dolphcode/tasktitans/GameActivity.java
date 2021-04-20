@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -47,6 +48,8 @@ public class GameActivity extends OneScrollableAreaActivity {
         TextView money = findViewById(R.id.profileMoneyText);
         TextView mana = findViewById(R.id.profileManaText);
 
+        ImageView profile = findViewById(R.id.profilePicture);
+
         user = Client.getUser(getIntent().getStringExtra("ID"));
         id = user.getID();
 
@@ -62,6 +65,8 @@ public class GameActivity extends OneScrollableAreaActivity {
         displayText();
         if (iterable.size() > 0)
             checkIfEquipped(iterable.get(selection));
+
+        profile.setImageResource(Util.getProfileImage(this, user));
 
         stats.setText("Name: " + user.getDisplayName() + "\nHP: " + user.getHP() + "/" + user.getMaxHP() + "\nLevel: " + User.convertToLevel(user.getXP()));
         money.setText("" + user.getMoney());

@@ -11,7 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import xyz.dolphcode.tasktitans.DetailsActivity;
 import xyz.dolphcode.tasktitans.MainActivity;
+import xyz.dolphcode.tasktitans.database.User;
 import xyz.dolphcode.tasktitans.database.tasks.Task;
 import xyz.dolphcode.tasktitans.resources.FrequencyType;
 import xyz.dolphcode.tasktitans.resources.TaskType;
@@ -252,5 +254,22 @@ public final class Util {
             value = defaultValue;
         }
         return value;
+    }
+
+    public static int getProfileImage(AppCompatActivity activity, User user) {
+        String race;
+        if (user.getRaceID() == DetailsActivity.HUMAN) {
+            race = "human";
+        } else if (user.getRaceID() == DetailsActivity.ORC) {
+            race = "orc";
+        } else {
+            race = "elf";
+        }
+
+        int skin = user.getColorID();
+        String gender = user.getGender() == DetailsActivity.MALE ? "male" : "female";
+        String name = race + "_" + gender + "_" + skin + ".png";
+        Log.v("FILE", name);
+        return activity.getResources().getIdentifier(name, "drawable-v24", activity.getPackageName());
     }
 }

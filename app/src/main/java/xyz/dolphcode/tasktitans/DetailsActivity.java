@@ -14,6 +14,13 @@ import xyz.dolphcode.tasktitans.util.Util;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    public static final int HUMAN = 0;
+    public static final int ORC = 1;
+    public static final int ELF = 2;
+
+    public static final int MALE = 0;
+    public static final int FEMALE = 1;
+
     Intent prevData;
 
     private int raceID = 0;
@@ -34,9 +41,9 @@ public class DetailsActivity extends AppCompatActivity {
         ImageButton class2Btn = findViewById(R.id.archerBtn);
         ImageButton class3Btn = findViewById(R.id.mageBtn);
 
-        race1Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {raceID = 0;}});
-        race2Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {raceID = 1;}});
-        race3Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {raceID = 2;}});
+        race1Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {raceID = HUMAN;}});
+        race2Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {raceID = ORC;}});
+        race3Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {raceID = ELF;}});
         class1Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {classID = 0;}});
         class2Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {classID = 1;}});
         class3Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {classID = 2;}});
