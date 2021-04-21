@@ -28,6 +28,8 @@ public class AppearanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appearance);
 
+        Util.setupConnectionChangedHandler(AppearanceActivity.this);
+
         prevData = getIntent(); // Store intent passed from previous screen
 
         Button finishBtn =  findViewById(R.id.appearanceFinBtn);

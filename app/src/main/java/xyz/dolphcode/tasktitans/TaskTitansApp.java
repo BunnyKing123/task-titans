@@ -9,7 +9,7 @@ public class TaskTitansApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Client.init();
+        Client.init(); // Make database content readable as soon as the app starts
     }
 
 }

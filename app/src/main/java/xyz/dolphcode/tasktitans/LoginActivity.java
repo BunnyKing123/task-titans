@@ -19,6 +19,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Util.setupConnectionChangedHandler(LoginActivity.this);
+
         Button loginBtn =  findViewById(R.id.ssoLoginBtn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {

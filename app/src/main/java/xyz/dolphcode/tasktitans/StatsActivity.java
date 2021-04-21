@@ -30,6 +30,8 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
+        Util.setupConnectionChangedHandler(StatsActivity.this);
+
         Button backBtn = findViewById(R.id.statsBackButton);
         strength = findViewById(R.id.characterStrengthLabel);
         intelligence = findViewById(R.id.characterIntelLabel);

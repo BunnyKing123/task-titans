@@ -35,6 +35,8 @@ public class TaskCreationActivity extends DateTimeActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_creation);
 
+        Util.setupConnectionChangedHandler(TaskCreationActivity.this);
+
         Button taskBackBtn = findViewById(R.id.taskBackBtn);
         Button taskFinishBtn = findViewById(R.id.taskDoneBtn);
 

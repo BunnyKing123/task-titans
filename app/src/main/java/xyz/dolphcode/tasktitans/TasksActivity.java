@@ -38,6 +38,8 @@ public class TasksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
 
+        Util.setupConnectionChangedHandler(TasksActivity.this);
+
         user = Client.getUser(getIntent().getStringExtra("ID"));
 
         Button tasksBtn = findViewById(R.id.addTaskBtn);

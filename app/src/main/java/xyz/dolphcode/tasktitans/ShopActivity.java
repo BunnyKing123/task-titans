@@ -38,6 +38,8 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
+        Util.setupConnectionChangedHandler(ShopActivity.this);
+
         id = getIntent().getStringExtra("ID");
         user = Client.getUser(id);
 

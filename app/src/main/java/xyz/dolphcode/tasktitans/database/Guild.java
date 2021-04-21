@@ -7,12 +7,20 @@ import xyz.dolphcode.tasktitans.util.Util;
 
 public class Guild {
 
+    public static final int BOSS = 0;
+    public static final int TASK = 1;
+
     private String name; // Guild name used to identify guild
     private String guildID; // Guild id also used to identify guild
     private String dbChat; // The DB Chat property is what I store in the database and extract from the database
     private String dbMemberIDs; // Same thing as DB Chat but for the list of members
     private String ownerID = ""; // Used to represent and identify the owner of a guild
     private int minimumLevel = 0; // Minimum level requirement to join a guild
+    private int guildPoints = 0;
+    private String guildTaskName;
+    private String guildTaskType;
+    private String guildTaskCompletions;
+    private String guildTaskDeadline;
 
     private List<String> chat; // DB chat is converted into a list of strings in the chat
     private List<String> memberIDs; // DB member list is converted into a list of strings in the chat

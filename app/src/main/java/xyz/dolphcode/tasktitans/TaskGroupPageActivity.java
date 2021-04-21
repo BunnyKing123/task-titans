@@ -33,6 +33,8 @@ public class TaskGroupPageActivity extends OneScrollableAreaActivity implements 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_group_page);
 
+        Util.setupConnectionChangedHandler(TaskGroupPageActivity.this);
+
         Client.addObserver(this);
 
         prev = getIntent();

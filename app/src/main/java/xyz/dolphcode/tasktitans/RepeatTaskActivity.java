@@ -32,6 +32,8 @@ public class RepeatTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repeat_task);
 
+        Util.setupConnectionChangedHandler(RepeatTaskActivity.this);
+
         prev = getIntent(); // Store intent being passed on
         id = prev.getStringExtra("ID"); // Store player id
 

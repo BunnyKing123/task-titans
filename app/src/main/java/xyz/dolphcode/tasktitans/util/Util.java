@@ -1,11 +1,16 @@
 package xyz.dolphcode.tasktitans.util;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.icu.util.Calendar;
+import android.net.ConnectivityManager;
+import android.net.Network;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -49,6 +54,28 @@ public final class Util {
                 switchFrom.startActivity(intent);
             }
         });
+    }
+
+    public static void setupConnectionChangedHandler(final AppCompatActivity context) {
+        ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).registerDefaultNetworkCallback(
+                new ConnectivityManager.NetworkCallback() {
+                    @Override
+                    public void onAvailable(Network network) {}
+
+                    @Override
+                    public void onLost(Network network) {
+                        new AlertDialog.Builder(context)
+                                .setTitle("Internet Connection Lost")
+                                .setMessage("A constant internet connection is required to interact with the app. Please restart the app when a connection is established")
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(context, MainActivity.class);
+                                        context.startActivity(intent);
+                                    }
+                                })
+                                .show();
+                    }
+                });
     }
 
     // Transfers all extras passed over from the previous screen to the new intent

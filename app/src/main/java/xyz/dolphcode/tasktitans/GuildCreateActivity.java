@@ -12,6 +12,7 @@ import android.widget.EditText;
 import xyz.dolphcode.tasktitans.database.Client;
 import xyz.dolphcode.tasktitans.database.Guild;
 import xyz.dolphcode.tasktitans.database.User;
+import xyz.dolphcode.tasktitans.util.Util;
 
 public class GuildCreateActivity extends AppCompatActivity {
 
@@ -22,6 +23,8 @@ public class GuildCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guild_create);
+
+        Util.setupConnectionChangedHandler(GuildCreateActivity.this);
 
         Button createBtn = findViewById(R.id.guildCreateDoneBtn);
 

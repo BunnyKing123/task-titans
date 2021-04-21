@@ -27,6 +27,8 @@ public class GuildSearchActivity extends OneScrollableAreaActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guild_search);
 
+        Util.setupConnectionChangedHandler(GuildSearchActivity.this);
+
         iterable = new ArrayList<String>();
         defaultText = "No guilds found";
         displayText = findViewById(R.id.guildSearchedText);

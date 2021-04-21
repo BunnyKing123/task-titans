@@ -14,17 +14,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import xyz.dolphcode.tasktitans.database.Client;
 import xyz.dolphcode.tasktitans.database.User;
+import xyz.dolphcode.tasktitans.util.Util;
 
 public class SignupActivity extends AppCompatActivity {
-
-    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        Util.setupConnectionChangedHandler(SignupActivity.this);
 
         Button signupBtn =  findViewById(R.id.registerSignupBtn);
 

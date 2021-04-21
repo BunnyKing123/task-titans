@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 
 import xyz.dolphcode.tasktitans.database.Client;
@@ -33,6 +34,8 @@ public class GroupTaskActivity extends OneScrollableAreaActivity implements Data
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_task);
+
+        Util.setupConnectionChangedHandler(GroupTaskActivity.this);
 
         id = getIntent().getStringExtra("ID");
         user = Client.getUser(id);

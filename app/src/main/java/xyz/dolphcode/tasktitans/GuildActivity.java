@@ -31,6 +31,8 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guild);
 
+        Util.setupConnectionChangedHandler(GuildActivity.this);
+
         Button backBtn = findViewById(R.id.guildBackBtn);
         Button sendBtn = findViewById(R.id.chatSendBtn);
 

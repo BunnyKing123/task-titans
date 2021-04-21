@@ -35,6 +35,8 @@ public class GameActivity extends OneScrollableAreaActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        Util.setupConnectionChangedHandler(GameActivity.this);
+
         Button guildNavBtn =  findViewById(R.id.guildNavBtn);
         Button taskNavBtn =  findViewById(R.id.taskNavBtn);
         Button shopNavBtn =  findViewById(R.id.shopNavBtn);

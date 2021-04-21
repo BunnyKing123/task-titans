@@ -33,6 +33,8 @@ public class FrequencyPickerActivity extends DateTimeActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frequency_picker);
 
+        Util.setupConnectionChangedHandler(FrequencyPickerActivity.this);
+
         prev = getIntent();
 
         date = findViewById(R.id.frequencyDateTxt);

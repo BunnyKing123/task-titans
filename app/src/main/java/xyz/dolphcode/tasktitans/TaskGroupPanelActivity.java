@@ -17,6 +17,7 @@ import xyz.dolphcode.tasktitans.database.tasks.GroupMember;
 import xyz.dolphcode.tasktitans.database.tasks.Task;
 import xyz.dolphcode.tasktitans.database.tasks.TaskGroup;
 import xyz.dolphcode.tasktitans.util.OneScrollableAreaActivity;
+import xyz.dolphcode.tasktitans.util.Util;
 
 public class TaskGroupPanelActivity extends OneScrollableAreaActivity implements DatabaseObserver {
 
@@ -30,6 +31,8 @@ public class TaskGroupPanelActivity extends OneScrollableAreaActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_group_panel);
+
+        Util.setupConnectionChangedHandler(TaskGroupPanelActivity.this);
 
         Client.addObserver(this);
 
