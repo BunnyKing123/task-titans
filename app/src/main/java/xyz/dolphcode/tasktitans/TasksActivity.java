@@ -17,6 +17,9 @@ import xyz.dolphcode.tasktitans.database.tasks.Task;
 import xyz.dolphcode.tasktitans.resources.TaskType;
 import xyz.dolphcode.tasktitans.util.Util;
 
+/* The TasksActivity class is linked to the tasks screen where players can navigate to a page to create more tasks,
+   view their task groups and complete group tasks, or complete tasks and repeat tasks
+*/
 public class TasksActivity extends AppCompatActivity {
 
     int tSelection = 0;

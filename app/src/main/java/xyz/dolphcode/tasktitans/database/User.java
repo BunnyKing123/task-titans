@@ -2,6 +2,7 @@ package xyz.dolphcode.tasktitans.database;
 
 import android.util.Log;
 
+import xyz.dolphcode.tasktitans.DetailsActivity;
 import xyz.dolphcode.tasktitans.resources.Abilities;
 
 public class User {
@@ -47,6 +48,7 @@ public class User {
 
     private User() {}
 
+    // Getter functions used to get certain information about the user
     public String getUsername() { return username; }
     public String getPassword() { return password; }
     public String getEmail() { return email; }
@@ -86,27 +88,33 @@ public class User {
     public String getGuildID() { return guildID; }
 
     // Converts gender value to boolean
-    public boolean isMale() { return gender == 1; }
+    public boolean isMale() { return gender == DetailsActivity.MALE; }
 
+    // Clears the player's guild specifying that they are not part of a guild
     public void clearGuild() {
         this.guildID = "none";
     }
 
+    // Sets the guild of the player so that the player's guild can be easily identified
     public void setGuild(String guildID) {
         this.guildID = guildID;
         Client.updateUser(this);
     }
 
+    // Gives the player experience points
     public void addXP(int xp) {
         this.xp += xp;
         Client.updateUser(this);
     }
 
+    // Adds money to the player's balance
     public void addMoney(int money) {
         this.money += money;
         Client.updateUser(this);
     }
 
+    // Adds more mana to the player
+    // Prevents mana from exceeding maximum
     public void addMana(int mana) {
         this.mana += mana;
         if (this.mana > this.maxMana) {
@@ -115,6 +123,7 @@ public class User {
         Client.updateUser(this);
     }
 
+    // Adds an item to the player inventory
     public boolean addToInventory(String equipment) {
         if (this.inventory.toLowerCase().contains(equipment.toLowerCase())) { return false; }
         this.inventory = this.inventory + "-" + equipment;
@@ -122,6 +131,7 @@ public class User {
         return true;
     }
 
+    // Adds to the stat modifiers and recalculates certain stats involving these modifiers
     public void addModifiers(int constitution, int intelligence, int strength, int dexterity) {
         int change = constitution + intelligence + strength + dexterity;
         int totalMod = constMod + intelMod + strengthMod + dextMod;
@@ -135,6 +145,8 @@ public class User {
         }
     }
 
+    // Adds or replaces equipment of a particular type used for equipping
+    // Caller can specify if the pet slot or equipment slot is being changed
     public void equip(String equipment, boolean isPet) {
         if (!this.inventory.toLowerCase().contains(equipment.toLowerCase())) { return; }
         if (isPet) {
@@ -145,6 +157,8 @@ public class User {
         Client.updateUser(this);
     }
 
+    // Removes equipment of a particular type used for unequipping
+    // Caller can specify if the pet slot or equipment slot is being cleared
     public void clearEquipment(boolean pet) {
         if (pet) {
             this.pet = "";
@@ -178,6 +192,7 @@ public class User {
         Client.updateUser(this);
     }
 
+    // Recalculates Mana and HP
     public void adjustStats() {
         int originalHp = this.maxHp;
         double originalMana = this.maxMana;

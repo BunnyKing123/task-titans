@@ -87,7 +87,7 @@ public final class Client {
 
                 // Iterate through all entries in "guilds"
                 for (DataSnapshot child : dataSnapshot.child("guilds").getChildren()) {
-                    guildIDs.add(child.getKey()); // Add the ID found to the list of User IDs
+                    guildIDs.add(child.getKey()); // Add the ID found to the list of Guild IDs
 
                     // Use the GuildBuilder to create a guild using the information from the Data Snapshot
                     Guild guild = Guild.GuildBuilder.createGuild(child.child("guildName").getValue().toString(), child.child("ownerID").getValue().toString())
@@ -100,9 +100,9 @@ public final class Client {
 
                 // Iterate through all entries in "tasks"
                 for (DataSnapshot child : dataSnapshot.child("tasks").getChildren()) {
-                    taskIDs.add(child.getKey()); // Add the ID found to the list of User IDs
+                    taskIDs.add(child.getKey()); // Add the ID found to the list of Task IDs
 
-                    // Use the Task to create a task using the information from the Data Snapsho
+                    // Use the TaskBuilder to create a task using the information from the Data Snapshot
                     Task task;
                     if (((Long) child.child("taskType").getValue()).intValue() == TaskType.TASK) {
                         task = Task.TaskBuilder.createTask(child.child("taskOwnerID").getValue().toString(), child.child("taskName").getValue().toString(), child.child("deadline").getValue().toString())
@@ -120,12 +120,12 @@ public final class Client {
                     tasks.add(task);
                 }
 
-                // Iterate through all entries in "tasks"
+                // Iterate through all entries in "taskgroups"
                 for (DataSnapshot child : dataSnapshot.child("taskgroups").getChildren()) {
-                    taskGroupIDs.add(child.getKey()); // Add the ID found to the list of User IDs
+                    taskGroupIDs.add(child.getKey()); // Add the ID found to the list of Task Group IDs
                     taskGroupJoinCodes.add(child.child("joinCode").getValue().toString());
 
-                    // Use the Task to create a task using the information from the Data Snapshot
+                    // Use the TaskGroupBuilder to create a task group using the information from the Data Snapshot
                     TaskGroup taskGroup = TaskGroup.TaskGroupBuilder.createTaskGroup(child.child("groupLeaderID").getValue().toString(), child.child("groupName").getValue().toString())
                             .setAll(child.child("joinCode").getValue().toString(),
                                     child.child("taskList").getValue().toString(),
@@ -157,7 +157,10 @@ public final class Client {
         INSTANCE.addValueEventListener(listener); // Add the event listener to the instance of the database
     }
 
+    // Adds an observer to be notified when the database has changed
     public static void addObserver(DatabaseObserver observer) { OBSERVERS.add(observer); }
+
+    // Removes an observer from the list of observers being notified about changes in the database
     public static void removeObserver(DatabaseObserver observer) { OBSERVERS.remove(observer); }
 
     // Returns a User with a particular username if the password is correct
@@ -202,6 +205,8 @@ public final class Client {
         return null; // Return null
     }
 
+    // Returns a list of all guilds that contain the search query
+    // Used to search for guilds in the guild search screen
     public static ArrayList<Guild> searchGuilds(String search) {
         String searchLower = search.toLowerCase();
         ArrayList<Guild> guildList = new ArrayList<Guild>();
@@ -246,6 +251,7 @@ public final class Client {
         INSTANCE.child("tasks").child(task.getTaskID()).setValue(task);
     }
 
+    // Removes a task from the database
     public static void removeTask(Task task) {
         INSTANCE.child("tasks").child(task.getTaskID()).removeValue();
     }
@@ -261,6 +267,7 @@ public final class Client {
         return null;
     }
 
+    // Returns an arraylist of all task groups that includes a particular member with the provided member id
     public static ArrayList<TaskGroup> getTaskGroupsByMember(String member) {
         ArrayList<TaskGroup> groups = new ArrayList<TaskGroup>();
         for (TaskGroup group: TASKGROUPS) {
@@ -274,6 +281,7 @@ public final class Client {
         return groups;
     }
 
+    // Returns a task group with a matching id
     public static TaskGroup getTaskGroup(String id) {
         for (TaskGroup taskGroup : TASKGROUPS) { // Iterate through all Users
             if (taskGroup.getTaskGroupID().contentEquals(id)) { // If a match is found

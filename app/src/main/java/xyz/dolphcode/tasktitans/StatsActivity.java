@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +16,7 @@ import xyz.dolphcode.tasktitans.database.User;
 import xyz.dolphcode.tasktitans.resources.Abilities;
 import xyz.dolphcode.tasktitans.util.Util;
 
+// The StatsActivity class is linked to the stats screen which is used to show player stats, activate skills and modify player stats
 public class StatsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     User user;
@@ -40,15 +40,17 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
 
         user = Client.getUser(getIntent().getStringExtra("ID"));
 
-        updateStats();
+        updateStats(); // Update stats text views with user stats
 
-        money.setText("" + user.getMoney());
+        money.setText("" + user.getMoney()); // Show the player's balance
 
         Spinner skills = findViewById(R.id.skillsDropdown);
 
         // Code based on code in the Android Studio documentation
         String[] skillsArray = {user.getSkill()};
 
+        // ArrayAdapters are used to put items in a spinner
+        // ArrayAdapters can be notified when their data set is changed allowing you to change the contents of a spinner (this is seen in other parts of the code)
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
                 android.R.layout.simple_spinner_item, skillsArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -62,6 +64,7 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
         Button constMod = findViewById(R.id.constModBtn);
         Button dextMod = findViewById(R.id.dextModBtn);
 
+        // Add listeners to each modification button
         strengthMod.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 user.addModifiers(0, 0, 1, 0);
@@ -94,7 +97,7 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view,
+    public void onItemSelected(AdapterView<?> parent, View view, // When an item is selected from the abilities dropdown the ability description should be shown
                                int pos, long id) {
         String key = parent.getItemAtPosition(pos).toString();
         TextView desc = findViewById(R.id.skillDesc);
@@ -107,6 +110,7 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
         // Required override
     }
 
+    // Updates all stats textviews, used when first opening screen and adding stat modifiers
     public void updateStats() {
         strength.setText("Strength: " + (user.getBaseStrength() + user.getStrengthMod()));
         intelligence.setText("Intelligence: " + (user.getBaseIntel() + user.getIntelMod()));

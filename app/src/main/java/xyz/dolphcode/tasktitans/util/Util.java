@@ -191,24 +191,23 @@ public final class Util {
         return setDay;
     }
 
+    // Checks to see if a frequency task is active
     public static boolean activeRepeatTask(Task task) {
         if (task.getTaskType() == TaskType.REPEAT_TASK) {
-
-
             Calendar calendar = Calendar.getInstance();
 
             switch (task.getFreqType()) {
                 case FrequencyType.MONTHS:
-                    int monthIndex = calendar.get(Calendar.MONTH) - 1;
+                    int monthIndex = calendar.get(Calendar.MONTH) - 1; // Gets an index based on the current month of the year
 
+                    // Used to determine if the last time a repeat task was finished was this month
                     boolean monthTest = false;
                     try {
-                        int lastFinishedMonthIndex = Integer.parseInt(task.getLastFinished());
-                        monthTest = monthIndex != lastFinishedMonthIndex;
+                        int lastFinishedMonthIndex = Integer.parseInt(task.getLastFinished()); // If the frequency type is monthly the last finished will be the month number - 1
+                        monthTest = monthIndex != lastFinishedMonthIndex; // Check if the month we are in doesn't match the last time the task was finished
                     } catch (NumberFormatException e) {
-                        monthTest = true;
+                        monthTest = true; // Since the task has never been finished just set monthTest to true meaning the task would be active if we are in the correct month
                     }
-
 
                     if (task.getFreqData().charAt(monthIndex) == '1' && monthTest) // If the task hasn't been finished this month and should be finished this month
                         return true;
@@ -218,27 +217,27 @@ public final class Util {
                         return true;
                     int timeBetween = Integer.parseInt(task.getFreqData());
                     Calendar nextWeek = Calendar.getInstance();
-                    nextWeek.set(Calendar.WEEK_OF_YEAR, Integer.parseInt(task.getLastFinished()));
-                    nextWeek.add(Calendar.WEEK_OF_YEAR, timeBetween);
-                    if (calendar.get(Calendar.WEEK_OF_YEAR) == nextWeek.get(Calendar.WEEK_OF_YEAR))
+                    nextWeek.set(Calendar.WEEK_OF_YEAR, Integer.parseInt(task.getLastFinished())); // If frequency type is weekly the last finished will be a week of the year
+                    nextWeek.add(Calendar.WEEK_OF_YEAR, timeBetween); // Adds number of weeks between each time a task should be active to the last time this task was finished to determine the next deadline
+                    if (calendar.get(Calendar.WEEK_OF_YEAR) == nextWeek.get(Calendar.WEEK_OF_YEAR)) // Checks if this week matches the week it should be completed
                         return true;
                     break;
                 case FrequencyType.DAYS:
-                    int lastFinishedDayIndex = safeParseInt(task.getLastFinished(), -1);
-                    int dayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+                    int lastFinishedDayIndex = safeParseInt(task.getLastFinished(), -1); // Default is -1 so that it is guaranteed that that the task will be active if today is the appropriate day
+                    int dayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1; // Index used to get the character in the binary flags
 
-                    if (task.getFreqData().charAt(dayIndex) == '1' && dayIndex != lastFinishedDayIndex) // If the task hasn't been finished this month and should be finished this month
+                    if (task.getFreqData().charAt(dayIndex) == '1' && dayIndex != lastFinishedDayIndex) // If the task hasn't been finished today and should be finished on the current day
                         return true;
                     break;
                 case FrequencyType.DATE:
-                    String[] date = task.getFreqData().split("-");
+                    String[] date = task.getFreqData().split("-"); // If frequency type is on a certain day the frequency data will be a date
 
                     Calendar dayDue = Calendar.getInstance();
                     dayDue.set(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));
 
-                    int lastYear = Integer.parseInt(task.getLastFinished());
+                    int lastYear = Integer.parseInt(task.getLastFinished()); // If frequency type is on a certain day the last finished data will be the year the task was last finished
 
-                    if (calendar.get(Calendar.YEAR) != lastYear && calendar.get(Calendar.DAY_OF_YEAR) == dayDue.get(Calendar.DAY_OF_YEAR))
+                    if (calendar.get(Calendar.YEAR) != lastYear && calendar.get(Calendar.DAY_OF_YEAR) == dayDue.get(Calendar.DAY_OF_YEAR)) // Check if the date today is the due date of the task and check if it hasn't already been finished this year
                         return true;
                     break;
             }
@@ -246,6 +245,8 @@ public final class Util {
         return false;
     }
 
+    // This method safely parses an int so that a NumberFormatException is caught when a string is parsed for an integer and it does not contain an integer
+    // Instead returns a default value if a NumberFormatException is caught
     public static int safeParseInt(String str, int defaultValue) {
         int value;
         try {
@@ -256,6 +257,7 @@ public final class Util {
         return value;
     }
 
+    // This method returns the id of a profile picture resource to be displayed as the user's profile image
     public static int getProfileImage(AppCompatActivity activity, User user) {
         String race;
         if (user.getRaceID() == DetailsActivity.HUMAN) {

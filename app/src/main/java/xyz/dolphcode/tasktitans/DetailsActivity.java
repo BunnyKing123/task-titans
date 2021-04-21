@@ -14,6 +14,7 @@ import xyz.dolphcode.tasktitans.util.Util;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    // Constants used for setting and comparison, makes things easier to read
     public static final int HUMAN = 0;
     public static final int ORC = 1;
     public static final int ELF = 2;
