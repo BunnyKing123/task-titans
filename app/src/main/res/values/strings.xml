@@ -68,6 +68,11 @@
     <string name="leave_group">Leave Group</string>
     <string name="group_page_placeholder">Group Page</string>
 
+    <string name="strength_placeholder">Strength: </string>
+    <string name="dexterity_placeholder">Dexterity: </string>
+    <string name="intelligence_placeholder">Intelligence: </string>
+    <string name="constitution_placeholder">Constitution: </string>
+
     <string name="subtitle">Your journey begins here</string>
 
     <string name="guild_nav_txt">Guild</string>

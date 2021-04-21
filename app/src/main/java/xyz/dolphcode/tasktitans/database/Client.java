@@ -71,6 +71,12 @@ public final class Client {
                             .setEquipment(child.child("equipment").getValue().toString(), child.child("pet").getValue().toString())
                             .setSpecialty(((Long) child.child("raceID").getValue()).intValue(), true)
                             .setSpecialty(((Long) child.child("classID").getValue()).intValue(), false)
+                            .setModifications(
+                                    ((Long) child.child("constMod").getValue()).intValue(),
+                                    ((Long) child.child("strengthMod").getValue()).intValue(),
+                                    ((Long) child.child("intelMod").getValue()).intValue(),
+                                    ((Long) child.child("dextMod").getValue()).intValue()
+                            )
                             .setMoney(((Long) child.child("money").getValue()).doubleValue())
                             .setMana(((Long) child.child("mana").getValue()).doubleValue())
                             .setCurrentHP(((Long) child.child("hp").getValue()).intValue())

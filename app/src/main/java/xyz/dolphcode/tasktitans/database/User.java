@@ -122,6 +122,19 @@ public class User {
         return true;
     }
 
+    public void addModifiers(int constitution, int intelligence, int strength, int dexterity) {
+        int change = constitution + intelligence + strength + dexterity;
+        int totalMod = constMod + intelMod + strengthMod + dextMod;
+        if (totalMod < convertToLevel(this.xp) - change) {
+            dextMod += dexterity;
+            strengthMod += strength;
+            intelMod += intelligence;
+            constMod += constitution;
+            adjustStats();
+            Client.updateUser(this);
+        }
+    }
+
     public void equip(String equipment, boolean isPet) {
         if (!this.inventory.toLowerCase().contains(equipment.toLowerCase())) { return; }
         if (isPet) {
@@ -155,7 +168,7 @@ public class User {
         int originalXp = this.xp;
         this.xp += xp;
         if (this.xp >= toNextLevel(convertToLevel(originalXp))) {
-            levelUp();
+            adjustStats();
         }
         this.money += money;
         this.mana += mana;
@@ -165,7 +178,7 @@ public class User {
         Client.updateUser(this);
     }
 
-    public void levelUp() {
+    public void adjustStats() {
         int originalHp = this.maxHp;
         double originalMana = this.maxMana;
         this.maxHp = calculateMaxHP(convertToLevel(this.xp), this.baseConst + this.constMod);
@@ -375,6 +388,14 @@ public class User {
 
         public UserBuilder setGuildID(String guildID) {
             this.guildID = guildID;
+            return this;
+        }
+
+        public UserBuilder setModifications(int constMod, int strengthMod, int intelMod, int dextMod) {
+            this.constMod = constMod;
+            this.strengthMod = strengthMod;
+            this.intelMod = intelMod;
+            this.dextMod = dextMod;
             return this;
         }
 

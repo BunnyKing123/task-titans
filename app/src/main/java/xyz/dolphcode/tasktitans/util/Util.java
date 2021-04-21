@@ -266,7 +266,7 @@ public final class Util {
             race = "elf";
         }
 
-        int skin = user.getColorID();
+        int skin = user.getColorID() + 1;
         String gender = user.getGender() == DetailsActivity.MALE ? "male" : "female";
         String name = race + "_" + gender + "_" + skin + ".png";
         Log.v("FILE", name);

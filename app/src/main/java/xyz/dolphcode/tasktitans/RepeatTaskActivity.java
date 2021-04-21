@@ -53,7 +53,7 @@ public class RepeatTaskActivity extends AppCompatActivity {
 
         }
 
-        Util.addSwitchScreenAction(taskBackBtn, TasksActivity.class, RepeatTaskActivity.this);
+        Util.addSwitchWithUser(taskBackBtn, TasksActivity.class, RepeatTaskActivity.this, id);
 
         freqBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(android.view.View v) {

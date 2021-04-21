@@ -50,20 +50,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         finishBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(DetailsActivity.this, GameActivity.class);
+                Intent intent = new Intent(DetailsActivity.this, AppearanceActivity.class);
 
-                User user = User.UserBuilder.createUser(prevData.getStringExtra("USERNAME"), prevData.getStringExtra("PASS"))
-                        .setEmail(prevData.getStringExtra("EMAIL"))
-                        .setDisplayName(prevData.getStringExtra("DISPLAY"))
-                        .setColor(prevData.getIntExtra("SKIN", 0), false)
-                        .setColor(prevData.getIntExtra("HAIR", 0), true)
-                        .setSpecialty(raceID, true)
-                        .setSpecialty(classID, false)
-                        .setGender(prevData.getBooleanExtra("GENDER", false))
-                        .build();
-
-                Client.updateUser(user);
-                intent.putExtra("ID", user.getID());
+                // Pass on data to next screen
+                intent.putExtra("RACE", raceID);
+                intent.putExtra("CLASS", classID);
 
                 DetailsActivity.this.startActivity(intent);
             }
