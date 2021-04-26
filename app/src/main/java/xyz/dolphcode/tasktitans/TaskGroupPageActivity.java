@@ -35,7 +35,7 @@ public class TaskGroupPageActivity extends OneScrollableAreaActivity implements 
 
         Util.setupConnectionChangedHandler(TaskGroupPageActivity.this);
 
-        Client.addObserver(this);
+        Client.addObserver(this); // The screen updates whenever the database updates
 
         prev = getIntent();
         id = prev.getStringExtra("ID");
@@ -113,19 +113,19 @@ public class TaskGroupPageActivity extends OneScrollableAreaActivity implements 
     @Override
     public void databaseChanged() {
         group = Client.getTaskGroup(groupID);
-        if (group == null) {
+        if (group == null) { // If the group no longer exists the user is moved to another screen
             Intent intent = new Intent(TaskGroupPageActivity.this, GroupTaskActivity.class);
             intent.putExtra("ID", id);
             TaskGroupPageActivity.this.startActivity(intent);
         }
         GroupMember member = group.membersToMap().get(id);
-        if (member == null) {
+        if (member == null) { // If the member is no longer a part of the group they are moved to another screen
             Intent intent = new Intent(TaskGroupPageActivity.this, GroupTaskActivity.class);
             intent.putExtra("ID", id);
             TaskGroupPageActivity.this.startActivity(intent);
         }
-        for (String str:group.membersToMap().keySet()) {
-        }
+
+        // Update the iterable list and list of task IDs
         taskIDs = member.getTaskIDs();
         iterable = new ArrayList<String>();
         for (String taskID:taskIDs) {

@@ -7,20 +7,44 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".GuildActivity">
 
-    <Button
-        android:id="@+id/guildBackBtn"
-        android:layout_width="80dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="36dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/return_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:id="@+id/guildHeaderContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/guildTitle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/title_height"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#84BC9C"
+            android:fontFamily="@font/quest"
+            android:paddingHorizontal="36dp"
+            android:paddingVertical="8dp"
+            android:text="@string/placeholder_guild_name"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorText"
+            android:textSize="48sp" />
+
+        <Button
+            android:id="@+id/guildBackBtn"
+            android:layout_width="80dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="36dp"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/quest"
+            android:text="@string/return_txt"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/chatSendBtn"
@@ -39,6 +63,39 @@
         app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toEndOf="@+id/guildSearchBar"
         app:layout_constraintTop_toBottomOf="@+id/chatScroller" />
+
+    <LinearLayout
+        android:id="@+id/guildInfoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/guildCrest"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="92dp"
+            android:contentDescription="@string/pfp_content_info"
+            app:srcCompat="@drawable/placeholder_pfp" />
+
+        <TextView
+            android:id="@+id/guildInfo"
+            android:layout_width="267dp"
+            android:layout_height="101dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="#84BC9C"
+            android:fontFamily="@font/quest"
+            android:lineSpacingExtra="6sp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:text="@string/placeholder_guild_info"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorText"
+            android:textSize="24sp" />
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/guildChatSendBar"
@@ -59,59 +116,6 @@
             android:hint="@string/chat_input_txt" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/guildInfo"
-        android:layout_width="267dp"
-        android:layout_height="101dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="#84BC9C"
-        android:fontFamily="@font/quest"
-        android:lineSpacingExtra="6sp"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp"
-        android:text="@string/placeholder_guild_info"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorText"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/guildCrest"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/guildCrest"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="92dp"
-        android:contentDescription="@string/pfp_content_info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/placeholder_pfp" />
-
-    <TextView
-        android:id="@+id/guildTitle"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/title_height"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="#84BC9C"
-        android:fontFamily="@font/quest"
-        android:paddingHorizontal="36dp"
-        android:paddingVertical="8dp"
-        android:text="@string/placeholder_guild_name"
-        android:textAlignment="textStart"
-        android:textColor="@color/colorText"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/guildChallengeLabel"

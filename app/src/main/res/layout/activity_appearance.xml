@@ -5,29 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".AppearanceActivity">
-
-    <Button
-        android:id="@+id/appearanceFinBtn"
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:layout_weight="1"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/continue_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/appearanceTitle"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/title_height"
-        android:layout_marginTop="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -36,31 +24,38 @@
         android:text="@string/appearance_txt"
         android:textAlignment="center"
         android:textColor="@color/colorText"
-        android:textSize="48sp"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/appearanceSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="2" />
 
     <TextView
         android:id="@+id/appearanceSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/quest"
         android:text="@string/customize_character_txt"
+        android:textAlignment="center"
         android:textColor="@color/colorTextDark"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/skinColorLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appearanceTitle" />
+        app:layout_constraintTop_toBottomOf="@id/appearanceTitle"
+        app:layout_constraintVertical_weight="1" />
 
     <TextView
         android:id="@+id/skinColorLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
-        android:layout_marginTop="154dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -70,19 +65,27 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/skinColorContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appearanceSubtitle"
+        app:layout_constraintVertical_weight="2" />
 
     <LinearLayout
         android:id="@+id/skinColorContainer"
-        android:layout_width="378dp"
-        android:layout_height="95dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/hairColorLabel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/skinColorLabel">
+        app:layout_constraintTop_toBottomOf="@+id/skinColorLabel"
+        app:layout_constraintVertical_weight="3">
 
         <Button
             android:id="@+id/skin1Btn"
@@ -137,8 +140,10 @@
 
     <TextView
         android:id="@+id/hairColorLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -148,19 +153,27 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/hairColorContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/skinColorContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/skinColorContainer"
+        app:layout_constraintVertical_weight="2" />
 
     <LinearLayout
         android:id="@+id/hairColorContainer"
-        android:layout_width="378dp"
-        android:layout_height="95dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/genderLabel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hairColorLabel">
+        app:layout_constraintTop_toBottomOf="@+id/hairColorLabel"
+        app:layout_constraintVertical_weight="3">
 
         <Button
             android:id="@+id/hair1Btn"
@@ -215,8 +228,10 @@
 
     <TextView
         android:id="@+id/genderLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -226,19 +241,27 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/genderContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hairColorContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/hairColorContainer"
+        app:layout_constraintVertical_weight="2" />
 
     <LinearLayout
         android:id="@+id/genderContainer"
-        android:layout_width="378dp"
-        android:layout_height="95dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/appearanceFinBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderLabel">
+        app:layout_constraintTop_toBottomOf="@+id/genderLabel"
+        app:layout_constraintVertical_weight="3">
 
         <View
             android:id="@+id/space_7"
@@ -284,5 +307,24 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/appearanceFinBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="2"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/continue_txt"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genderContainer"
+        app:layout_constraintVertical_weight="2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

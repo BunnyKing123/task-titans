@@ -126,7 +126,7 @@ public class TaskCreationActivity extends DateTimeActivity {
 
     @Override
     public void sendDate(int day, int month, int year) {
-        date.setText(Util.formatDate(day, month, year));
+        date.setText(Util.formatDate(day, month, year)); // Set the text for the date to show what the date is currently set to
         setDate[0] = day;
         setDate[1] = month;
         setDate[2] = year;
@@ -134,7 +134,7 @@ public class TaskCreationActivity extends DateTimeActivity {
 
     @Override
     public void sendTime(int hour, int min) {
-        time.setText(Util.formatTime(hour, min));
+        time.setText(Util.formatTime(hour, min)); // Set the text for the time to show what the time is currently set to
         setTime[0] = hour;
         setTime[1] = min;
     }

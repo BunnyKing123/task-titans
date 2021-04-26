@@ -30,6 +30,7 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
+
         Util.setupConnectionChangedHandler(StatsActivity.this);
 
         Button backBtn = findViewById(R.id.statsBackButton);
@@ -45,6 +46,7 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
         updateStats(); // Update stats text views with user stats
 
         money.setText("" + user.getMoney()); // Show the player's balance
+        mana.setText("" + user.getMana() + "/" + user.getMaxMana()); // Show the player's mana
 
         Spinner skills = findViewById(R.id.skillsDropdown);
 
