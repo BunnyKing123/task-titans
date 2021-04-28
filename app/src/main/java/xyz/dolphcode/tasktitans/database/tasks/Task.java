@@ -8,6 +8,7 @@ import xyz.dolphcode.tasktitans.resources.FrequencyType;
 import xyz.dolphcode.tasktitans.resources.TaskType;
 import xyz.dolphcode.tasktitans.util.Util;
 
+// Represents a Task, used for all three types of tasks
 public class Task {
 
     private String taskOwnerID;
@@ -36,7 +37,7 @@ public class Task {
     public boolean finish() {
         this.taskCount--;
         if (taskCount <= 0) {
-            if (taskType == TaskType.REPEAT_TASK) {
+            if (taskType == TaskType.REPEAT_TASK) { // If this is a repeat task we need to specify when the last time this task was finished was, depends on task type
                 Calendar calendar = Calendar.getInstance();
                 switch (freqType) {
                     case FrequencyType.MONTHS:
@@ -53,7 +54,7 @@ public class Task {
                         break;
                 }
                 Client.updateTask(this);
-            } else {
+            } else { // Otherwise just complete and remove the task
                 Client.removeTask(this);
             }
             return true;

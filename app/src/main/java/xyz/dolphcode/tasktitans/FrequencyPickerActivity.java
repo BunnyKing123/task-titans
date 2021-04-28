@@ -16,6 +16,7 @@ import xyz.dolphcode.tasktitans.resources.FrequencyType;
 import xyz.dolphcode.tasktitans.util.DateTimeActivity;
 import xyz.dolphcode.tasktitans.util.Util;
 
+// The FrequencyPickerActivity class is linked to the frequency picker activity used for picking the frequency of a repeat task
 public class FrequencyPickerActivity extends DateTimeActivity {
 
     String sentDate = "";
@@ -23,6 +24,7 @@ public class FrequencyPickerActivity extends DateTimeActivity {
 
     Intent prev;
 
+    // I decided to use binary flagging to demonstrate my mastery in binary and to save on data
     int monthFlags = 0b000000000000;
     int dayFlags = 0b0000000;
 
@@ -53,33 +55,37 @@ public class FrequencyPickerActivity extends DateTimeActivity {
         Button day = findViewById(R.id.daysPick);
         Button week = findViewById(R.id.weeksPick);
 
+        // When the user decides to set the frequency to every set number of weeks
+        // Just set the frequency type of the task to weeks and send the number of weeks between each time the task should be available
         week.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(FrequencyPickerActivity.this, RepeatTaskActivity.class);
-                int weeks;
-                try {
-                    weeks = Integer.parseInt(weeksTxt.getText().toString());
-                } catch (NumberFormatException e) {
-                    weeks = 1;
-                }
+                int weeks = Util.safeParseInt(weeksTxt.getText().toString(), 1);
                 sendData(intent, FrequencyType.WEEKS, "" + weeks);
                 FrequencyPickerActivity.this.startActivity(intent);
             }
         });
 
+        // When the user sets the task to be completed on certain days of the week
+        // Each digit from left to right is a day of the week starting with Sunday and ending with Saturday
+        // If a binary digit is 1, that means the task should be active on that corresponding day
+        // Sets frequency type to days
         day.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(FrequencyPickerActivity.this, RepeatTaskActivity.class);
                 if (dayFlags == 0) {
                     sendData(intent, FrequencyType.DAYS, "0000000");
                 } else {
-                    String monthData = String.format("%7s", Integer.toBinaryString(monthFlags)).replace(' ', '0');
-                    sendData(intent, FrequencyType.DAYS, monthData);
+                    String dayData = String.format("%7s", Integer.toBinaryString(dayFlags)).replace(' ', '0');
+                    sendData(intent, FrequencyType.DAYS, dayData);
                 }
                 FrequencyPickerActivity.this.startActivity(intent);
             }
         });
 
+        // When the user sets the task to be completed on certain months
+        // Works the same way as days of the week but for months this time
+        // Sets frequency type to months
         month.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(FrequencyPickerActivity.this, RepeatTaskActivity.class);
@@ -93,6 +99,8 @@ public class FrequencyPickerActivity extends DateTimeActivity {
             }
         });
 
+        // When the user sets the task to be completed on a certain day of the year every year
+        // Sends the formatted date and sets the frequency type to date
         date.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(FrequencyPickerActivity.this, RepeatTaskActivity.class);
@@ -104,6 +112,7 @@ public class FrequencyPickerActivity extends DateTimeActivity {
 
     @Override
     public void sendDate(int day, int month, int year) {
+        // Sets the date that should be sent if the user chooses this option
         date.setText(Util.formatDate(day, month, year));
         sentDate = day + "-" + month + "-" + year;
     }
@@ -113,6 +122,7 @@ public class FrequencyPickerActivity extends DateTimeActivity {
 
     // Sends data to the next screen
     public void sendData(Intent intent, int freqType, String freqData) {
+        // Transfer old data first then add new data
         Util.transferData(prev, intent);
         intent.putExtra("FREQTYPE", freqType);
         intent.putExtra("FREQDATA", freqData);
@@ -194,6 +204,7 @@ public class FrequencyPickerActivity extends DateTimeActivity {
             }});
     }
 
+    // Adds listeners to each of the day checkboxes to set the flags
     public void addDateListeners() {
         CheckBox sunday = findViewById(R.id.sundayBox);
         CheckBox monday = findViewById(R.id.mondayBox);

@@ -2,6 +2,7 @@ package xyz.dolphcode.tasktitans.resources.item;
 
 import java.util.HashMap;
 
+// Contains all of the items and a hashmap of each item so that the items can be identified by name
 public final class Items {
 
     private Items() {}
@@ -33,6 +34,7 @@ public final class Items {
             .isPetItem().cost(500)
             .addBonus(Item.Bonus.MONEY, 20);
 
+    // Static initializer populates the hashmap with each of the items
     static {
         ITEMS.put(FANCY_HAT.getItemName(), FANCY_HAT);
         ITEMS.put(THICK_HELMET.getItemName(), THICK_HELMET);

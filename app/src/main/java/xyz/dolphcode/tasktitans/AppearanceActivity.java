@@ -14,6 +14,7 @@ import xyz.dolphcode.tasktitans.database.Client;
 import xyz.dolphcode.tasktitans.database.User;
 import xyz.dolphcode.tasktitans.util.Util;
 
+// The AppearanceActivity class is connected to the Appearance Activity used for customizing a player's appearance
 public class AppearanceActivity extends AppCompatActivity {
 
     // Object fields need to be fields to be accessed by Button listener

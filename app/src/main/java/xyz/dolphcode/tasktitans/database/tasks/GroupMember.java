@@ -3,11 +3,13 @@ package xyz.dolphcode.tasktitans.database.tasks;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// Represents a group member of a task group
 public class GroupMember {
 
     private ArrayList<String> taskIDs;
     private String memberID;
 
+    // Protected constructors because only classes in this package need to instantiate these
     protected GroupMember(String memberID, ArrayList<String> taskIDs) {
         this.taskIDs = taskIDs;
         this.memberID = memberID;

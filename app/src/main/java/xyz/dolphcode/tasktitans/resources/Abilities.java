@@ -2,10 +2,12 @@ package xyz.dolphcode.tasktitans.resources;
 
 import java.util.HashMap;
 
+// Contains a hashmap of all the abilities a user can have
 public final class Abilities {
 
     private Abilities() {}
 
+    // I used a hashmap because I want to be able to identify the abilities by name
     public static HashMap<String, String> ABILITIES = new HashMap<String, String>();
 
     static {

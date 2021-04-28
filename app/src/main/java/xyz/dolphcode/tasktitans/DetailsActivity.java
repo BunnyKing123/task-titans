@@ -12,6 +12,7 @@ import xyz.dolphcode.tasktitans.database.Client;
 import xyz.dolphcode.tasktitans.database.User;
 import xyz.dolphcode.tasktitans.util.Util;
 
+// The DetailsActivity class is connected to the details activity used for specifying details about a player such as class and race
 public class DetailsActivity extends AppCompatActivity {
 
     // Constants used for setting and comparison, makes things easier to read

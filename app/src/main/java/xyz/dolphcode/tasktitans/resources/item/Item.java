@@ -2,6 +2,7 @@ package xyz.dolphcode.tasktitans.resources.item;
 
 import java.util.HashMap;
 
+// The item class represents a possible item
 public class Item {
 
     public static final int EQUIPMENT = 0;
@@ -72,7 +73,7 @@ public class Item {
     public int getItemCost() { return this.shopCost; }
 
     public enum Bonus {
-        ATTACK, DEFENSE, MANA, MONEY
+        ATTACK, DEFENSE, MANA, MONEY // Items can boost attack damage, defense, mana gain and money gain
     }
 
 }

@@ -31,6 +31,7 @@ public final class TaskGroup {
     public String getGroupLeaderID() { return groupLeaderID; }
     public String getTaskGroupID() { return taskGroupID; }
 
+    // Converts the text memberlist into a hashmap of GroupMembers
     public HashMap<String, GroupMember> membersToMap() {
         HashMap<String, GroupMember> groupMembers = new HashMap<String, GroupMember>();
 
@@ -48,12 +49,14 @@ public final class TaskGroup {
         return groupMembers;
     }
 
+    // Adds a member to the list of members in the task group
     public void addMember(User user) {
         groupMembers += "-" + user.getID();
         taskList += ";" + user.getID() + "-none";
         Client.updateTaskGroup(this);
     }
 
+    // Removes a member from the list of members in the task group
     public void removeMember(User user) {
         taskListUsable.remove(user.getID());
         String updatedTaskList = "";
@@ -70,6 +73,8 @@ public final class TaskGroup {
         Client.updateTaskGroup(this);
     }
 
+    // This must be called when a task is removed
+    // This must be called before removing the task itself from the database
     public void removeTask(String userID, String taskID) {
         taskListUsable.get(userID).remove(taskID);
         String updatedTaskList = "";
@@ -85,6 +90,8 @@ public final class TaskGroup {
         Client.updateTaskGroup(this);
     }
 
+    // Adds a task to the list of tasks
+    // This must be called after adding the group task to the database
     public void addTask(String userID, String taskID) {
         taskListUsable.get(userID).add(taskID);
         String updatedTaskList = "";

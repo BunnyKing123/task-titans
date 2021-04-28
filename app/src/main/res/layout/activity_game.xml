@@ -202,7 +202,7 @@
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="top|center_vertical">
 
             <View
                 android:id="@+id/space_18"
@@ -214,7 +214,6 @@
                 android:id="@+id/guildNavBtn"
                 android:layout_width="111dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
                 android:layout_weight="2"
                 android:background="@drawable/round_corners"
                 android:backgroundTint="@color/colorAccent"
@@ -236,7 +235,6 @@
                 android:id="@+id/taskNavBtn"
                 android:layout_width="111dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
                 android:layout_weight="2"
                 android:background="@drawable/round_corners"
                 android:backgroundTint="@color/colorAccent"
@@ -260,7 +258,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="top|center_vertical">
 
             <View
                 android:id="@+id/space_21"
@@ -272,7 +270,6 @@
                 android:id="@+id/shopNavBtn"
                 android:layout_width="111dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
                 android:layout_weight="2"
                 android:background="@drawable/round_corners"
                 android:backgroundTint="@color/colorAccent"
@@ -294,7 +291,6 @@
                 android:id="@+id/statsNavBtn"
                 android:layout_width="111dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
                 android:layout_weight="2"
                 android:background="@drawable/round_corners"
                 android:backgroundTint="@color/colorAccent"
