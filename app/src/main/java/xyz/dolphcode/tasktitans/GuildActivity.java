@@ -23,7 +23,6 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
     User user;
     TextView chat;
     TextView name;
-    TextView details;
     String guildID;
 
     @Override
@@ -42,9 +41,6 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
 
         chat = findViewById(R.id.chatBox);
         chat.setText(guild.getDBChat());
-
-        details = findViewById(R.id.guildInfo);
-        details.setText("Member Count: " + guild.getMemberIDs().size());
 
         name = findViewById(R.id.guildTitle);
         name.setText(guild.getGuildName());
@@ -65,7 +61,6 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
     public void databaseChanged() {
         guild = Client.getGuild(guildID);
         chat.setText(guild.getDBChat());
-        details.setText("Member Count: " + guild.getMemberIDs().size());
         name.setText(guild.getGuildName());
     }
 }
