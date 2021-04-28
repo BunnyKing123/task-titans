@@ -5,29 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".DetailsActivity">
-
-    <Button
-        android:id="@+id/detailFinBtn"
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:layout_weight="1"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/finish_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/detailsTitle"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/title_height"
-        android:layout_marginTop="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -36,31 +24,38 @@
         android:text="@string/character_details_txt"
         android:textAlignment="center"
         android:textColor="@color/colorText"
-        android:textSize="48sp"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/detailsSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
 
     <TextView
         android:id="@+id/detailsSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/quest"
         android:text="@string/customize_character_txt"
+        android:textAlignment="center"
         android:textColor="@color/colorTextDark"
         android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/classLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsTitle"
+        app:layout_constraintVertical_weight="1" />
 
     <TextView
         android:id="@+id/classLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
-        android:layout_marginTop="154dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -70,19 +65,27 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/classContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsSubtitle"
+        app:layout_constraintVertical_weight="1"/>
 
     <LinearLayout
         android:id="@+id/classContainer"
-        android:layout_width="378dp"
-        android:layout_height="95dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/raceLabel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/classLabel">
+        app:layout_constraintTop_toBottomOf="@+id/classLabel"
+        app:layout_constraintVertical_weight="2">
 
         <View
             android:id="@+id/space_10"
@@ -152,8 +155,10 @@
 
     <TextView
         android:id="@+id/raceLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -163,19 +168,27 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/raceContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/classContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/classContainer"
+        app:layout_constraintVertical_weight="1" />
 
     <LinearLayout
         android:id="@+id/raceContainer"
-        android:layout_width="378dp"
-        android:layout_height="95dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/detailDivider"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/raceLabel">
+        app:layout_constraintTop_toBottomOf="@+id/raceLabel"
+        app:layout_constraintVertical_weight="2">
 
         <View
             android:id="@+id/space_14"
@@ -242,5 +255,37 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/detailDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/detailFinBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/raceContainer"
+        app:layout_constraintVertical_weight="3" />
+
+    <Button
+        android:id="@+id/detailFinBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/quest"
+        android:text="@string/finish_txt"
+        android:textColor="@color/colorText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailDivider"
+        app:layout_constraintVertical_weight="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -299,6 +299,6 @@ public final class Util {
         String gender = user.getGender() == DetailsActivity.MALE ? "male" : "female";
         String name = race + "_" + gender + "_" + skin + ".png";
         Log.v("FILE", name);
-        return activity.getResources().getIdentifier(name, "drawable-v24", activity.getPackageName());
+        return activity.getResources().getIdentifier(name, "drawable", activity.getPackageName());
     }
 }

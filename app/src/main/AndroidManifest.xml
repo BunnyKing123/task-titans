@@ -11,12 +11,13 @@
     <application
         android:name=".TaskTitansApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/tasktitanslogo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".TaskGroupPanelActivity"></activity>
+        <activity android:name=".GuildInfoActivity"></activity>
+        <activity android:name=".TaskGroupPanelActivity" />
         <activity android:name=".TaskGroupPageActivity" />
         <activity android:name=".FrequencyPickerActivity" />
         <activity android:name=".GuildCreateActivity" />

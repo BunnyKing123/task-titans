@@ -67,6 +67,11 @@
     <string name="complete_task">Complete Task</string>
     <string name="leave_group">Leave Group</string>
     <string name="group_page_placeholder">Group Page</string>
+    <string name="guild_info_txt">Guild Info</string>
+    <string name="check_group_txt">Check Group</string>
+    <string name="create_task_group_txt">Create Task Group</string>
+    <string name="guild_crest_txt">Guild Crest</string>
+    <string name="kick_txt">Kick</string>
 
     <string name="strength_placeholder">Strength: </string>
     <string name="dexterity_placeholder">Dexterity: </string>

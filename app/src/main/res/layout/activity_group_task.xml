@@ -5,13 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".GroupTaskActivity">
 
     <TextView
         android:id="@+id/groupTasksLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/title_height"
-        android:layout_marginTop="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -20,22 +24,28 @@
         android:text="@string/group_tasks_txt"
         android:textAlignment="center"
         android:textColor="@color/colorText"
-        android:textSize="48sp"
+        android:textSize="@dimen/label_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/joinGroupContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
 
     <LinearLayout
         android:id="@+id/joinGroupContainer"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="58dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="top"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/groupsContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupTasksLabel">
+        app:layout_constraintTop_toBottomOf="@+id/groupTasksLabel"
+        app:layout_constraintVertical_weight="1">
 
         <Button
             android:id="@+id/groupJoinBtn"
@@ -82,10 +92,11 @@
         android:id="@+id/groupsContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/addRepeatTaskBtn"
+        app:layout_constraintBottom_toTopOf="@+id/groupTasksDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +147,7 @@
                     android:background="@drawable/round_corners"
                     android:backgroundTint="@color/colorAccent"
                     android:fontFamily="@font/quest"
-                    android:text="@string/finish_txt"
+                    android:text="@string/check_group_txt"
                     android:textColor="@color/colorText"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -158,22 +169,32 @@
 
     <View
         android:id="@+id/groupTasksDivider"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/createGroupNameInput"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupsContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/groupsContainer"
+        app:layout_constraintVertical_weight="1" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/createGroupNameInput"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_weight="2"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/colorField"
+        app:layout_constraintBottom_toTopOf="@+id/createGroupBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/groupTasksDivider">
+        app:layout_constraintTop_toBottomOf="@+id/groupTasksDivider"
+        app:layout_constraintVertical_weight="1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/createGroupNameTxt"
@@ -187,25 +208,41 @@
 
     <Button
         android:id="@+id/createGroupBtn"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/quest"
-        android:text="@string/group_tasks_txt"
+        android:text="@string/create_task_group_txt"
         android:textColor="@color/colorText"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/groupTasksDivider2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/createGroupNameInput" />
+        app:layout_constraintTop_toBottomOf="@+id/createGroupNameInput"
+        app:layout_constraintVertical_weight="1" />
+
+    <View
+        android:id="@+id/groupTasksDivider2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/groupBackBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createGroupBtn"
+        app:layout_constraintVertical_weight="3" />
 
     <Button
         android:id="@+id/groupBackBtn"
-        android:layout_width="@dimen/btn_small_width"
-        android:layout_height="@dimen/btn_small_height"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/quest"
@@ -214,9 +251,9 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
-        app:layout_constraintStart_toEndOf="@+id/shopBuyBtn"
-        app:layout_constraintTop_toBottomOf="@+id/createGuildBtn"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupTasksDivider2"
+        app:layout_constraintVertical_weight="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

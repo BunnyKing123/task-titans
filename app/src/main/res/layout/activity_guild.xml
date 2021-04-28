@@ -5,23 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".GuildActivity">
 
     <LinearLayout
         android:id="@+id/guildHeaderContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guildInfoBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1">
 
         <TextView
             android:id="@+id/guildTitle"
             android:layout_width="0dp"
-            android:layout_height="@dimen/title_height"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
             android:background="@drawable/round_corners"
             android:backgroundTint="#84BC9C"
             android:fontFamily="@font/quest"
@@ -30,14 +37,13 @@
             android:text="@string/placeholder_guild_name"
             android:textAlignment="textStart"
             android:textColor="@color/colorText"
-            android:textSize="48sp" />
+            android:textSize="@dimen/label_text_size" />
 
         <Button
             android:id="@+id/guildBackBtn"
-            android:layout_width="80dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="36dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:background="@drawable/round_corners"
             android:backgroundTint="@color/colorAccent"
             android:fontFamily="@font/quest"
@@ -46,82 +52,32 @@
             android:textSize="16sp" />
     </LinearLayout>
 
+
     <Button
-        android:id="@+id/chatSendBtn"
-        android:layout_width="111dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/guildInfoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/quest"
-        android:text="@string/send_txt"
+        android:text="@string/guild_info_txt"
         android:textColor="@color/colorText"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/guildChallengeLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toEndOf="@+id/guildSearchBar"
-        app:layout_constraintTop_toBottomOf="@+id/chatScroller" />
-
-    <LinearLayout
-        android:id="@+id/guildInfoContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/guildCrest"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="92dp"
-            android:contentDescription="@string/pfp_content_info"
-            app:srcCompat="@drawable/placeholder_pfp" />
-
-        <TextView
-            android:id="@+id/guildInfo"
-            android:layout_width="267dp"
-            android:layout_height="101dp"
-            android:layout_marginTop="92dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/round_corners"
-            android:backgroundTint="#84BC9C"
-            android:fontFamily="@font/quest"
-            android:lineSpacingExtra="6sp"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp"
-            android:text="@string/placeholder_guild_info"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorText"
-            android:textSize="24sp" />
-    </LinearLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/guildChatSendBar"
-        android:layout_width="238dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorField"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chatScroller">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/guildChatSendTxt"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:fontFamily="@font/quest"
-            android:hint="@string/chat_input_txt" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/guildHeaderContainer"
+        app:layout_constraintVertical_weight="1" />
 
     <TextView
         android:id="@+id/guildChallengeLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
-        android:layout_marginTop="136dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -131,15 +87,33 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/guildChallengeContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guildTitle" />
+        app:layout_constraintTop_toBottomOf="@id/guildInfoBtn"
+        app:layout_constraintVertical_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/guildChallengeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guildChatLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildChallengeLabel"
+        app:layout_constraintVertical_weight="2"></LinearLayout>
 
     <TextView
         android:id="@+id/guildChatLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -149,32 +123,28 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/chatScroller"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guildChallengeContainer" />
-
-    <LinearLayout
-        android:id="@+id/guildChallengeContainer"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="86dp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guildChallengeLabel"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/guildChallengeContainer"
+        app:layout_constraintVertical_weight="1" />
 
     <ScrollView
         android:id="@+id/chatScroller"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fillViewport="true"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/colorField"
+        app:layout_constraintBottom_toTopOf="@+id/chatSendContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guildChatLabel">
+        app:layout_constraintTop_toBottomOf="@+id/guildChatLabel"
+        app:layout_constraintVertical_weight="4">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -186,14 +156,60 @@
 
             <TextView
                 android:id="@+id/chatBox"
-                android:layout_width="@dimen/label_width"
-                android:layout_height="150dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="6dp"
                 android:fontFamily="@font/quest"
                 android:text="@string/placeholder_chat"
                 android:textColor="@color/colorTextDark"
                 android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/chatSendContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chatScroller"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_weight="1">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/guildChatSendBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorField">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/guildChatSendTxt"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:fontFamily="@font/quest"
+                android:hint="@string/chat_input_txt" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/chatSendBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/quest"
+            android:text="@string/send_txt"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

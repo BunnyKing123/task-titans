@@ -6,12 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2CA58D"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/title_height"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -21,16 +26,19 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/subtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="2" />
 
     <Button
         android:id="@+id/titleLoginBtn"
-        android:layout_width="@dimen/btn_large_width"
-        android:layout_height="@dimen/btn_large_height"
-        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#F46197"
         android:fontFamily="@font/quest"
@@ -39,14 +47,16 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/titleSignupBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_weight="2" />
 
     <Button
         android:id="@+id/titleSignupBtn"
-        android:layout_width="@dimen/btn_large_width"
-        android:layout_height="@dimen/btn_large_height"
-        android:layout_marginBottom="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#F46197"
         android:fontFamily="@font/quest"
@@ -55,19 +65,40 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLoginBtn"
+        app:layout_constraintVertical_weight="2" />
 
     <TextView
         android:id="@+id/subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/quest"
         android:text="@string/subtitle"
+        android:textAlignment="center"
         android:textColor="@color/colorTextDark"
         android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_weight="1" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/titleLoginBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle"
+        app:layout_constraintVertical_weight="10"
+        app:srcCompat="@drawable/tasktitanslogo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,13 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".GuildCreateActivity">
 
     <TextView
         android:id="@+id/guildCreationTitle"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/title_height"
-        android:layout_marginTop="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
@@ -21,21 +25,27 @@
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/guildNameContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
 
     <LinearLayout
         android:id="@+id/guildNameContainer"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="58dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="top"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guildCrestLabel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guildCreationTitle">
+        app:layout_constraintTop_toBottomOf="@+id/guildCreationTitle"
+        app:layout_constraintVertical_weight="1">
 
         <TextView
             android:id="@+id/guildNameTxt"
@@ -55,7 +65,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="2"
             android:background="@drawable/round_corners"
             android:backgroundTint="@color/colorField"
@@ -75,32 +84,69 @@
 
     <TextView
         android:id="@+id/guildCrestLabel"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="@dimen/label_height"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="#84BC9C"
         android:fontFamily="@font/quest"
         android:paddingHorizontal="36dp"
         android:paddingVertical="8dp"
-        android:text="@string/task_desc"
+        android:text="@string/guild_crest_txt"
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/crestChoiceContainer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guildNameContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/guildNameContainer"
+        app:layout_constraintVertical_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/crestChoiceContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guildMinLevelContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildCrestLabel"
+        app:layout_constraintVertical_weight="5">
+
+        <LinearLayout
+            android:id="@+id/crestChoiceTop"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/crestChoiceBottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/guildMinLevelContainer"
-        android:layout_width="@dimen/label_width"
-        android:layout_height="58dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="top"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/createGuildFooter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guildCrestLabel">
+        app:layout_constraintTop_toBottomOf="@+id/crestChoiceContainer"
+        app:layout_constraintVertical_weight="1">
 
         <TextView
             android:id="@+id/taskCountTxt"
@@ -120,7 +166,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
             android:layout_weight="2"
             android:background="@drawable/round_corners"
             android:backgroundTint="@color/colorField"
@@ -139,35 +184,43 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/guildCreateBackBtn"
-        android:layout_width="@dimen/btn_small_width"
-        android:layout_height="@dimen/btn_small_height"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/return_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
+    <LinearLayout
+        android:id="@+id/createGuildFooter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
-        app:layout_constraintStart_toEndOf="@+id/guildCreateDoneBtn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guildMinLevelContainer"
+        app:layout_constraintVertical_weight="1">
 
-    <Button
-        android:id="@+id/guildCreateDoneBtn"
-        android:layout_width="@dimen/btn_small_width"
-        android:layout_height="@dimen/btn_small_height"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/colorAccent"
-        android:fontFamily="@font/quest"
-        android:text="@string/finish_txt"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/guildCreateDoneBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/quest"
+            android:text="@string/finish_txt"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/guildCreateBackBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/quest"
+            android:text="@string/return_txt"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
