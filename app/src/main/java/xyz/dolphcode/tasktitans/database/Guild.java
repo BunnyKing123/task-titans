@@ -1,5 +1,7 @@
 package xyz.dolphcode.tasktitans.database;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +24,8 @@ public class Guild {
     private String guildTaskCompletions;
     private String guildTaskDeadline;
 
-    private List<String> chat; // DB chat is converted into a list of strings in the chat
-    private List<String> memberIDs; // DB member list is converted into a list of strings in the chat
+    private ArrayList<String> chat; // DB chat is converted into a list of strings in the chat
+    private ArrayList<String> memberIDs; // DB member list is converted into a list of strings in the chat
 
     public String getGuildName() { return name; }
     public String getGuildID() { return guildID; }
@@ -39,6 +41,8 @@ public class Guild {
     public void addMember(String id) {
         memberIDs.add(id); // Add to member list
         dbMemberIDs = dbMemberIDs + "-" + id; // Add member to string instead of converting member list to text
+        Log.v("ADD_MEMBER_GUILD", dbMemberIDs);
+        Log.v("ADD_MEMBER_MEMBERCOUNT_GUILD", "" + memberIDs.size());
         Client.updateGuild(this); // Update guild in database
         Client.getUser(id).setGuild(this.guildID);
     }
@@ -47,7 +51,13 @@ public class Guild {
     public void chatMessage(String message, User user) {
         chat.add(user.getDisplayName() + ": " + message); // Update chat in list form
         dbChat = dbChat + "\n" + user.getDisplayName() + ": " + message; // Update chat in text form instead of converting chat from list to text
+        Log.v("CHAT_MSG_GUILD", dbChat);
+        Log.v("MSG_COUNT_GUILD", "" + chat.size());
         Client.updateGuild(this); // Update guild in database
+    }
+
+    public String getViewableChat() {
+        return "<br>" + Util.joinList(chat, "</br><br>") + "</br>";
     }
 
     // Private constructor so that guild can't be instantiated
@@ -56,8 +66,8 @@ public class Guild {
     public static class GuildBuilder {
 
         private String name;
-        private List<String> chat = new ArrayList<String>();
-        private List<String> memberIDs = new ArrayList<String>();
+        private ArrayList<String> chat = new ArrayList<String>();
+        private ArrayList<String> memberIDs = new ArrayList<String>();
         private String ownerID;
         private int minimumLevel = 0;
 
@@ -85,7 +95,7 @@ public class Guild {
         }
 
         // Set the chat of the guild given a list of messages, also cuts chat down to the most recent 100 messages for storage conservation
-        public GuildBuilder setChat(List<String> chat) {
+        public GuildBuilder setChat(ArrayList<String> chat) {
             this.chat = chat;
             while (chat.size() > 100) {
                 chat.remove(0);
@@ -95,18 +105,33 @@ public class Guild {
 
         // Set the chat of the guild given the whole chat in string format
         public GuildBuilder setChat(String chat) {
-            for (String str:chat.split("\n")) {
+            String[] chatList = chat.split("\n");
+            Log.v("CHAT_LIST_LEN_GUILDBUILDER", chatList.length + "");
+            for (String str:chatList) {
                 this.chat.add(str);
+                Log.v("CHAT_ADD_GUILDBUILDER", str);
             }
             while (this.chat.size() > 100) {
                 this.chat.remove(0);
             }
+            Log.v("CHATSIZE_GUILDBUILDER", "" + this.chat.size());
             return this;
         }
 
         // Set the member list of the guild
-        public GuildBuilder setMemberIDs(List<String> memberIDs) {
+        public GuildBuilder setMemberIDs(ArrayList<String> memberIDs) {
             this.memberIDs = memberIDs;
+            return this;
+        }
+
+        // Set the member list of the guild
+        public GuildBuilder setMemberIDs(String memberIDs) {
+            for (String str:memberIDs.split("\n")) {
+                this.memberIDs.add(str);
+            }
+            while (this.memberIDs.size() > 100) {
+                this.memberIDs.remove(0);
+            }
             return this;
         }
 
@@ -123,6 +148,7 @@ public class Guild {
             if (!guild.memberIDs.contains(guild.ownerID))
                 guild.memberIDs.add(guild.ownerID); // Add the owner's ID if it isn't already in the member list
 
+            Log.v("CHATSIZE_GUILDBUILDER_BUILD", "" + guild.chat.size());
             guild.dbChat = Util.joinList(guild.chat, "\n"); // Set the dbChat property for uploading information to database
             guild.dbMemberIDs = Util.joinList(guild.memberIDs, "-"); // Same as line above but for member ids
 

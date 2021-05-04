@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guild);
 
+        Client.addObserver(this);
         Util.setupConnectionChangedHandler(GuildActivity.this);
 
         Button backBtn = findViewById(R.id.guildBackBtn);
@@ -60,6 +62,8 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
     @Override
     public void databaseChanged() {
         guild = Client.getGuild(guildID);
+        Log.v("DBCHANGE_GUILD_ACTIVITY", guild.getDBChat());
+        //chat.setText(guild.getDBChat());
         chat.setText(guild.getDBChat());
         name.setText(guild.getGuildName());
     }

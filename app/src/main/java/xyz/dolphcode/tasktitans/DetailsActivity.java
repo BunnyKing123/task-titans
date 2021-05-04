@@ -57,6 +57,7 @@ public class DetailsActivity extends AppCompatActivity {
                 Intent intent = new Intent(DetailsActivity.this, AppearanceActivity.class);
 
                 // Pass on data to next screen
+                Util.transferData(prevData, intent);
                 intent.putExtra("RACE", raceID);
                 intent.putExtra("CLASS", classID);
 

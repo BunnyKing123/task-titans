@@ -60,7 +60,6 @@ public class AppearanceActivity extends AppCompatActivity {
         finishBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AppearanceActivity.this, GameActivity.class);
-                Util.transferData(prevData, intent);
 
                 // Create new User object with all sign up data
                 User user = User.UserBuilder.createUser(prevData.getStringExtra("USERNAME"), prevData.getStringExtra("PASS"))

@@ -29,6 +29,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
             android:background="@drawable/round_corners"
             android:backgroundTint="#84BC9C"
             android:fontFamily="@font/quest"
@@ -37,7 +41,7 @@
             android:text="@string/placeholder_guild_name"
             android:textAlignment="textStart"
             android:textColor="@color/colorText"
-            android:textSize="@dimen/label_text_size" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/guildBackBtn"
@@ -165,7 +169,9 @@
                 android:fontFamily="@font/quest"
                 android:text="@string/placeholder_chat"
                 android:textColor="@color/colorTextDark"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:minLines="1"
+                android:maxLines="20"/>
         </LinearLayout>
     </ScrollView>
 

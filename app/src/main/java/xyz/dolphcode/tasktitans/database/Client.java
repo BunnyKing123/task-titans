@@ -92,7 +92,7 @@ public final class Client {
                     // Use the GuildBuilder to create a guild using the information from the Data Snapshot
                     Guild guild = Guild.GuildBuilder.createGuild(child.child("guildName").getValue().toString(), child.child("ownerID").getValue().toString())
                             .setChat(child.child("dbchat").getValue().toString())
-                            .setMemberIDs(Util.toList(child.child("dbmemberIDs").getValue().toString(), "|"))
+                            .setMemberIDs(child.child("dbmemberIDs").getValue().toString())
                             .setMinimumLevel(((Long) child.child("minimumLevel").getValue()).intValue())
                             .build(child.getKey());
                     guilds.add(guild);

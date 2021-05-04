@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class ShopActivity extends AppCompatActivity {
     ArrayList<String> setArray = new ArrayList<String>();
     String[] equipmentArray;
     String[] petArray;
+    TextView desc;
+    TextView cost;
 
     String selectedItem = "";
     boolean shopSelected;
@@ -45,6 +48,9 @@ public class ShopActivity extends AppCompatActivity {
 
         Button backBtn =  findViewById(R.id.shopBackBtn);
         Button buyBtn = findViewById(R.id.shopBuyBtn);
+        desc = findViewById(R.id.itemDescription);
+        cost = findViewById(R.id.money);
+
 
         // Create an adapter for each item type
         ArrayList<String> equipment = new ArrayList<String>();
@@ -137,6 +143,11 @@ public class ShopActivity extends AppCompatActivity {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             if (outer.shopSelected) {
                 outer.selectedItem = parent.getItemAtPosition(position).toString();
+                Item item = Items.ITEMS.get(outer.selectedItem);
+                if (item != null) {
+                    outer.cost.setText("" + item.getItemCost());
+                    outer.desc.setText(item.getDescription());
+                }
             }
         }
 

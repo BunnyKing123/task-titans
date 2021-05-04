@@ -75,10 +75,7 @@ public class GameActivity extends OneScrollableAreaActivity {
             checkIfEquipped(iterable.get(selection));
 
         // Set profile picture
-        //profile.setImageResource(Util.getProfileImage(this, user));
-        Log.v("ID", "" + Util.getProfileImage(this, user));
-        Log.v("ID", "" + R.drawable.human_male_1);
-        profile.setImageResource(R.drawable.human_male_1);
+        profile.setImageResource(Util.getProfileImage(this, user));
 
         // Display information in text boxes
         stats.setText("Name: " + user.getDisplayName() + "\nHP: " + user.getHP() + "/" + user.getMaxHP() + "\nLevel: " + User.convertToLevel(user.getXP()));
