@@ -3,6 +3,7 @@ package xyz.dolphcode.tasktitans.util;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.icu.util.Calendar;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -286,6 +287,8 @@ public final class Util {
 
     // This method returns the id of a profile picture resource to be displayed as the user's profile image
     public static int getProfileImage(AppCompatActivity activity, User user) {
+        Canvas canvas = new Canvas();
+
         String race;
         if (user.getRaceID() == DetailsActivity.HUMAN) {
             race = "human";
@@ -294,7 +297,6 @@ public final class Util {
         } else {
             race = "elf";
         }
-
         int skin = user.getColorID() + 1;
         String gender = user.getGender() == DetailsActivity.MALE ? "male" : "female";
         String name = race + "_" + gender + "_" + skin + ".png";

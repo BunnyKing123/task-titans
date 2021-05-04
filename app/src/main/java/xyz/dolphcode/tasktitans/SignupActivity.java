@@ -37,7 +37,7 @@ public class SignupActivity extends AppCompatActivity {
                 String displayName = ((EditText) findViewById(R.id.registerDisplayNameTxt)).getText().toString();
 
                 if (!username.isEmpty() && !password.isEmpty()) { // Make sure required fields are filled out first
-                    Intent intent = new Intent(SignupActivity.this, AppearanceActivity.class);
+                    Intent intent = new Intent(SignupActivity.this, DetailsActivity.class);
                     intent.putExtra("USERNAME", username);
                     intent.putExtra("PASS", password);
                     intent.putExtra("EMAIL", email);
