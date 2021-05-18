@@ -174,7 +174,9 @@ public class User {
         if (equipment.isEmpty()) {
             return 1.0;
         }
-        return Items.ITEMS.get(equipment).getBonus(bonus);
+        double bonusAmt = Items.ITEMS.get(equipment).getBonus(bonus);
+        Log.v("BONUS", "" + bonusAmt);
+        return bonusAmt;
     }
 
     // Damages the player
@@ -189,7 +191,7 @@ public class User {
     // Combines addMana, addXP, and addMoney into one function for neatness
     public void addRewards(int xp, int money, int mana) {
         int addMana = (int) Math.floor(mana * this.getEquipmentBonus(equipment, Item.Bonus.MANA) * this.getEquipmentBonus(pet, Item.Bonus.MANA));
-        int addMoney = (int) Math.floor(mana * this.getEquipmentBonus(equipment, Item.Bonus.MONEY) * this.getEquipmentBonus(pet, Item.Bonus.MONEY));
+        int addMoney = (int) Math.floor(money * this.getEquipmentBonus(equipment, Item.Bonus.MONEY) * this.getEquipmentBonus(pet, Item.Bonus.MONEY));
         Log.v("MANATEST", "" + addMana);
         Log.v("MONEYTEST", "" + addMoney);
 
@@ -198,8 +200,8 @@ public class User {
         if (this.xp >= toNextLevel(convertToLevel(originalXp))) {
             adjustStats();
         }
-        this.money += money;
-        this.mana += mana;
+        this.money += addMoney;
+        this.mana += addMana;
         if (this.mana > this.maxMana) {
             this.mana = this.maxMana;
         }
@@ -210,8 +212,8 @@ public class User {
     public void adjustStats() {
         int originalHp = this.maxHp;
         double originalMana = this.maxMana;
-        this.maxHp = calculateMaxHP(convertToLevel(this.xp), this.baseConst + this.constMod);
-        this.maxMana = calculateMaxMana(convertToLevel(this.xp), this.baseIntel + this.intelMod);
+        this.maxHp = calculateStat(convertToLevel(this.xp), this.baseConst + this.constMod);
+        this.maxMana = calculateStat(convertToLevel(this.xp), this.baseIntel + this.intelMod);
         this.hp += this.maxHp - originalHp;
         this.mana += this.maxMana - originalMana;
     }
@@ -271,25 +273,11 @@ public class User {
         return (int) Math.floor(100 * Math.pow(2, 0.05 * (currentLevel - 1))); // Exponential Function
     }
 
-    // Calculate the user's max HP given their constitution and level
-    public static int calculateMaxHP(int level, int constitution) {
-        double lvlDbl = (double) level;
-        double constDbl = (double) constitution;
-        return (int) Math.floor(((7.5 * constDbl) * ((double) Math.log(lvlDbl/300.0))) + (1.5 * constDbl) + 100);
-    }
-
-    // Calculate the user's max Mana given their intelligence and level
-    public static int calculateMaxMana(int level, int intelligence) {
-        double lvlDbl = (double) level;
-        double intelDbl = (double) intelligence;
-        return (int) Math.floor(((7.5 * intelDbl) * ((double) Math.log(lvlDbl/300.0))) + (1.5 * intelDbl) + 100);
-    }
-
     // Used for calculating user's max Mana and max HP
     public static int calculateStat(int level, int independentStat) {
         double lvlDbl = (double) level;
         double indepDbl = (double) independentStat;
-        return (int) Math.floor((120.0 * (1.0 / indepDbl) * ((double) Math.log(lvlDbl/300.0))) + 367.6);
+        return (int) Math.floor(((7.5 * indepDbl) * ((double) Math.log(lvlDbl/300.0))) + (1.5 * indepDbl) + 100);
     }
 
     // Based on the Builder design pattern which I learned from HeadFirst Design Patterns
@@ -452,6 +440,8 @@ public class User {
             user.classID = this.classID;
 
             user.inventory = this.inventory;
+            user.pet = this.pet;
+            user.equipment = this.equipment;
 
             user.xp = this.xp;
 
