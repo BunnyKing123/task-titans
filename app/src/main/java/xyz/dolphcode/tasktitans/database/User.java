@@ -4,6 +4,8 @@ import android.util.Log;
 
 import xyz.dolphcode.tasktitans.DetailsActivity;
 import xyz.dolphcode.tasktitans.resources.Abilities;
+import xyz.dolphcode.tasktitans.resources.item.Item;
+import xyz.dolphcode.tasktitans.resources.item.Items;
 
 public class User {
 
@@ -168,6 +170,13 @@ public class User {
         Client.updateUser(this);
     }
 
+    public double getEquipmentBonus(String equipment, Item.Bonus bonus) {
+        if (equipment.isEmpty()) {
+            return 1.0;
+        }
+        return Items.ITEMS.get(equipment).getBonus(bonus);
+    }
+
     // Damages the player
     public void damage(int hpDec) {
         this.hp -= hpDec;
@@ -179,6 +188,11 @@ public class User {
 
     // Combines addMana, addXP, and addMoney into one function for neatness
     public void addRewards(int xp, int money, int mana) {
+        int addMana = (int) Math.floor(mana * this.getEquipmentBonus(equipment, Item.Bonus.MANA) * this.getEquipmentBonus(pet, Item.Bonus.MANA));
+        int addMoney = (int) Math.floor(mana * this.getEquipmentBonus(equipment, Item.Bonus.MONEY) * this.getEquipmentBonus(pet, Item.Bonus.MONEY));
+        Log.v("MANATEST", "" + addMana);
+        Log.v("MONEYTEST", "" + addMoney);
+
         int originalXp = this.xp;
         this.xp += xp;
         if (this.xp >= toNextLevel(convertToLevel(originalXp))) {

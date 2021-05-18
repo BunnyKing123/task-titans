@@ -67,8 +67,11 @@ public class Item {
     public String getItemName() { return name; }
     public String getDescription() { return desc; }
     public int getItemType() { return itemType; }
-    public Integer getBonus(Bonus bonus) {
-        return bonuses.get(bonus);
+    public double getBonus(Bonus bonus) {
+        if (bonuses.get(bonus) == null) {
+            return 1.0;
+        }
+        return (bonuses.get(bonus) / 100.0) + 1.0;
     }
     public int getItemCost() { return this.shopCost; }
 
