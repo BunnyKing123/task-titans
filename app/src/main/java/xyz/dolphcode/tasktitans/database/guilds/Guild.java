@@ -1,16 +1,16 @@
-package xyz.dolphcode.tasktitans.database;
+package xyz.dolphcode.tasktitans.database.guilds;
 
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import xyz.dolphcode.tasktitans.database.Client;
+import xyz.dolphcode.tasktitans.database.User;
 import xyz.dolphcode.tasktitans.util.Util;
 
 public class Guild {
-
-    public static final int BOSS = 0;
-    public static final int TASK = 1;
 
     private String name; // Guild name used to identify guild
     private String guildID; // Guild id also used to identify guild
@@ -20,7 +20,7 @@ public class Guild {
     private int minimumLevel = 0; // Minimum level requirement to join a guild
     private int guildPoints = 0;
     private String guildTaskName;
-    private String guildTaskType;
+    private int guildTaskType;
     private String guildTaskCompletions;
     private String guildTaskDeadline;
 
@@ -33,6 +33,10 @@ public class Guild {
     public String getDBMemberIDs() { return dbMemberIDs; } // Used for storing in the database
     public String getOwnerID() { return ownerID; }
     public int getMinimumLevel() { return minimumLevel; }
+    public int getGuildPoints() { return guildPoints; }
+    public String getGuildTaskName() { return guildTaskName; }
+    public int getGuildTaskType() { return guildTaskType; }
+    public String getGuildTaskDeadline() { return guildTaskDeadline; }
 
     public List<String> getChat() { return chat; }
     public List<String> getMemberIDs() { return memberIDs; }
@@ -56,10 +60,6 @@ public class Guild {
         Client.updateGuild(this); // Update guild in database
     }
 
-    public String getViewableChat() {
-        return "<br>" + Util.joinList(chat, "</br><br>") + "</br>";
-    }
-
     // Private constructor so that guild can't be instantiated
     private Guild() {}
 
@@ -70,6 +70,11 @@ public class Guild {
         private ArrayList<String> memberIDs = new ArrayList<String>();
         private String ownerID;
         private int minimumLevel = 0;
+        private int guildPoints = 0;
+        private String guildTaskName = "none";
+        private int guildTaskType = -1;
+        private String guildTaskCompletions = "none";
+        private String guildTaskDeadline = "none";
 
         // Private constructor so that guild can't be instantiated
         private GuildBuilder() {}
@@ -80,6 +85,18 @@ public class Guild {
             builder.name = name;
             builder.ownerID = ownerID;
             return builder;
+        }
+
+        public GuildBuilder setGuildPoints (int points) {
+            this.guildPoints = points;
+            return this;
+        }
+
+        public GuildBuilder setGuildTaskData(int type, String completions, String deadline) {
+            this.guildTaskType = (type == GuildTask.BOSS || type == GuildTask.TASK) ? GuildTask.TASK : type;
+            this.guildTaskCompletions = completions;
+            this.guildTaskDeadline = deadline;
+            return this;
         }
 
         // Sets the minimum level requirement to join a guild
@@ -151,6 +168,19 @@ public class Guild {
             Log.v("CHATSIZE_GUILDBUILDER_BUILD", "" + guild.chat.size());
             guild.dbChat = Util.joinList(guild.chat, "\n"); // Set the dbChat property for uploading information to database
             guild.dbMemberIDs = Util.joinList(guild.memberIDs, "-"); // Same as line above but for member ids
+
+            if (this.guildTaskType < 0 || this.guildTaskName == "none" || this.guildTaskDeadline == "none" || this.guildTaskCompletions == "none") {
+                GuildTask guildTask = new GuildTask();
+                guild.guildTaskCompletions = "";
+                guild.guildTaskName = guildTask.getTaskName();
+                guild.guildTaskDeadline = guildTask.getDeadline();
+                guild.guildTaskType = guildTask.getTaskType();
+            } else {
+                guild.guildTaskType = this.guildTaskType;
+                guild.guildTaskName = this.guildTaskName;
+                guild.guildTaskCompletions = this.guildTaskCompletions;
+                guild.guildTaskDeadline = this.guildTaskDeadline;
+            }
 
             return guild;
         }

@@ -40,12 +40,16 @@ public class TaskGroupPageActivity extends OneScrollableAreaActivity implements 
         prev = getIntent();
         id = prev.getStringExtra("ID");
         groupID = prev.getStringExtra("GROUPID");
+        Log.v("IDTEST", id);
+        Log.v("GROUPIDTEST", groupID);
         group = Client.getTaskGroup(groupID);
 
         GroupMember member = group.membersToMap().get(id);
         for (String str:group.membersToMap().keySet()) {
         }
         taskIDs = member.getTaskIDs();
+        taskIDs.remove("none");
+        Log.v("SIZETASKIDS", "" + taskIDs.size());
         iterable = new ArrayList<String>();
         for (String taskID:taskIDs) {
             if(taskID.equals("none"))
@@ -79,11 +83,13 @@ public class TaskGroupPageActivity extends OneScrollableAreaActivity implements 
 
         completeBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Task removingTask = Client.getTask(taskIDs.get(selection));
-                if (removingTask.getTaskCount() == 1) {
-                    group.removeTask(id, removingTask.getTaskID());
+                if (taskIDs.size() > 0) {
+                    Task removingTask = Client.getTask(taskIDs.get(selection));
+                    if (removingTask.getTaskCount() == 1) {
+                        group.removeTask(id, removingTask.getTaskID());
+                    }
+                    removingTask.finish();
                 }
-                removingTask.finish();
             }
         });
 
@@ -112,29 +118,35 @@ public class TaskGroupPageActivity extends OneScrollableAreaActivity implements 
 
     @Override
     public void databaseChanged() {
+        boolean switched = false;
         group = Client.getTaskGroup(groupID);
         if (group == null) { // If the group no longer exists the user is moved to another screen
             Intent intent = new Intent(TaskGroupPageActivity.this, GroupTaskActivity.class);
             intent.putExtra("ID", id);
             TaskGroupPageActivity.this.startActivity(intent);
+            switched = true;
         }
         GroupMember member = group.membersToMap().get(id);
         if (member == null) { // If the member is no longer a part of the group they are moved to another screen
             Intent intent = new Intent(TaskGroupPageActivity.this, GroupTaskActivity.class);
             intent.putExtra("ID", id);
+            Log.v("IDTGROUP", id);
             TaskGroupPageActivity.this.startActivity(intent);
+            switched = true;
         }
 
         // Update the iterable list and list of task IDs
-        taskIDs = member.getTaskIDs();
-        iterable = new ArrayList<String>();
-        for (String taskID:taskIDs) {
-            if(taskID.equals("none"))
-                break;
-            Task t = Client.getTask(taskID);
-            iterable.add(t.getTaskName() + "\nDesc: " + t.getTaskDesc() + "\nDue: " + t.getDeadline());
+        if (!switched) {
+            taskIDs = member.getTaskIDs();
+            iterable = new ArrayList<String>();
+            for (String taskID : taskIDs) {
+                if (taskID.equals("none"))
+                    break;
+                Task t = Client.getTask(taskID);
+                iterable.add(t.getTaskName() + "\nDesc: " + t.getTaskDesc() + "\nDue: " + t.getDeadline());
+            }
+            checkSelection();
+            displayText();
         }
-        checkSelection();
-        displayText();
     }
 }

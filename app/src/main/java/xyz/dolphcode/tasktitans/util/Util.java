@@ -32,7 +32,7 @@ public final class Util {
     public static String CHAR_LIST = "abcdefghijklmnopqrstuvwxyz1234567890";
 
     // A list of every possible number that can be used in an ID
-    public static String NUM_LIST = "11234567890";
+    public static String NUM_LIST = "1234567890";
 
     // Private constructor so that the class can't be instantiated because it does not need to be
     private Util() {}

@@ -38,6 +38,7 @@ public class GroupTaskActivity extends OneScrollableAreaActivity implements Data
         Util.setupConnectionChangedHandler(GroupTaskActivity.this);
 
         id = getIntent().getStringExtra("ID");
+        Log.v("IDGTASK", id);
         user = Client.getUser(id);
 
         Button taskBackBtn = findViewById(R.id.groupBackBtn);
@@ -89,16 +90,14 @@ public class GroupTaskActivity extends OneScrollableAreaActivity implements Data
             public void onClick(View v) {
                 String code = ((EditText) findViewById(R.id.joinGroupInputTxt)).getText().toString();
                 if (!code.isEmpty() && code.length() == 9) {
-                    Intent intent = new Intent(GroupTaskActivity.this, TaskGroupPageActivity.class);
-                    intent.putExtra("ID", id);
-
                     TaskGroup group = Client.getTaskGroupByJoinCode(code);
-                    if (group != null)
+                    if (group != null) {
+                        Intent intent = new Intent(GroupTaskActivity.this, TaskGroupPageActivity.class);
+                        intent.putExtra("ID", id);
                         group.addMember(user);
-
-                    intent.putExtra("GROUPID", group.getTaskGroupID());
-
-                    GroupTaskActivity.this.startActivity(intent);
+                        intent.putExtra("GROUPID", group.getTaskGroupID());
+                        GroupTaskActivity.this.startActivity(intent);
+                    }
                 }
             }
         });

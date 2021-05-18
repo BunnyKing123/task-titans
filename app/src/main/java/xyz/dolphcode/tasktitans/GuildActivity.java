@@ -2,7 +2,6 @@ package xyz.dolphcode.tasktitans;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,11 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import xyz.dolphcode.tasktitans.database.Client;
 import xyz.dolphcode.tasktitans.database.DatabaseObserver;
-import xyz.dolphcode.tasktitans.database.Guild;
+import xyz.dolphcode.tasktitans.database.guilds.Guild;
 import xyz.dolphcode.tasktitans.database.User;
 import xyz.dolphcode.tasktitans.util.Util;
 

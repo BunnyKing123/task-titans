@@ -1,23 +1,17 @@
 package xyz.dolphcode.tasktitans;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import xyz.dolphcode.tasktitans.database.Client;
-import xyz.dolphcode.tasktitans.database.Guild;
+import xyz.dolphcode.tasktitans.database.guilds.Guild;
 import xyz.dolphcode.tasktitans.database.User;
 import xyz.dolphcode.tasktitans.resources.item.Item;
 import xyz.dolphcode.tasktitans.resources.item.Items;

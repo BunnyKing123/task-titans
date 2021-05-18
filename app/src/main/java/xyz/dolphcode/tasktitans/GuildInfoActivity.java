@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import xyz.dolphcode.tasktitans.database.Client;
-import xyz.dolphcode.tasktitans.database.Guild;
+import xyz.dolphcode.tasktitans.database.guilds.Guild;
 import xyz.dolphcode.tasktitans.database.User;
 import xyz.dolphcode.tasktitans.util.Util;
 

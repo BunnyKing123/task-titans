@@ -1,7 +1,5 @@
 package xyz.dolphcode.tasktitans;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +10,7 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 
 import xyz.dolphcode.tasktitans.database.Client;
-import xyz.dolphcode.tasktitans.database.Guild;
+import xyz.dolphcode.tasktitans.database.guilds.Guild;
 import xyz.dolphcode.tasktitans.util.OneScrollableAreaActivity;
 import xyz.dolphcode.tasktitans.util.Util;
 

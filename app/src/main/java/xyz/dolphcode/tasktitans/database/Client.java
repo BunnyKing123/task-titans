@@ -8,11 +8,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
+import xyz.dolphcode.tasktitans.database.guilds.Guild;
 import xyz.dolphcode.tasktitans.database.tasks.Task;
 import xyz.dolphcode.tasktitans.database.tasks.TaskGroup;
 import xyz.dolphcode.tasktitans.resources.TaskType;
@@ -22,15 +20,15 @@ import xyz.dolphcode.tasktitans.util.Util;
 public final class Client {
 
     private static DatabaseReference INSTANCE;
-    private static ArrayList<String> USERIDS = null;
-    private static ArrayList<User> USERS = null;
-    private static ArrayList<String> GUILDIDS = null;
-    private static ArrayList<Guild> GUILDS = null;
-    private static ArrayList<String> TASKIDS = null;
-    private static ArrayList<Task> TASKS = null;
-    private static ArrayList<String> TASKGROUPIDS = null;
-    private static ArrayList<String> TASKGROUPCODES = null;
-    private static ArrayList<TaskGroup> TASKGROUPS = null;
+    private static ArrayList<String> USERIDS = new ArrayList<String>();
+    private static ArrayList<User> USERS = new ArrayList<User>();
+    private static ArrayList<String> GUILDIDS = new ArrayList<String>();
+    private static ArrayList<Guild> GUILDS = new ArrayList<Guild>();
+    private static ArrayList<String> TASKIDS = new ArrayList<String>();
+    private static ArrayList<Task> TASKS = new ArrayList<Task>();
+    private static ArrayList<String> TASKGROUPIDS = new ArrayList<String>();
+    private static ArrayList<String> TASKGROUPCODES = new ArrayList<String>();
+    private static ArrayList<TaskGroup> TASKGROUPS = new ArrayList<TaskGroup>();
 
     private static ArrayList<DatabaseObserver> OBSERVERS = new ArrayList<DatabaseObserver>();
 
@@ -181,6 +179,7 @@ public final class Client {
     // Returns a User with a certain ID
     // Returns null if none are found
     public static User getUser(String id) {
+        Log.v("TESTID", "" + USERIDS.contains(id));
         for (User user : USERS) { // Iterate through all Users
             if (user.getID().contentEquals(id)) { // If a match is found
                 return user;

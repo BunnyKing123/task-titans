@@ -261,14 +261,14 @@ public class User {
     public static int calculateMaxHP(int level, int constitution) {
         double lvlDbl = (double) level;
         double constDbl = (double) constitution;
-        return (int) Math.floor((120.0 * (1.0 / constDbl) * ((double) Math.log(lvlDbl/300.0))) + 367.6);
+        return (int) Math.floor(((7.5 * constDbl) * ((double) Math.log(lvlDbl/300.0))) + (1.5 * constDbl) + 100);
     }
 
     // Calculate the user's max Mana given their intelligence and level
     public static int calculateMaxMana(int level, int intelligence) {
         double lvlDbl = (double) level;
         double intelDbl = (double) intelligence;
-        return (int) Math.floor((120.0 * (1.0 / intelDbl) * ((double) Math.log(lvlDbl/300.0))) + 367.6);
+        return (int) Math.floor(((7.5 * intelDbl) * ((double) Math.log(lvlDbl/300.0))) + (1.5 * intelDbl) + 100);
     }
 
     // Used for calculating user's max Mana and max HP
