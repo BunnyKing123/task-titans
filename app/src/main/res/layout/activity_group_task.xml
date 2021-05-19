@@ -108,8 +108,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/bow_icon" />
+            app:srcCompat="@drawable/left_btn_scroll" />
 
         <ScrollView
             android:id="@+id/groupTextScroll"
@@ -162,8 +164,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/bow_icon" />
+            app:srcCompat="@drawable/right_btn_scroll" />
 
     </LinearLayout>
 

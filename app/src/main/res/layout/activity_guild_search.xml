@@ -100,8 +100,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/bow_icon" />
+            app:srcCompat="@drawable/left_btn_scroll" />
 
         <ScrollView
             android:id="@+id/guildTextScroll"
@@ -139,7 +141,7 @@
                     android:background="@drawable/round_corners"
                     android:backgroundTint="@color/colorAccent"
                     android:fontFamily="@font/quest"
-                    android:text="@string/equip_txt"
+                    android:text="@string/join_txt"
                     android:textColor="@color/colorText"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -154,8 +156,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/bow_icon" />
+            app:srcCompat="@drawable/right_btn_scroll" />
 
     </LinearLayout>
 

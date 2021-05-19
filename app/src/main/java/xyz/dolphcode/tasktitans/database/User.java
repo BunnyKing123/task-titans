@@ -277,7 +277,7 @@ public class User {
     public static int calculateStat(int level, int independentStat) {
         double lvlDbl = (double) level;
         double indepDbl = (double) independentStat;
-        return (int) Math.floor(((7.5 * indepDbl) * ((double) Math.log(lvlDbl/300.0))) + (1.5 * indepDbl) + 100);
+        return (int) Math.floor(((20 * indepDbl) * ((double) Math.log(lvlDbl + 1))) + (1.5 * indepDbl) + 100);
     }
 
     // Based on the Builder design pattern which I learned from HeadFirst Design Patterns
@@ -465,11 +465,11 @@ public class User {
             user.mana = (this.mana > user.maxMana || this.mana < 0) ? user.maxMana : this.mana;
 
             if (user.classID == 0) {
-                user.skill = Abilities.ABILITIES.get("Cut Down");
+                user.skill = "Cut Down";
             } else if (user.classID == 1) {
-                user.skill = Abilities.ABILITIES.get("Deadeye");
+                user.skill = "Deadeye";
             } else {
-                user.skill = Abilities.ABILITIES.get("Fire Ball");
+                user.skill = "Fire Ball";
             }
 
             user.guildID = this.guildID;

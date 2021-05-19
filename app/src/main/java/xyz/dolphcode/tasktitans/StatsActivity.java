@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -40,11 +41,16 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
         dexterity = findViewById(R.id.characterDextLabel);
         TextView money = findViewById(R.id.statsMoneyText);
         TextView mana = findViewById(R.id.statsManaText);
+        TextView stats = findViewById(R.id.statsProfileInfo);
+        ImageView profile = findViewById(R.id.statsProfilePicture);
 
         user = Client.getUser(getIntent().getStringExtra("ID"));
 
         updateStats(); // Update stats text views with user stats
 
+        profile.setImageResource(Util.getProfileImage(this, user));
+
+        stats.setText("Name: " + user.getDisplayName() + "\nHP: " + user.getHP() + "/" + user.getMaxHP() + "\nLevel: " + User.convertToLevel(user.getXP()));
         money.setText("" + user.getMoney()); // Show the player's balance
         mana.setText("" + user.getMana() + "/" + user.getMaxMana()); // Show the player's mana
 

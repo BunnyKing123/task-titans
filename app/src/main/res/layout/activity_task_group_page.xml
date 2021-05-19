@@ -128,11 +128,32 @@
         android:text="@string/group_details_txt"
         android:textColor="@color/colorText"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/groupPageDivider"
+        app:layout_constraintBottom_toTopOf="@+id/groupCodeLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaveGroupBtn"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/groupCodeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="#84BC9C"
+        android:fontFamily="@font/quest"
+        android:paddingHorizontal="36dp"
+        android:paddingVertical="8dp"
+        android:text="@string/group_page_placeholder"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/groupPageDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/openGroupPanelBtn"
         app:layout_constraintVertical_weight="1" />
 
     <View
@@ -145,7 +166,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/openGroupPanelBtn"
+        app:layout_constraintTop_toBottomOf="@+id/groupCodeLabel"
         app:layout_constraintVertical_weight="4" />
 
     <Button

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.security.acl.Group;
 import java.util.ArrayList;
@@ -49,8 +50,6 @@ public class GroupTaskActivity extends OneScrollableAreaActivity implements Data
 
         ImageButton groupLeft = findViewById(R.id.groupLeftBtn);
         ImageButton groupRight = findViewById(R.id.groupRightBtn);
-
-        displayText = findViewById(R.id.groupText);
 
         groups = Client.getTaskGroupsByMember(id);
         iterable = new ArrayList<String>();

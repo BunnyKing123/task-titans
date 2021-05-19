@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -65,6 +66,9 @@ public class TaskGroupPageActivity extends OneScrollableAreaActivity implements 
 
         checkSelection();
         displayText();
+
+        TextView codeText = findViewById(R.id.groupCodeLabel);
+        codeText.setText("Code: " + group.getJoinCode());
 
         Button panelBtn = findViewById(R.id.openGroupPanelBtn);
         Button leaveBtn = findViewById(R.id.leaveGroupBtn);
