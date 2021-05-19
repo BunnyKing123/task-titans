@@ -93,7 +93,7 @@
             android:layout_height="@dimen/btn_square"
             android:layout_weight="0"
             android:background="@drawable/round_corners"
-            android:backgroundTint="#FBD5B4" />
+            android:backgroundTint="#ffd3b2" />
 
         <View
             android:id="@+id/space_1"
@@ -107,7 +107,7 @@
             android:layout_height="@dimen/btn_square"
             android:layout_weight="0"
             android:background="@drawable/round_corners"
-            android:backgroundTint="#516E52" />
+            android:backgroundTint="#e3a97d" />
 
         <View
             android:id="@+id/space_2"
@@ -121,7 +121,7 @@
             android:layout_height="@dimen/btn_square"
             android:layout_weight="0"
             android:background="@drawable/round_corners"
-            android:backgroundTint="#422619" />
+            android:backgroundTint="#42352c" />
 
         <View
             android:id="@+id/space_3"
@@ -135,7 +135,7 @@
             android:layout_height="@dimen/btn_square"
             android:layout_weight="0"
             android:background="@drawable/round_corners"
-            android:backgroundTint="#474747" />
+            android:backgroundTint="#ffdfc7" />
     </LinearLayout>
 
     <TextView
@@ -181,7 +181,7 @@
             android:layout_height="@dimen/btn_square"
             android:layout_weight="0"
             android:background="@drawable/round_corners"
-            android:backgroundTint="#453527" />
+            android:backgroundTint="#583a00" />
 
         <View
             android:id="@+id/space_4"
@@ -195,7 +195,7 @@
             android:layout_height="@dimen/btn_square"
             android:layout_weight="0"
             android:background="@drawable/round_corners"
-            android:backgroundTint="#FADA85" />
+            android:backgroundTint="#191919" />
 
         <View
             android:id="@+id/space_5"
@@ -209,7 +209,7 @@
             android:layout_height="@dimen/btn_square"
             android:layout_weight="0"
             android:background="@drawable/round_corners"
-            android:backgroundTint="#531B1B" />
+            android:backgroundTint="#e7e7e7" />
 
         <View
             android:id="@+id/space_6"
@@ -223,7 +223,7 @@
             android:layout_height="@dimen/btn_square"
             android:layout_weight="0"
             android:background="@drawable/round_corners"
-            android:backgroundTint="#131313" />
+            android:backgroundTint="#440b0b" />
     </LinearLayout>
 
     <TextView

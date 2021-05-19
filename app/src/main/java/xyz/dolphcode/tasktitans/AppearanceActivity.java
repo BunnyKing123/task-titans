@@ -45,6 +45,19 @@ public class AppearanceActivity extends AppCompatActivity {
         ImageButton maleBtn = findViewById(R.id.maleBtn);
         ImageButton femaleBtn = findViewById(R.id.femaleBtn);
 
+        int race = prevData.getIntExtra("RACE", DetailsActivity.HUMAN);
+        if (race == DetailsActivity.ORC) {
+            skin1Btn.setBackgroundColor(0x424140);
+            skin2Btn.setBackgroundColor(0x455844);
+            skin3Btn.setBackgroundColor(0x6c828b);
+            skin4Btn.setBackgroundColor(0xa08bba);
+        } else if (race == DetailsActivity.ELF) {
+            skin1Btn.setBackgroundColor(0x424140);
+            skin2Btn.setBackgroundColor(0xfdd1a8);
+            skin3Btn.setBackgroundColor(0x3a3029);
+            skin4Btn.setBackgroundColor(0x495745);
+        }
+
         skin1Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {skinColor = 0;}});
         skin2Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {skinColor = 1;}});
         skin3Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {skinColor = 2;}});
