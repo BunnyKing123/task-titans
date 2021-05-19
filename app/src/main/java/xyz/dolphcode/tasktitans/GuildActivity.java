@@ -2,6 +2,7 @@ package xyz.dolphcode.tasktitans;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +46,6 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
         user = Client.getUser(getIntent().getStringExtra("ID"));
 
         challenge = findViewById(R.id.guildChallenge);
-        this.updateChallenge(guild);
 
         chat = findViewById(R.id.chatBox);
         chat.setText(guild.getDBChat());
@@ -57,18 +57,26 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
         challengeCompleteBtn = findViewById(R.id.guildChallegeComplete);
         challengeCompleteBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ArrayList<String> completionList = new ArrayList<String>();
-                for (String id:guild.getGuildCompletions().split("-")) {
-                    if (!id.isEmpty())
-                        completionList.add(id);
-                }
-                if (!completionList.contains(user.getID())) {
-                    guild.completeTask(user);
-                    user.addRewards(50, 20, 50);
+                if (guild.getGuildTaskType() == GuildTask.TASK && !challenge.getText().equals("Guild task completed!")) {
+                    ArrayList<String> completionList = new ArrayList<String>();
+                    for (String id : guild.getGuildCompletions().split("-")) {
+                        if (!id.isEmpty())
+                            completionList.add(id);
+                    }
+                    if (!completionList.contains(user.getID())) {
+                        guild.completeTask(user);
+                        user.addRewards(50, 20, 50);
+                        updateChallenge(guild);
+                    }
+                } else if (guild.getGuildTaskType() == GuildTask.BOSS && !challenge.getText().equals("Boss defeated!")) {
+                    Intent intent = new Intent(GuildActivity.this, StatsActivity.class);
+                    intent.putExtra("ID", user.getID());
+                    GuildActivity.this.startActivity(intent);
                 }
             }
         });
 
+        this.updateChallenge(guild);
 
         Util.addSwitchWithUser(backBtn, GameActivity.class, GuildActivity.this, user.getID());
         sendBtn.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +111,7 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
             }
             challengeCompleteBtn.setText("Finish");
         } else {
-            if (guild.getGuildBossHP() > 0) {
+            if (guild.getGuildBossHP() <= 0) {
                 challenge.setText("Boss defeated!");
             } else {
                 challenge.setText(guild.getGuildTaskName() + ": " + guild.getGuildBossHP() + "/" + GuildTask.BOSSES.get(guild.getGuildTaskName()));
@@ -117,9 +125,6 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
     @Override
     public void databaseChanged() {
         guild = Client.getGuild(guildID);
-
-        Log.v("DBCHANGE_GUILD_ACTIVITY", guild.getDBChat());
-        //chat.setText(guild.getDBChat());
         chat.setText(guild.getDBChat());
         name.setText(guild.getGuildName());
 

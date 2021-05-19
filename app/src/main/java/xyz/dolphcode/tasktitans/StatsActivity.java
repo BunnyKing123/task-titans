@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 
 import xyz.dolphcode.tasktitans.database.Client;
 import xyz.dolphcode.tasktitans.database.User;
+import xyz.dolphcode.tasktitans.database.guilds.Guild;
+import xyz.dolphcode.tasktitans.database.guilds.GuildTask;
 import xyz.dolphcode.tasktitans.resources.Abilities;
 import xyz.dolphcode.tasktitans.util.Util;
 
@@ -25,6 +28,7 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
     TextView intelligence;
     TextView constitution;
     TextView dexterity;
+    String selectedSkill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +62,32 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
 
         // Code based on code in the Android Studio documentation
         String[] skillsArray = user.getSkill().split("-");
+        selectedSkill = skillsArray[0];
 
         // ArrayAdapters are used to put items in a spinner
         // ArrayAdapters can be notified when their data set is changed allowing you to change the contents of a spinner (this is seen in other parts of the code)
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(this,
                 android.R.layout.simple_spinner_item, skillsArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        Button skillUseBtn = findViewById(R.id.skillUseBtn);
+        skillUseBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (selectedSkill.toLowerCase().equals("heal") && user.getMana() > 20) {
+                   user.heal(20, 20);
+                   return;
+                } else if (!user.getGuildID().equals("none")) {
+                    Guild guild = Client.getGuild(user.getGuildID());
+                    if (guild.getGuildTaskType() == GuildTask.BOSS && guild.getGuildBossHP() > 0) {
+                        if (user.getMana() - 20 >= 0) {
+                            guild.damageBoss(user.attackDamage());
+                            user.depleteMana(20);
+                        }
+                    }
+                }
+                updateStats();
+            }
+        });
 
         skills.setAdapter(adapter);
         skills.setOnItemSelectedListener(this);
@@ -111,7 +135,7 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
                                int pos, long id) {
         String key = parent.getItemAtPosition(pos).toString();
         TextView desc = findViewById(R.id.skillDesc);
-
+        selectedSkill = key;
         desc.setText(Abilities.ABILITIES.get(key));
     }
 

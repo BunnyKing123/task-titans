@@ -15,9 +15,9 @@ public class GuildTask {
     public static final HashMap<String, Integer> BOSSES = new HashMap<String, Integer>();
 
     static {
-        BOSSES.put("The Procrastinator", 300);
-        BOSSES.put("The Weary Wraith", 250);
-        BOSSES.put("The Lochness of Laziness", 320);
+        BOSSES.put("The Procrastinator", new Integer(300));
+        BOSSES.put("The Weary Wraith", new Integer(250));
+        BOSSES.put("The Lochness of Laziness", new Integer(320));
     }
 
     private int taskType;
@@ -26,7 +26,6 @@ public class GuildTask {
 
     protected GuildTask() {
         taskType = (int) Math.round(Math.random());
-        Log.v("TestID", "" + taskType);
         if (taskType == BOSS) {
             int index = (int) Math.floor(Math.random() * BOSSES.keySet().size());
             int counter = 0;
@@ -42,6 +41,7 @@ public class GuildTask {
         }
         Calendar cal = Calendar.getInstance();
         deadline = Util.formatDate(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH), cal.get(Calendar.YEAR));
+
     }
 
     public int getTaskType() { return taskType; }

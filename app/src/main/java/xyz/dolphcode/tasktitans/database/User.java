@@ -127,6 +127,31 @@ public class User {
         Client.updateUser(this);
     }
 
+    // Heals the player
+    public void heal(int manaCost, int healAmt) {
+        if (mana - manaCost < 0 || this.hp >= this.maxHp) {
+            return;
+        }
+        mana -= manaCost;
+        this.hp = (this.hp + healAmt > this.maxHp) ? maxHp : this.hp + healAmt;
+        Client.updateUser(this);
+    }
+
+    // Returns amount of damage to be done
+    public int attackDamage() {
+        if (this.mana - 20 >= 0) {
+            double damage = 20 * getEquipmentBonus(equipment, Item.Bonus.ATTACK) * getEquipmentBonus(pet, Item.Bonus.ATTACK);
+            return (int) Math.round(damage);
+        }
+        return 0;
+    }
+
+    // Depletes mana
+    public void depleteMana(int depleteAmt) {
+        this.mana = (this.mana - depleteAmt < 0) ? 0 : this.mana - depleteAmt;
+        Client.updateUser(this);
+    }
+
     // Adds an item to the player inventory
     public boolean addToInventory(String equipment) {
         if (this.inventory.toLowerCase().contains(equipment.toLowerCase())) { return false; }

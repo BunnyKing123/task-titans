@@ -119,7 +119,7 @@ public class Guild {
         }
 
         public GuildBuilder setGuildTaskData(int type, String completions, String deadline) {
-            this.guildTaskType = (type == GuildTask.BOSS || type == GuildTask.TASK) ? GuildTask.TASK : type;
+            this.guildTaskType = (type == GuildTask.BOSS || type == GuildTask.TASK) ? type : GuildTask.TASK;
             this.guildTaskCompletions = completions;
             this.guildTaskDeadline = deadline;
             return this;
@@ -197,13 +197,13 @@ public class Guild {
             guild.dbChat = Util.joinList(guild.chat, "\n"); // Set the dbChat property for uploading information to database
             guild.dbMemberIDs = Util.joinList(guild.memberIDs, "-"); // Same as line above but for member ids
 
-            if (this.guildTaskType < 0 || this.guildTaskName == "none" || this.guildTaskDeadline == "none" || this.guildTaskCompletions == "none") {
+            if (this.guildTaskType < 0) {
                 GuildTask guildTask = new GuildTask();
                 guild.guildTaskCompletions = "";
                 guild.guildTaskName = guildTask.getTaskName();
                 guild.guildTaskDeadline = guildTask.getDeadline();
                 guild.guildTaskType = guildTask.getTaskType();
-                guild.guildBossHP = (guildTask.getTaskType() == GuildTask.BOSS) ? GuildTask.BOSSES.get(guildTaskName) : 0;
+                guild.guildBossHP = (guildTask.getTaskType() == GuildTask.BOSS) ? GuildTask.BOSSES.get(guildTask.getTaskName()) : 0;
             } else {
                 guild.guildTaskType = this.guildTaskType;
                 guild.guildTaskName = this.guildTaskName;
