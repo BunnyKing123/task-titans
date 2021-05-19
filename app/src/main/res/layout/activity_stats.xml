@@ -360,7 +360,7 @@
             android:layout_width="59dp"
             android:layout_height="56dp"
             android:contentDescription="@string/money_content_info"
-            app:srcCompat="@drawable/money_icon" />
+            app:srcCompat="@drawable/cash" />
 
         <TextView
             android:id="@+id/statsMoneyText"
@@ -377,7 +377,7 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:contentDescription="@string/mana_content_info"
-            app:srcCompat="@drawable/power_icon" />
+            app:srcCompat="@drawable/mana" />
 
         <TextView
             android:id="@+id/statsManaText"

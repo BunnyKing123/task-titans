@@ -120,22 +120,18 @@ public final class Util {
     // Splits separated by a specific character or sequence of characters
     public static String joinList(ArrayList<String> list, String separator) {
         String txt = "";
-        Log.v("LIST_SIZE_NUMERIC_JOIN", "" + list.size());
         // This code takes care of empty lists and lists with only one item that would normally cause an error with the code below
         if (list.size() == 0) {
             return txt; // Return empty string if there is nothing in the list
         } else if (list.size() == 1) {
-            Log.v("LIST_SIZE_JOIN", "Only one item");
             return list.get(0); // Return the only item in the list if the list only has one item
         }
 
         for (int i = 0; i < list.size() - 1; i++) { // Leave out final item in list
             if (!list.get(i).isEmpty()) // Primarily used for chat which always started with a blank string for some reason, this fixed that
                 txt = txt + list.get(i) + separator;
-            Log.v("LOOP_COUNT_JOIN", "Loop: " + i);
         }
         txt = txt + list.get(list.size() - 1); // Add final item in list without separator
-        Log.v("FINAL_TEXT_JOIN", txt);
         return txt;
     }
 
@@ -193,9 +189,9 @@ public final class Util {
         Calendar calendar = Calendar.getInstance();
         String[] dateSplit = date.split("/");
         calendar.set(
-                Integer.parseInt(dateSplit[2]),
-                Integer.parseInt(dateSplit[0]),
-                Integer.parseInt(dateSplit[1])
+                safeParseInt(dateSplit[2], calendar.get(Calendar.YEAR)),
+                safeParseInt(dateSplit[0], calendar.get(Calendar.MONTH)),
+                safeParseInt(dateSplit[1], calendar.get(Calendar.DATE))
         );
         return calendar;
     }
@@ -288,7 +284,8 @@ public final class Util {
         return false;
     }
 
-    // This method safely parses an int so that a NumberFormatException is caught when a string is parsed for an integer and it does not contain an integer
+    // This method safely parses an int so that a NumberFormatException is caught
+    // when a string is parsed for an integer and it does not contain an integer
     // Instead returns a default value if a NumberFormatException is caught
     public static int safeParseInt(String str, int defaultValue) {
         int value;

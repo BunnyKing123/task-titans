@@ -11,7 +11,9 @@ public class GuildTask {
 
     public static final int BOSS = 0;
     public static final int TASK = 1;
-    public static final String[] GUILD_TASKS = {"Pick some flowers", "Take a walk in the park", "Reorganize your workspace", "Say something kind to a stranger"};
+    public static final String[] GUILD_TASKS = {"Pick some flowers",
+            "Take a walk in the park", "Reorganize your workspace",
+            "Say something kind to a stranger"};
     public static final HashMap<String, Integer> BOSSES = new HashMap<String, Integer>();
 
     static {

@@ -212,9 +212,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
             android:onClick="showDatePicker"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/bow_icon" />
+            app:srcCompat="@drawable/calendar" />
 
         <TextView
             android:id="@+id/taskDateText"
@@ -265,9 +267,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/colorAccent"
             android:onClick="showTimePicker"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/elf_icon" />
+            app:srcCompat="@drawable/clock" />
 
         <TextView
             android:id="@+id/taskTimeText"

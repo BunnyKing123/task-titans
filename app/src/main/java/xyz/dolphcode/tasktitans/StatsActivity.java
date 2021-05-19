@@ -61,6 +61,7 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
         Spinner skills = findViewById(R.id.skillsDropdown);
 
         // Code based on code in the Android Studio documentation
+        // https://developer.android.com/guide/topics/ui/controls/spinner
         String[] skillsArray = user.getSkill().split("-");
         selectedSkill = skillsArray[0];
 

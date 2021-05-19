@@ -194,8 +194,11 @@ public class Guild {
             if (!guild.memberIDs.contains(guild.ownerID))
                 guild.memberIDs.add(guild.ownerID); // Add the owner's ID if it isn't already in the member list
 
-            guild.dbChat = Util.joinList(guild.chat, "\n"); // Set the dbChat property for uploading information to database
-            guild.dbMemberIDs = Util.joinList(guild.memberIDs, "-"); // Same as line above but for member ids
+            // Set the dbChat property for uploading chat to database
+            guild.dbChat = Util.joinList(guild.chat, "\n");
+
+            // Same as line above but for member ids
+            guild.dbMemberIDs = Util.joinList(guild.memberIDs, "-");
 
             if (this.guildTaskType < 0) {
                 GuildTask guildTask = new GuildTask();
