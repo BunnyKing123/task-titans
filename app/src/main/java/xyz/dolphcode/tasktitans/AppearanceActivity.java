@@ -1,6 +1,7 @@
 package xyz.dolphcode.tasktitans;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,15 +48,15 @@ public class AppearanceActivity extends AppCompatActivity {
 
         int race = prevData.getIntExtra("RACE", DetailsActivity.HUMAN);
         if (race == DetailsActivity.ORC) {
-            skin1Btn.setBackgroundColor(0x424140ff);
-            skin2Btn.setBackgroundColor(0x455844ff);
-            skin3Btn.setBackgroundColor(0x6c828bff);
-            skin4Btn.setBackgroundColor(0xa08bbaff);
+            skin1Btn.setBackgroundColor(ContextCompat.getColor(AppearanceActivity.this, R.color.orc1));
+            skin2Btn.setBackgroundColor(ContextCompat.getColor(AppearanceActivity.this, R.color.orc2));
+            skin3Btn.setBackgroundColor(ContextCompat.getColor(AppearanceActivity.this, R.color.orc3));
+            skin4Btn.setBackgroundColor(ContextCompat.getColor(AppearanceActivity.this, R.color.orc4));
         } else if (race == DetailsActivity.ELF) {
-            skin1Btn.setBackgroundColor(0x424140ff);
-            skin2Btn.setBackgroundColor(0xfdd1a8ff);
-            skin3Btn.setBackgroundColor(0x3a3029ff);
-            skin4Btn.setBackgroundColor(0x495745ff);
+            skin1Btn.setBackgroundColor(ContextCompat.getColor(AppearanceActivity.this, R.color.elf1));
+            skin2Btn.setBackgroundColor(ContextCompat.getColor(AppearanceActivity.this, R.color.elf2));
+            skin3Btn.setBackgroundColor(ContextCompat.getColor(AppearanceActivity.this, R.color.elf3));
+            skin4Btn.setBackgroundColor(ContextCompat.getColor(AppearanceActivity.this, R.color.elf4));
         }
 
         skin1Btn.setOnClickListener(new View.OnClickListener() { public void onClick(View v) {skinColor = 0;}});
