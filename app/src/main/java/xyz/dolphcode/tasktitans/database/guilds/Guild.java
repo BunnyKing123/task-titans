@@ -21,6 +21,7 @@ public class Guild {
     private int guildPoints = 0;
     private String guildTaskName;
     private int guildTaskType;
+    private int guildBossHP;
     private String guildTaskCompletions;
     private String guildTaskDeadline;
 
@@ -36,6 +37,8 @@ public class Guild {
     public int getGuildPoints() { return guildPoints; }
     public String getGuildTaskName() { return guildTaskName; }
     public int getGuildTaskType() { return guildTaskType; }
+    public int getGuildBossHP() { return guildBossHP; }
+    public String getGuildCompletions() { return guildTaskCompletions; }
     public String getGuildTaskDeadline() { return guildTaskDeadline; }
 
     public List<String> getChat() { return chat; }
@@ -60,6 +63,28 @@ public class Guild {
         Client.updateGuild(this); // Update guild in database
     }
 
+    public void damageBoss(int damage) {
+        if (guildTaskType == GuildTask.BOSS) {
+            guildBossHP = (guildBossHP - damage < 0) ? 0 : guildBossHP - damage;
+        }
+        Client.updateGuild(this);
+    }
+
+    public void completeTask(User user) {
+        guildTaskCompletions = guildTaskCompletions + user.getID() + "-";
+        Client.updateGuild(this);
+    }
+
+    public void regenerateChallenge() {
+        GuildTask guildTask = new GuildTask();
+        this.guildTaskCompletions = "";
+        this.guildTaskName = guildTask.getTaskName();
+        this.guildTaskDeadline = guildTask.getDeadline();
+        this.guildTaskType = guildTask.getTaskType();
+        this.guildBossHP = (guildTaskType == GuildTask.BOSS) ? GuildTask.BOSSES.get(guildTaskName) : 0;
+        Client.updateGuild(this);
+    }
+
     // Private constructor so that guild can't be instantiated
     private Guild() {}
 
@@ -73,6 +98,7 @@ public class Guild {
         private int guildPoints = 0;
         private String guildTaskName = "none";
         private int guildTaskType = -1;
+        private int guildBossHP = 0;
         private String guildTaskCompletions = "none";
         private String guildTaskDeadline = "none";
 
@@ -96,6 +122,12 @@ public class Guild {
             this.guildTaskType = (type == GuildTask.BOSS || type == GuildTask.TASK) ? GuildTask.TASK : type;
             this.guildTaskCompletions = completions;
             this.guildTaskDeadline = deadline;
+            return this;
+        }
+
+        public GuildBuilder setOtherGuildTaskData(String name, int hp) {
+            this.guildTaskName = name;
+            this.guildBossHP = hp;
             return this;
         }
 
@@ -123,15 +155,12 @@ public class Guild {
         // Set the chat of the guild given the whole chat in string format
         public GuildBuilder setChat(String chat) {
             String[] chatList = chat.split("\n");
-            Log.v("CHAT_LIST_LEN_GUILDBUILDER", chatList.length + "");
             for (String str:chatList) {
                 this.chat.add(str);
-                Log.v("CHAT_ADD_GUILDBUILDER", str);
             }
             while (this.chat.size() > 100) {
                 this.chat.remove(0);
             }
-            Log.v("CHATSIZE_GUILDBUILDER", "" + this.chat.size());
             return this;
         }
 
@@ -165,7 +194,6 @@ public class Guild {
             if (!guild.memberIDs.contains(guild.ownerID))
                 guild.memberIDs.add(guild.ownerID); // Add the owner's ID if it isn't already in the member list
 
-            Log.v("CHATSIZE_GUILDBUILDER_BUILD", "" + guild.chat.size());
             guild.dbChat = Util.joinList(guild.chat, "\n"); // Set the dbChat property for uploading information to database
             guild.dbMemberIDs = Util.joinList(guild.memberIDs, "-"); // Same as line above but for member ids
 
@@ -175,11 +203,13 @@ public class Guild {
                 guild.guildTaskName = guildTask.getTaskName();
                 guild.guildTaskDeadline = guildTask.getDeadline();
                 guild.guildTaskType = guildTask.getTaskType();
+                guild.guildBossHP = (guildTask.getTaskType() == GuildTask.BOSS) ? GuildTask.BOSSES.get(guildTaskName) : 0;
             } else {
                 guild.guildTaskType = this.guildTaskType;
                 guild.guildTaskName = this.guildTaskName;
                 guild.guildTaskCompletions = this.guildTaskCompletions;
                 guild.guildTaskDeadline = this.guildTaskDeadline;
+                guild.guildBossHP = this.guildBossHP;
             }
 
             return guild;

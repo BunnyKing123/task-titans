@@ -1,5 +1,7 @@
 package xyz.dolphcode.tasktitans.database.guilds;
 
+import android.util.Log;
+
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -24,6 +26,7 @@ public class GuildTask {
 
     protected GuildTask() {
         taskType = (int) Math.round(Math.random());
+        Log.v("TestID", "" + taskType);
         if (taskType == BOSS) {
             int index = (int) Math.floor(Math.random() * BOSSES.keySet().size());
             int counter = 0;

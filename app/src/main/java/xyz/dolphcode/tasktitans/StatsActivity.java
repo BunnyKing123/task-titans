@@ -57,7 +57,7 @@ public class StatsActivity extends AppCompatActivity implements AdapterView.OnIt
         Spinner skills = findViewById(R.id.skillsDropdown);
 
         // Code based on code in the Android Studio documentation
-        String[] skillsArray = {user.getSkill()};
+        String[] skillsArray = user.getSkill().split("-");
 
         // ArrayAdapters are used to put items in a spinner
         // ArrayAdapters can be notified when their data set is changed allowing you to change the contents of a spinner (this is seen in other parts of the code)

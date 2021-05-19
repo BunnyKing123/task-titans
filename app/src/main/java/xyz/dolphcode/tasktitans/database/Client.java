@@ -92,6 +92,12 @@ public final class Client {
                             .setChat(child.child("dbchat").getValue().toString())
                             .setMemberIDs(child.child("dbmemberIDs").getValue().toString())
                             .setMinimumLevel(((Long) child.child("minimumLevel").getValue()).intValue())
+                            .setGuildTaskData(((Long) child.child("guildTaskType").getValue()).intValue(),
+                                    child.child("guildCompletions").getValue().toString(),
+                                    child.child("guildTaskDeadline").getValue().toString())
+                            .setOtherGuildTaskData(child.child("guildTaskName").getValue().toString(),
+                                    ((Long) child.child("guildBossHP").getValue()).intValue()
+                            )
                             .build(child.getKey());
                     guilds.add(guild);
                 }

@@ -189,6 +189,17 @@ public final class Util {
         return month + "/" + day + "/" + year + " " + hour + ":" + minute;
     }
 
+    public static Calendar dateToCal(String date) {
+        Calendar calendar = Calendar.getInstance();
+        String[] dateSplit = date.split("/");
+        calendar.set(
+                Integer.parseInt(dateSplit[2]),
+                Integer.parseInt(dateSplit[0]),
+                Integer.parseInt(dateSplit[1])
+        );
+        return calendar;
+    }
+
     // Gets current time in hours and minutes
     // Hour is at index 0 (in military time)
     // Minutes are at index 1

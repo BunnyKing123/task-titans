@@ -2,6 +2,7 @@ package xyz.dolphcode.tasktitans;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,10 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import xyz.dolphcode.tasktitans.database.Client;
 import xyz.dolphcode.tasktitans.database.DatabaseObserver;
 import xyz.dolphcode.tasktitans.database.guilds.Guild;
 import xyz.dolphcode.tasktitans.database.User;
+import xyz.dolphcode.tasktitans.database.guilds.GuildTask;
 import xyz.dolphcode.tasktitans.util.Util;
 
 public class GuildActivity extends AppCompatActivity implements DatabaseObserver {
@@ -21,6 +25,8 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
     User user;
     TextView chat;
     TextView name;
+    TextView challenge;
+    Button challengeCompleteBtn;
     String guildID;
 
     @Override
@@ -38,11 +44,31 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
         guild = Client.getGuild(guildID);
         user = Client.getUser(getIntent().getStringExtra("ID"));
 
+        challenge = findViewById(R.id.guildChallenge);
+        this.updateChallenge(guild);
+
         chat = findViewById(R.id.chatBox);
         chat.setText(guild.getDBChat());
 
         name = findViewById(R.id.guildTitle);
         name.setText(guild.getGuildName());
+
+        challenge = findViewById(R.id.guildChallenge);
+        challengeCompleteBtn = findViewById(R.id.guildChallegeComplete);
+        challengeCompleteBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ArrayList<String> completionList = new ArrayList<String>();
+                for (String id:guild.getGuildCompletions().split("-")) {
+                    if (!id.isEmpty())
+                        completionList.add(id);
+                }
+                if (!completionList.contains(user.getID())) {
+                    guild.completeTask(user);
+                    user.addRewards(50, 20, 50);
+                }
+            }
+        });
+
 
         Util.addSwitchWithUser(backBtn, GameActivity.class, GuildActivity.this, user.getID());
         sendBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,12 +82,49 @@ public class GuildActivity extends AppCompatActivity implements DatabaseObserver
         });
     }
 
+    // Returns false if the guild task does not need to be regenerated
+    private boolean updateChallenge(Guild guild) {
+        Calendar today = TaskTitansApp.TODAY;
+        Calendar deadline = Util.dateToCal(guild.getGuildTaskDeadline());
+        if (deadline.get(Calendar.DAY_OF_YEAR) < today.get(Calendar.DAY_OF_YEAR) || deadline.get(Calendar.YEAR) < today.get(Calendar.YEAR)) {
+            return true;
+        }
+
+        if (guild.getGuildTaskType() == GuildTask.TASK) {
+            ArrayList<String> completionList = new ArrayList<String>();
+            for (String id:guild.getGuildCompletions().split("-")) {
+                if (!id.isEmpty())
+                    completionList.add(id);
+            }
+            if (completionList.contains(user.getID())) {
+                challenge.setText("Guild task completed!");
+            } else {
+                challenge.setText(guild.getGuildTaskName());
+            }
+            challengeCompleteBtn.setText("Finish");
+        } else {
+            if (guild.getGuildBossHP() > 0) {
+                challenge.setText("Boss defeated!");
+            } else {
+                challenge.setText(guild.getGuildTaskName() + ": " + guild.getGuildBossHP() + "/" + GuildTask.BOSSES.get(guild.getGuildTaskName()));
+            }
+            challengeCompleteBtn.setText("Attack");
+        }
+
+        return false;
+    }
+
     @Override
     public void databaseChanged() {
         guild = Client.getGuild(guildID);
+
         Log.v("DBCHANGE_GUILD_ACTIVITY", guild.getDBChat());
         //chat.setText(guild.getDBChat());
         chat.setText(guild.getDBChat());
         name.setText(guild.getGuildName());
+
+        if (updateChallenge(guild)) {
+            guild.regenerateChallenge();
+        }
     }
 }

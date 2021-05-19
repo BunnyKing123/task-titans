@@ -2,6 +2,8 @@ package xyz.dolphcode.tasktitans.database;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import xyz.dolphcode.tasktitans.DetailsActivity;
 import xyz.dolphcode.tasktitans.resources.Abilities;
 import xyz.dolphcode.tasktitans.resources.item.Item;
@@ -471,6 +473,7 @@ public class User {
             } else {
                 user.skill = "Fire Ball";
             }
+            user.skill = user.skill + "-Heal";
 
             user.guildID = this.guildID;
             user.money = this.money;

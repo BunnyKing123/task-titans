@@ -14,6 +14,7 @@ public final class Abilities {
         ABILITIES.put("Cut Down", "The user strikes their foe with a sword");
         ABILITIES.put("Deadeye", "The user fires an arrow with deadly precision");
         ABILITIES.put("Fire Ball", "The user forms a small fire ball and launches it at the enemy");
+        ABILITIES.put("Heal", "Heal yourself with magic when you're low on HP");
     }
 
 }
